@@ -21,7 +21,7 @@ En el caso de DATABASE_URL, a continuación se explican los componentes de la UR
 | -------- | ----------- | ---------------------------------------------------------------------- |
 | User     | USER        | Nombre del usuario de la base de datos, ej: Pedro                      |
 | Password | PASSWORD    | Contraseña del usuario de la base de datos                             |
-| Host     | HOST        | Dirección IP/dominio de su servidor de base de datos, ej:              |
+| Host     | HOST        | Dirección IP/dominio de su servidor de base de datos, ej: localhost    |
 | Port     | PORT        | Puerto en el que su servidor de base de datos está corriendo, ej: 5432 |
 | Database | DATABASE    | Nombre de la base de datos que se quiere utilizar, ej: mydb            |
 

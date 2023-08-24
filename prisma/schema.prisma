@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+//Modelos funciones que representan la creación de tablas en la base de datos
+
+model user {
+  id           Int                @id @default(autoincrement())
+  name         String             @unique
+  email        String             @unique
+  password     String
+  points       Int                @default(0)
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  lastLogin    DateTime           @default(now())
+  isDeleted    Boolean            @default(false)
+  customEssays customEssay[]
+  uca          userCessayAnswer[]
+}
+
+model essay {
+  id           Int           @id @default(autoincrement())
+  name         String        @unique
+  type         String        @unique
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  isDeleted    Boolean       @default(false)
+  questions    question[]
+  essayAnwsers essayAnswer[]
+}
+
+model question {
+  id          Int                   @id @default(autoincrement())
+  subject     String
+  question    String                @db.LongText
+  videoLink   String                @unique
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+  isDeleted   Boolean               @default(false)
+  originEssay essay                 @relation(fields: [essayId], references: [id], onDelete: Cascade)
+  essayId     Int
+  answers     answer[]
+  ceq         customEssayQuestion[] //ceq =customEssayQuestion
+}
+
+model answer {
+  id             Int                @id @default(autoincrement())
+  label          String             @db.Text
+  isCorrect      Int
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  isDeleted      Boolean            @default(false)
+  originQuestion question           @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId     Int
+  uca            userCessayAnswer[] //uca = userCessayAnswer
+}
+
+model customEssay {
+  id              Int                   @id @default(autoincrement())
+  name            String                @unique
+  isCustom        Boolean               @default(true)
+  currentQuestion Int                   @default(0) //no estoy seguro de que hace este atributo
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  isDeleted       Boolean               @default(false)
+  creator         user                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          Int
+  uca             userCessayAnswer[] //uca = userCessayAnswer
+  essayAnwsers    essayAnswer[]
+  ceq             customEssayQuestion[] //ceq =customEssayQuestion
+}
+
+model userCessayAnswer {
+  id            Int         @id @default(autoincrement())
+  essayTime     String
+  score         Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  isDeleted     Boolean     @default(false)
+  answer        answer      @relation(fields: [answerId], references: [id])
+  answerId      Int
+  user          user        @relation(fields: [userId], references: [id])
+  userId        Int
+  customEssay   customEssay @relation(fields: [customEssayId], references: [id])
+  customEssayId Int
+}
+
+model essayAnswer {
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  isDeleted     Boolean     @default(false)
+  customEssay   customEssay @relation(fields: [customEssayId], references: [id])
+  customEssayId Int
+  essay         essay       @relation(fields: [essayId], references: [id])
+  essayId       Int
+}
+
+model customEssayQuestion {
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  isDeleted     Boolean     @default(false)
+  customEssay   customEssay @relation(fields: [customEssayId], references: [id])
+  customEssayId Int
+  question      question    @relation(fields: [questionId], references: [id])
+  questionId    Int
+}

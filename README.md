@@ -4,7 +4,7 @@
 
 Para poder iniciar el backend, primero se ha de contar con un IDE que permita trabajar con Node.js, el cual también debe ser instalado. Luego se ha de clonar este repositorio y finalmente instalar MySQL Workbench en su versión 8.0.30 o superior.
 
-Una vez clonado el repositorio, abrirlo con el IDE de su preferencia y abrir un terminal en el cual se ha de escribir el siguiente comando para instalar las dependencias del proyecto (fijarse de que la ruta del terminal corresponda a la carpeta donde se guardó el repositorio clonado).
+Una vez clonado el repositorio, abrirlo con el IDE de su preferencia y abrir un terminal en el cual se ha de escribir el siguiente comando para instalar las dependencias del proyecto (fijarse que la ruta del terminal corresponda a la carpeta donde se guardó el repositorio clonado).
 
 `npm install`
 
@@ -19,10 +19,10 @@ En el caso de DATABASE_URL, a continuación se explican los componentes de la UR
 
 | Nombre   | Placeholder | Descripción                                                            |
 | -------- | ----------- | ---------------------------------------------------------------------- |
-| Host     | HOST        | Dirección IP/dominio de su servidor de base de datos, ej:              |
-| Port     | PORT        | Puerto en el que su servidor de base de datos está corriendo, ej: 5432 |
 | User     | USER        | Nombre del usuario de la base de datos, ej: Pedro                      |
 | Password | PASSWORD    | Contraseña del usuario de la base de datos                             |
+| Host     | HOST        | Dirección IP/dominio de su servidor de base de datos, ej:              |
+| Port     | PORT        | Puerto en el que su servidor de base de datos está corriendo, ej: 5432 |
 | Database | DATABASE    | Nombre de la base de datos que se quiere utilizar, ej: mydb            |
 
 Una vez definidas estas variables de entorno, recordar guardar los cambios en el archivo .env, ya que luego se procederá a crear las tablas en la base de datos con el siguiente comando:
@@ -35,7 +35,7 @@ En caso de que no se llene la base de datos se puede ejecutar el siguiente coman
 
 `npx prisma db seed`
 
-En caso de que desee restaurar la base de datos a su estado inicial, podrá ejecutar el siguiente comando, el cual también poblara la base de datos con sus datos originales.
+En caso de que desee restaurar la base de datos a su estado inicial, podrá ejecutar el siguiente comando, el cual también poblara la base de datos con sus datos originales y eliminara el resto.
 
 `npx prisma migrate reset`
 

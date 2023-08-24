@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(authUser);
 //app.use(userUpkeep);
 /* app.use("/user", userRouter); */
-app.use(essays); //genera null en consola
+app.use(essays); //genera null en consola aaaaaaaaaa
 app.use("/", tokenValidation, homeRouter);
 
 app.listen(3000, () => {

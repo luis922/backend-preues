@@ -1,0 +1,44 @@
+# Backend Preues
+
+## Luis Romero - Bryan Ramírez
+
+Para poder iniciar el backend, primero se ha de contar con un IDE que permita trabajar con Node.js, el cual también debe ser instalado. Luego se ha de clonar este repositorio y finalmente instalar MySQL Workbench en su versión 8.0.30 o superior.
+
+Una vez clonado el repositorio, abrirlo con el IDE de su preferencia y abrir un terminal en el cual se ha de escribir el siguiente comando para instalar las dependencias del proyecto (fijarse de que la ruta del terminal corresponda a la carpeta donde se guardó el repositorio clonado).
+
+`npm install`
+
+Una vez instaladas las dependencias del proyecto, se ha de crear un archivo llamado “.env” (sin las comillas) en el cual se han de escribir las siguientes variables de entorno:
+
+```
+DATABASE_URL="mysql:USER:PASSWORD@HOST:PORT/DATABASE"
+TOKEN_SECRET= escribir aquí cualquier cadena de texto sin comillas
+```
+
+En el caso de DATABASE_URL, a continuación se explican los componentes de la URL los cuales deben ser reemplazados por valores reales.
+
+| Nombre   | Placeholder | Descripción                                                            |
+| -------- | ----------- | ---------------------------------------------------------------------- |
+| Host     | HOST        | Dirección IP/dominio de su servidor de base de datos, ej:              |
+| Port     | PORT        | Puerto en el que su servidor de base de datos está corriendo, ej: 5432 |
+| User     | USER        | Nombre del usuario de la base de datos, ej: Pedro                      |
+| Password | PASSWORD    | Contraseña del usuario de la base de datos                             |
+| Database | DATABASE    | Nombre de la base de datos que se quiere utilizar, ej: mydb            |
+
+Una vez definidas estas variables de entorno, recordar guardar los cambios en el archivo .env, ya que luego se procederá a crear las tablas en la base de datos con el siguiente comando:
+
+`npx prisma migrate dev --name cualquier_nombre_aqui`
+
+El comando anterior también poblara la base de datos con datos predefinidos.
+
+En caso de que no se llene la base de datos se puede ejecutar el siguiente comando por separado:
+
+`npx prisma db seed`
+
+En caso de que desee restaurar la base de datos a su estado inicial, podrá ejecutar el siguiente comando, el cual también poblara la base de datos con sus datos originales.
+
+`npx prisma migrate reset`
+
+Por último, para correr el servidor de la base de datos se ha de ejecutar en el terminal el siguiente comando:
+
+`npm run dev`

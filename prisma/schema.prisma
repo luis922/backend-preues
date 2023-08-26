@@ -28,7 +28,7 @@ model user {
   themes        unlocked_theme[]
 }
 
-model predefined_Essay {
+model predefined_essay {
   id              Int                @id @default(autoincrement())
   name            String             @unique
   type            String             @unique
@@ -48,7 +48,7 @@ model question {
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
   isDeleted   Int              @default(0)
-  originEssay predefined_Essay @relation(fields: [essayId], references: [id], onDelete: Cascade)
+  originEssay predefined_essay @relation(fields: [essayId], references: [id], onDelete: Cascade)
   essayId     Int
   answers     answer[]
 }
@@ -103,7 +103,7 @@ model type_of_question {
   isDeleted     Int              @default(0)
   essayToDo     essay_to_do      @relation(fields: [essayToDoIdId], references: [id])
   essayToDoIdId Int
-  essay         predefined_Essay @relation(fields: [essayId], references: [id])
+  essay         predefined_essay @relation(fields: [essayId], references: [id])
   essayId       Int
 }
 

@@ -24,6 +24,8 @@ model user {
   isDeleted    Boolean            @default(false)
   customEssays customEssay[]
   uca          userCessayAnswer[]
+  avatars      unlockedAvatars[]
+  themes       unlockedThemes[]
 }
 
 model essay {
@@ -105,12 +107,52 @@ model essayAnswer {
 }
 
 model customEssayQuestion {
-  id            Int         @id @default(autoincrement())
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  isDeleted     Boolean     @default(false)
+  id Int @id @default(autoincrement())
+
   customEssay   customEssay @relation(fields: [customEssayId], references: [id])
   customEssayId Int
   question      question    @relation(fields: [questionId], references: [id])
   questionId    Int
+}
+
+model avatar {
+  id        Int               @id @default(autoincrement())
+  name      String
+  imgDir    String            @db.Text
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  isDeleted Boolean           @default(false)
+  users     unlockedAvatars[]
+}
+
+model unlockedAvatars {
+  id         Int      @id @default(autoincrement())
+  ownedBy    user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  avatarFrom avatar   @relation(fields: [avatarId], references: [id], onDelete: Cascade)
+  avatarId   Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isDeleted  Boolean  @default(false)
+}
+
+model theme {
+  id        Int              @id @default(autoincrement())
+  name      String
+  imgDir    String           @db.Text
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  isDeleted Boolean          @default(false)
+  users     unlockedThemes[]
+}
+
+model unlockedThemes {
+  id        Int      @id @default(autoincrement())
+  ownedBy   user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  themeFrom theme    @relation(fields: [themeId], references: [id], onDelete: Cascade)
+  themeId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  isDeleted Boolean  @default(false)
 }

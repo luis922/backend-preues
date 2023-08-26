@@ -6,7 +6,7 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de un ensayo
   if (await essayExist(req.body.name)) {
     try {
-      var ensayo = await db.essay.findUnique({
+      var ensayo = await db.predefined_essay.findUnique({
         where: { name: req.body.name },
         select: {
           id: true,
@@ -44,7 +44,7 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
 export const findAllEssaysQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de todos los ensayos
   try {
-    var ensayos = await db.essay.findMany({
+    var ensayos = await db.predefined_essay.findMany({
       select: {
         id: true,
         name: true,

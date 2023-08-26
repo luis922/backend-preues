@@ -41,7 +41,7 @@ async function poblarBD() {
   for (let i = 0; i < ensayos.length; i++) {
     try {
       //crea y almacena el nuevo ensayo en la bd
-      newEnsayo = await db.essay.create({
+      newEnsayo = await db.predefined_essay.create({
         data: {
           name: ensayos[i].name,
           type: ensayos[i].type,
@@ -74,6 +74,7 @@ async function poblarBD() {
             subject: ensayos[i].questions[j].subject,
             question: ensayos[i].questions[j].question,
             videoLink: ensayos[i].questions[j].link_resolution,
+            imageDir: ensayos[i].questions[j].imgDir,
             essayId: newEnsayo.id,
           },
         });

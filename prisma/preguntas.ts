@@ -8,6 +8,7 @@ export const ensayos = [
           "¿Cuál es el valor de: [(1 - \\frac{1}{2})(1 - \\frac{1}{3})(1 - \\frac{1}{4})(1 - \\frac{1}{5})]?",
         subject: "numeros",
         link_resolution: "https://youtube.com/embed/OxgnJ-IgxA0?start=124",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{1}{5}]",
@@ -31,6 +32,7 @@ export const ensayos = [
         question: "¿Cual es el valor de: [1 - (\\frac{1}{2})^{-3}]?",
         subject: "numeros",
         link_resolution: "https://youtube.com/embed/OxgnJ-IgxA0?start=383",
+        imgDir: "no",
         answer: [
           {
             label: "[-7]",
@@ -54,6 +56,7 @@ export const ensayos = [
         question: "Un numero aumentado en su [30]% es igual a [910].",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=1682",
+        imgDir: "no",
         answer: [
           {
             label: "[700]",
@@ -77,6 +80,7 @@ export const ensayos = [
         question: "¿Cual es el resultado de: [sqrt{2} - sqrt{8} + sqrt{18}] ",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=1895",
+        imgDir: "no",
         answer: [
           {
             label: "2[sqrt{2}]",
@@ -101,6 +105,7 @@ export const ensayos = [
           "Si [log_mlparen\\frac {8} {125}\\rparen = -3], ¿cual es el valor de m?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=2031",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac {5} {2}]",
@@ -125,6 +130,7 @@ export const ensayos = [
           "¿Cual de las siguientes cantidades corresponde al [5]% del precio de un articulo? ",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=1540",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -150,6 +156,7 @@ export const ensayos = [
         question: "¿Cual es el valor de [2,32 + 17,4]?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=38",
+        imgDir: "no",
         answer: [
           {
             label: "[(232 + 1740):100]",
@@ -174,6 +181,7 @@ export const ensayos = [
           "¿Cual de las siguientes expresiones representa el [22]%  del [15]% de P?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=577",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{33}{1000}P]",
@@ -198,6 +206,7 @@ export const ensayos = [
           "¿Cual de las siguientes opciones presenta una resolucion correcta de [\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9}]?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=755",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -225,6 +234,7 @@ export const ensayos = [
         question: "¿Cual es el valor de [sqrt{8}]([sqrt{18}]-[sqrt{8})]?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=1154",
+        imgDir: "no",
         answer: [
           {
             label: "[4]",
@@ -249,6 +259,7 @@ export const ensayos = [
           "Por el arriendo de un juego inflable se cobra una cuota fija de $120.000 por cuatro horas, más $25.000 por cada hora adicional.[\\newline]¿Cuántas horas como máximo puede arrendar una empresa el juego inflable si tiene un presupuesto de $240.000 para este efecto?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=6",
+        imgDir: "no",
         answer: [
           {
             label: "[8]",
@@ -273,6 +284,7 @@ export const ensayos = [
           "Considera el númerop distinto de cero que es multiplicado dos veces por 1,25 y luego, dos veces por 0,75, tal como se representa a continuación:[\\newline p \\cdot 1,25 \\cdot 1,25 \\cdot 0,75 \\cdot 0,75 \\newline] ¿Qué pueden representar dichas multiplicaciones, respecto del número original [p] ?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=71",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -300,6 +312,7 @@ export const ensayos = [
           "El modelo RVA de colores, permite crear cualquier color mediante la mezcla de los distintos tonos de tres olores: rojo, verde y azul. Los valores de la intensidad decada uno de estos colores van desde el 0 al 255 y cada color creado tiene un código de tres números donde el primero representa al rojo, el segundo al verde y el tercero al azul.[\\newline]El código de la mezcla de dos colores se obtiene haciendo el promedio de cada uno de los valores de los colores originales tal como se presenta a continuación:[\\newline \\begin{array}{c:c} \\text{Colores para mezclar} & \\text{Color resultante} \\newline \\hline (a,b,c),(m,n,t) & (\\frac{a + m}{2} \\cdot \\frac{b + n}{2} \\cdot \\frac{c + t}{2}) \\newline \\hline \\end{array} \\newline]¿Con qué color hay que mezclar el color (160, 60, 120) para obtener el color (170, 80, 60)?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=298",
+        imgDir: "no",
         answer: [
           {
             label: "(180,100,0)",
@@ -324,6 +337,7 @@ export const ensayos = [
           "En la temporada de invierno, la diferencia horaria entre Nueva Zelanda y Chile es de 16 h , desde Chile. Por ejemplo, si en Chile son las 11 de la mañana de un lunes, en Nueva Zelanda son las 3 de la mañana del martes.[\\newline]En la misma temporada la diferencia horaria entre México y Chile es de -1 h , desde Chile. Es decir, cuando en Chile son las 11 de la mañana de un lunes, en México son las 10 de la mañana del mismo día.[\\newline]¿Cuál es la diferencia horaria entre Nueva Zelanda y México, desde México, en la temporada de invierno?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=430",
+        imgDir: "no",
         answer: [
           {
             label: "17",
@@ -348,6 +362,7 @@ export const ensayos = [
           "Un comerciante compra una cantidad de naranjas a razón de 3 kilogramos por $600 y las vende todas a razón de 4 kilogramos por $1000.[\\newline]Si obtuvo una ganancia de $3000 , ¿cuántos kilogramos de naranjas compró?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=500",
+        imgDir: "no",
         answer: [
           {
             label: "60",
@@ -372,6 +387,7 @@ export const ensayos = [
         question: "¿Cuál es el [40]% del [15]% de 300 ?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=611",
+        imgDir: "no",
         answer: [
           {
             label: "18",
@@ -397,6 +413,7 @@ export const ensayos = [
           "Si el precio de un helado es $500 , ¿cuál de las siguientes expresiones representa el valor del helado aumentado en su [120]%?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=653",
+        imgDir: "no",
         answer: [
           {
             label: "[2,2 \\codt 500]",
@@ -420,6 +437,7 @@ export const ensayos = [
         question: "¿Qué porcentaje es 4740 de 15800 ?",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=814",
+        imgDir: "no",
         answer: [
           {
             label: "[30]%",
@@ -449,6 +467,7 @@ export const ensayos = [
         question: "¿Cual es el valor de [x] en la ecuacion [0,3 + 10x = 0,5]?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=4092",
+        imgDir: "no",
         answer: [
           {
             label: "[0,02]",
@@ -473,6 +492,7 @@ export const ensayos = [
           "Un bidon tiene ocupada con gasolina la mitad de su capacidad maxima. Al agregar 8L de gasolina se llega a las [\\frac{5}{6}] partes de su capacidad. ¿Cual es la capacidad maxima del bidon?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=4290",
+        imgDir: "no",
         answer: [
           {
             label: "[24 L]",
@@ -497,6 +517,7 @@ export const ensayos = [
           "Si [log_2{(-2x + 3p)} = 3] y [log_3{x +2p} = 1] ¿Cual es el valor de x-2p?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=5349",
+        imgDir: "no",
         answer: [
           {
             label: "[-5]",
@@ -520,6 +541,7 @@ export const ensayos = [
         question: "Si  [a * b = 10] y [a^2 + b^2 = 29]",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/jZGMcWoN-_M?start=582",
+        imgDir: "no",
         answer: [
           {
             label: "[9]",
@@ -544,6 +566,7 @@ export const ensayos = [
           "Para que el doble de [(a + c)] sea igual a [18], le faltan [4] unidades, se expresa como:",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/jZGMcWoN-_M?start=1382",
+        imgDir: "no",
         answer: [
           {
             label: "[2(a + c) + 4 = 18]",
@@ -568,6 +591,7 @@ export const ensayos = [
           "La expresión [(a + 2)^{2} + (a + 1)(a - 3)] se factoriza como el producto de dos factores, tal que uno de ellos es [(a + 1)].[\\newline]¿Cuál de las siguientes expresiones corresponde al otro factor de la expresión?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=196",
+        imgDir: "no",
         answer: [
           {
             label: "[(2a - 2)]",
@@ -592,6 +616,7 @@ export const ensayos = [
           "¿Cuál de las siguientes expresiones es igual que [(a + (b + c)) \\cdot (a + (b - c))]?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=1",
+        imgDir: "no",
         answer: [
           {
             label: "[a^{2} + 2ab + b^{2} - c^{2}]",
@@ -616,6 +641,7 @@ export const ensayos = [
           "En una tienda de mascotas se dispone de un monto máximo de $50000 para pagar la electricidad que se onsume en un mes.[\\newline]La empresa eléctrica que suministra este servicio realiza el cobro, en pesos, mediante la función [c(x) = 100x + 5000] , siendo [x] la cantidad de kWh consumidos en el mes.[\\newline]¿Cuál de los siguientes conjuntos contiene a todos y únicamente los posiblesvalores del consumo en kWh en el mes que se puede solventar con el montodisponible en esa tienda?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=525",
+        imgDir: "no",
         answer: [
           {
             label: "[\\lbrack 0, 450\\rbrack]",
@@ -640,6 +666,7 @@ export const ensayos = [
           "En una frutería cada durazno cuesta $480 y cada mango cuesta $400 . Una persona gastó $6800 en total comprando solo 16 frutas entre duraznos y mangos.[\\newline]¿Cuál de las siguientes ecuaciones permite determinar la cantidad [x] de duraznos que compró la persona?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=2",
+        imgDir: "no",
         answer: [
           {
             label: "[480x + 400(16 - x) = 6800]",
@@ -664,6 +691,7 @@ export const ensayos = [
           "¿Cuáles son las soluciones de la ecuación [x^{2} -12x +35 = 0] ?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=197",
+        imgDir: "no",
         answer: [
           {
             label: "[7 y 5]",
@@ -688,6 +716,7 @@ export const ensayos = [
           "Ignacio se dedica a vender productos encargados por sus clientes, que importa mediante una aplicación móvil. El precio de venta al que Ignacio vende los productos lo determina según la función [P(x) = 1,5x + 2500] , tal que [x] representa el precio, en pesos, al que compra el producto en la aplicación.[\\newline]¿Cuál de las siguientes afirmaciones es verdadera?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=496",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -716,6 +745,7 @@ export const ensayos = [
           "En una distribuidora envasaron 360 L de detergente líquido en bidones de 3 L y de 5 L de capacidad.[\\newline]Si se ocuparon en total 100 bidones, ¿cuál de los siguientes valores es la diferencia entre la cantidad de bidones de distinta capacidad que se usaron?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=550",
+        imgDir: "no",
         answer: [
           {
             label: "[40]",
@@ -740,6 +770,7 @@ export const ensayos = [
           "Considera la ecuación [3x - p = 2x + p + 1].[\\newline]¿Cuál es el menor valor que puede tomar x para que p sea un número entero positivo?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=762",
+        imgDir: "no",
         answer: [
           {
             label: "[3]",
@@ -764,6 +795,7 @@ export const ensayos = [
           "Considera el sistema [\\begin{rcases} ax + by + 1 = 0 \\newline bx + ay + 1 = 0 \\end{rcases}]., en x e y , con a y b números reales distintos entre sí, distintos de cero y [a \\mathrlap{/}{=} -b].[\\newline]¿Cuál es la solución del sistema?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1083",
+        imgDir: "no",
         answer: [
           {
             label: "[x = \\frac{-1}{a + b}; y = \\frac{-1}{a + b}]",
@@ -788,6 +820,7 @@ export const ensayos = [
           "Considera la ecuación [(x -3)(x - 4) = 2].[\\newline]¿Cuál de los siguientes argumentos es válido?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1227",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -817,6 +850,7 @@ export const ensayos = [
           "Una empresa vende crema para las manos en envases con forma de cilindros rectos de 20 cm de altura y de distintos diámetros.[\\newline] Por una promoción se decide aumentar en su [20]% la capacidad de cada envase, manteniendo la altura de los envases cilíndricos. [\\newline]¿Cuál de las siguientes funciones permite determinar el volumen de los nuevos envases, en [cm^{3}] , con r el radio del envase sin promoción, en cm?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=162",
+        imgDir: "no",
         answer: [
           {
             label: "g(r) = [24 \\cdot r^{2} \\cdot \\pi]",
@@ -842,6 +876,7 @@ export const ensayos = [
           "Para cierta actividad se aconseja beber diariamente al menos 1 L de agua por cada 35 kg de masa corporal.[\\newline] Para una persona de masa corporal P kg que tiene una botella de forma cilíndrica de diámetro 6 cm y altura 20 cm, ¿cuál de las siguientes expresiones permite determinar la cantidad de veces, en un día, que debe consumir el contenido de la botella llena de agua, para cumplir lo que se aconseja?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=285",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -868,6 +903,7 @@ export const ensayos = [
           "Dos ciclistas viajan en sentidos opuestos en una misma carretera y en línea recta, uno al encuentro del otro. Se encuentran separados inicialmente por una distancia d , y la rapidez a la que se desplazan son v y w . ¿Cuál de las siguientes funciones permite calcular la distancia a la que están los dos ciclistas, antes de encontrarse, en función del tiempo t ?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1168",
+        imgDir: "no",
         answer: [
           {
             label: "m(t) = d - (v + w)t",
@@ -899,6 +935,7 @@ export const ensayos = [
         subject: "probabilidades",
         link_resolution:
           "https://www.youtube.com/embed/OxgnJ-IgxA0?start=13136",
+        imgDir: "no",
         answer: [
           {
             label: "[$90.000]",
@@ -924,6 +961,7 @@ export const ensayos = [
         subject: "probabilidades",
         link_resolution:
           "https://www.youtube.com/embed/OxgnJ-IgxA0?start=13314",
+        imgDir: "no",
         answer: [
           {
             label: "[4 años]",
@@ -949,6 +987,7 @@ export const ensayos = [
         subject: "probabilidades",
         link_resolution:
           "https://www.youtube.com/embed/OxgnJ-IgxA0?start=14765",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{1}{3}]",
@@ -974,6 +1013,7 @@ export const ensayos = [
         subject: "probabilidades",
         link_resolution:
           "https://www.youtube.com/embed/OxgnJ-IgxA0?start=14941",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{13}{52}] *[\\frac{12}{51}]",
@@ -998,6 +1038,7 @@ export const ensayos = [
           "A un grupo de personas se le consultó acerca de la cantidad de películas vistas el último mes. En la tabla adjunta se presenta la distribución de los resultados de dicha consulta.[\\newline \\begin{array}{c:c} \\text{Cantidad de películas vistas el último mes} & \\text{Frecuencia} \\newline \\hline 1 & h \\newline \\hdashline 2 & 200 \\newline \\hdashline 3 & t \\newline \\hdashline 4 & 50 \\newline \\hline \\end{array} \\newline]Si se agregan personas al grupo de tal manera que la frecuencia de todos los datos aumenta en un [20]%, ¿cuál de las siguientes expresiones representa la cantidad total de personas que hay finalmente en el grupo?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/Kdr9QVeILdI?start=358",
+        imgDir: "no",
         answer: [
           {
             label: "[300 + 1,2h + 1,2t]",
@@ -1022,6 +1063,7 @@ export const ensayos = [
           "Los resultados de las dos primeras pruebas de matemática de Esteban son un 5,3 y un 5,9.[\\newline]¿Cuál de las siguientes notas es la mínima que debe obtener Esteban en la tercera prueba para que su promedio sea de al menos un 5,9 en las tres pruebas?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/Kdr9QVeILdI?start=570",
+        imgDir: "no",
         answer: [
           {
             label: "[6,5]",
@@ -1046,6 +1088,7 @@ export const ensayos = [
           "Se consultó a un grupo de 50 personas acerca de su sabor favorito de cierto tipo de helado. En la tabla adjunta se registran los resultados obtenidos.[\\newline \\begin{array}{c:c} \\text{Sabor} & \\text{Frecuencia} \\newline \\hline Vainilla & 9 \\newline \\hdashline Chocolate & 15 \\newline \\hdashline Frutilla & 6 \\newline \\hdashline Manjar & 20 \\newline \\hline \\end{array} \\newline]Si se elige a una de estas personas al azar, ¿cuál es la probabilidad de que su sabor favorito sea de vainilla o de frutilla?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=226",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{3}{10}]",
@@ -1070,6 +1113,7 @@ export const ensayos = [
           "Una caja contiene seis tarjetas todas del mismo tipo y en cada una de ellas hay una palabra escrita. Las palabras escritas en cuatro de las tar jetas son: CLASE, SOL, TEMPRANO y LEON.[\\newline]Se sabe que al extraer al azar una tarjeta de la caja la probabilidad de que la palabra escrita en ella tenga menos de tres letras vocales es [\\frac{2}{3}].[\\newline]¿Cuáles de las siguientes palabras podrían estar escritas en las otras dos tarjetas?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=275",
+        imgDir: "no",
         answer: [
           {
             label: "CUADRILATERO y CANTO",
@@ -1094,6 +1138,7 @@ export const ensayos = [
           "Si se lanzan tres monedas, ¿cuál es la probabilidad de obtener al menos un sello?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=355",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{7}{8}]",
@@ -1118,6 +1163,7 @@ export const ensayos = [
           "Una caja M contiene solo 3 bolitas rojas y 2 verdes, todas del mismo tipo y una caja N contiene solo una bolita roja y 3 bolitas verdes, todas del mismo tipo.[\\newline]Un experimento aleatorio consiste en lanzar un dado común, si sale un número par se extrae una bolita desde la caja M, en caso contrario se extrae una bolita de la caja N.[\\newline]Si se realiza este experimento, ¿cuál es la probabilidad de extraer una bolita roja?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2875",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{17}{40}]",
@@ -1142,6 +1188,7 @@ export const ensayos = [
           "Considera las tiendas A , B y C dedicadas a la venta de relojes. Si un cliente compra un reloj en una de estas tres tiendas, la probabilidad de que compre en A es 0,2 ; en B es 0,3 y en C es 0,5. Se sabe que la probabilidad de que cualquier reloj que se venda en las tiendas A, B y C tenga fallas es 0,3; 0,5 y 0,6 , respectivamente.[\\newline]Si Teresa compra un reloj que no tiene fallas, ¿cuál es la probabilidad de que lo haya comprado en la tienda A?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2931",
+        imgDir: "no",
         answer: [
           {
             label:
@@ -1168,6 +1215,7 @@ export const ensayos = [
           "Cada uno de los estudiantes de los terceros medios de un colegio lleva una botella individual para hidratarse, ya sea de agua o jugo.[\\newline]Al seleccionar un estudiante de tercero medio de este colegio al azar, se puede determinar la probabilidad de que sea una mujer que lleva agua, si se sabe que:[\\newline](1) el [60]% de los estudiantes son hombres y de estos [\\frac{5}{6}] llevan agua.[\\newline](2) los [\\frac{2}{3}] de las mujeres llevan jugo.",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=3221",
+        imgDir: "no",
         answer: [
           {
             label: "Ambas juntas, (1) y (2)",
@@ -1192,6 +1240,7 @@ export const ensayos = [
           "De un grupo de 100 personas, 40 de ellas son fumadores. Un [20]%  de los fumadores no presenta una enfermedad respiratoria. Al seleccionar una persona al azar del grupo total, la probabilidad de que presente una enfermedad respiratoria es 0,35.[\\newline]Al seleccionar una persona al azar del grupo total, ¿cuál es la probabilidad de que no fume dado que no tiene una enfermedad respiratoria?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=3006",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{57}{65}]",
@@ -1217,6 +1266,7 @@ export const ensayos = [
           "Sean A y B  dos sucesos tales que P(A) = [\\frac{1}{2}, P(A \\cap B) = \\frac{1}{6} y 1 - P(B) = \\frac{2}{3}]. Entonces, P(A [\\cup] B) =",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=137",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{2}{3}]",
@@ -1242,6 +1292,7 @@ export const ensayos = [
           "En un curso, todos los alumnos participan de por lo menos una actividad deportiva, que puede ser futbol, atletismo o ambas. En el grupo de fútbol hay 32 alumnos del curso y en el grupo de atletismo hay 24 alumnos del curso, de los cuales la mitad pertenece además al grupo de fútbol. Al escoger un alumno al azar, ¿cuál es la probabilidad de que petenezca solamente al grupo de fútbol?  ",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=732",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{5}{11}]",
@@ -1267,6 +1318,7 @@ export const ensayos = [
           "En un cajon hay 12 pañuelos azules y una cierta cantidad de pañuelos blancos, todos de idéntica forma y sin la presencia de pañuelos de otros colores. Si la probabilidad de sacar al azar un pañuelo blanco es de [\\frac{3}{5}], ¿cuántos pañuelos hay en total en el cajón?",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=1412",
+        imgDir: "no",
         answer: [
           {
             label: "[30]",
@@ -1292,6 +1344,7 @@ export const ensayos = [
           "Si se lanza dos veces un dado común y se suman los resultados, la probabilidad de que dicha suma sea multiplo de 5 es",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=2437",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{7}{35}]",
@@ -1323,6 +1376,7 @@ export const ensayos = [
         subject: "geometria",
         link_resolution:
           "https://www.youtube.com/embed/OxgnJ-IgxA0?start=12325",
+        imgDir: "no",
         answer: [
           {
             label: "[Ambas juntas, (1) y (2)]",
@@ -1347,6 +1401,7 @@ export const ensayos = [
           "Considere los vectores [\\overrightarrow{u}] = [(-2,5)], [\\overrightarrow{v}] = [(3, -2)] y [\\overrightarrow{c}] = [(-1,-4)]. ¿Cual es el vector [\\overrightarrow{u}] + 2[\\overrightarrow{v}] - [\\overrightarrow{c}]?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=9560",
+        imgDir: "no",
         answer: [
           {
             label: "[(5,5)]",
@@ -1371,6 +1426,7 @@ export const ensayos = [
           "Si el punto (a,b) es la imagen que se obtiene al trasladar el punto R segun el vector (m,n), ¿cuales son las coordenadas de R?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=9691",
+        imgDir: "no",
         answer: [
           {
             label: "[(a - m, b - n)]",
@@ -1395,6 +1451,7 @@ export const ensayos = [
           "Con un cordel de largo d se forma un cuadrado. ¿Cuanto mide el area del un cuadrado?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/m4qRM2mtjHA?start=480",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{d^2}{16}]",
@@ -1419,6 +1476,7 @@ export const ensayos = [
           "Dos figuras geométricas son homotéticas con razón de homotecia -3.[\\newline]Si la figura original tiene un área de [b cm^{2} ], ¿cuál es el área de la imagen homotética?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2263",
+        imgDir: "no",
         answer: [
           {
             label: "[9b cm^{2}]",
@@ -1443,6 +1501,7 @@ export const ensayos = [
           "¿Para qué puntos (x, y) en el plano cartesiano se cumple [\\frac{3x + y}{3} = x + y]?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2348",
+        imgDir: "no",
         answer: [
           {
             label: "Para los puntos de la forma (x, 0)",
@@ -1467,6 +1526,7 @@ export const ensayos = [
           "¿Cuántos vectores (a, b) con coordenadas enteras y magnitud [\\sqrt{5}] hay en el plano cartesiano?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2414",
+        imgDir: "no",
         answer: [
           {
             label: "[8]",
@@ -1491,6 +1551,7 @@ export const ensayos = [
           "Al trasladar el punto (x, y) según el vector (p, q) , se obtiene un punto en el segundo cuadrante.[\\newline]¿Cuál de las siguientes relaciones es verdadera?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2382",
+        imgDir: "no",
         answer: [
           {
             label: "[x < -p] e [y > -q]",
@@ -1515,6 +1576,7 @@ export const ensayos = [
           "Se necesita determinar el perímetro del rectángulo ABCD, cuyo largo y ancho miden (4x por 1) cm y (x por 2) cm, respectivamente. Se sabe que ABCD es semejante a un rectángulo cuyo largo y ancho miden 10 cm y 8cm, respectivamente.[\\newline]Para determinar el perímetro del rectángulo ABCD se realiza el siguiente procedimiento, cometiéndose un error: [\\newline] Paso 1: como los rectángulos son semejantes se plantea la expresión: [\\frac{4x + 1}{8} = \\frac{x + 2}{10}\\newline] Paso 2: se resuelve la expresión anterior, obteniéndose [x = \\fraac{3}{16} \\newline]Paso 3: se reemplaza este valor de x en (4x  1) cm y (x  2) cm, obteniéndose que el largo y el ancho del rectángulo son [\\frac{7}{4}]cm y [\\frac{35}{16}]cm, respectivamente.[\\newline]Paso 4: se calcula el perímetro del rectángulo obteniéndose [\\frac{63}{8}]cm.[\\newline]¿En cuál de los pasos se cometió el error?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1758",
+        imgDir: "no",
         answer: [
           {
             label: "En el Paso 1",
@@ -1539,6 +1601,7 @@ export const ensayos = [
           "La razón de semejanza entre las figuras P y Q, en ese orden, es [\\frac{3}{5}], mientras que la razón de semejanza entre las figuras R y P , en ese orden, es [\\frac{7}{3} \\newline]¿Cuál es la razón de semejanza entre las figuras R y Q, en ese orden?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1813",
+        imgDir: "no",
         answer: [
           {
             label: "[\\frac{7}{5}]",
@@ -1563,6 +1626,7 @@ export const ensayos = [
           "A un punto P del plano cartesiano se le aplica una reflexión respecto al origen de este obteniéndose el punto Q, luego el punto Q se traslada según el vector [\\overrightarrow{v} = (-2, 3)] obteniéndose el punto R.[\\newline] Si R tiene coordenadas [(5, 4)] , ¿cuáles son las coordenadas del punto P ? ",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=560",
+        imgDir: "no",
         answer: [
           {
             label: "[(-7,-1)]",
@@ -1587,6 +1651,7 @@ export const ensayos = [
           "Dentro de un sistema de coordenadas cartesianas se tienen los puntos A(2,3), B(5,8) y C(7,2). ¿Cuál es el área del triángulo ABC?",
         subject: "geometria",
         link_resolution: "placeholder1",
+        imgDir: "no",
         answer: [
           {
             label: "10 unidades cuadradas",
@@ -1611,6 +1676,7 @@ export const ensayos = [
           "¿Cuáles son las coordenadas del punto medio del segmento de línea que une los puntos (2,5) y (-4,1)?",
         subject: "geometria",
         link_resolution: "placeholder2",
+        imgDir: "no",
         answer: [
           {
             label: "(-1, 3)",
@@ -1635,6 +1701,7 @@ export const ensayos = [
           "¿Cuál es la pendiente de la línea que pasa por los puntos (2,3) y (6,9)?",
         subject: "geometria",
         link_resolution: "placeholder3",
+        imgDir: "no",
         answer: [
           {
             label: "2",
@@ -1659,6 +1726,7 @@ export const ensayos = [
           "Si un triángulo tiene una base de 8 unidades y una altura de 6 unidades, ¿cuál es su área?",
         subject: "geometria",
         link_resolution: "placeholder4",
+        imgDir: "no",
         answer: [
           {
             label: "24 unidades cuadradas",

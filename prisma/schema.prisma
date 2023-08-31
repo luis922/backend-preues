@@ -67,20 +67,20 @@ model answer {
 }
 
 model essay_to_do {
-  id              Int                     @id @default(autoincrement())
-  name            String                  @unique
-  isCustom        Boolean                 @default(true)
-  completionTime  Int                     @default(0)
-  score           Int                     @default(0)
-  currentQuestion Int                     @default(0) //no estoy seguro de que hace este atributo
-  createdAt       DateTime                @default(now())
-  updatedAt       DateTime                @updatedAt
-  isDeleted       Int                     @default(0)
-  creator         user                    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId          Int
-  chosenAnswers   chosen_answer[] //chosen_answer
-  typeOfQuestions type_of_question[] //Conecta las preguntas con el ensayo a realizar
-  questions       custom_essay_question[] // Preguntas seleccionadas para el ensayo custom
+  id                Int                     @id @default(autoincrement())
+  name              String                  @unique
+  isCustom          Boolean                 @default(true)
+  completionTime    Int                     @default(0)
+  score             Int                     @default(0)
+  numberOfQuestions Int                     @default(0) //no estoy seguro de que hace este atributo
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  isDeleted         Int                     @default(0)
+  creator           user                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            Int
+  chosenAnswers     chosen_answer[] //chosen_answer
+  typeOfQuestions   type_of_question[] //Conecta las preguntas con el ensayo a realizar
+  questions         custom_essay_question[] // Preguntas seleccionadas para el ensayo custom
 }
 
 model chosen_answer {

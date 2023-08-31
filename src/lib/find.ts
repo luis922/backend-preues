@@ -21,7 +21,7 @@ export async function findUserbyName(name: string) {
 //ensayo
 export async function essayExist(nombre: string) {
   try {
-    var essay = await db.essay.findUnique({
+    var essay = await db.predefined_essay.findUnique({
       where: { name: nombre },
     });
   } catch (error) {

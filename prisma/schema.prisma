@@ -59,7 +59,7 @@ model answer {
   label          String          @db.Text
   isCorrect      Int
   questionId     Int
-  imageDir       String          @db.Text
+  //imageDir       String          @db.Text
   isDeleted      Int             @default(0)
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt

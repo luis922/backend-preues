@@ -18,10 +18,10 @@ model user {
   email         String            @unique
   password      String
   points        Int               @default(0)
+  isDeleted     Int               @default(0)
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
   lastLogin     DateTime          @default(now())
-  isDeleted     Int               @default(0)
   essaysToDo    essay_to_do[]
   chosenAnswers chosen_answer[]
   avatars       unlocked_avatar[]
@@ -32,52 +32,53 @@ model predefined_essay {
   id              Int                @id @default(autoincrement())
   name            String             @unique
   type            String             @unique
+  isDeleted       Int                @default(0)
   createdAt       DateTime           @default(now())
   updatedAt       DateTime           @updatedAt
-  isDeleted       Int                @default(0)
   questions       question[]
   typeOfQuestions type_of_question[] //Conecta las preguntas con el ensayo a realizar
 }
 
 model question {
-  id            Int                     @id @default(autoincrement())
-  subject       String
-  question      String                  @db.LongText
-  videoLink     String                  @unique
-  imageDir      String                  @db.Text
-  createdAt     DateTime                @default(now())
-  updatedAt     DateTime                @updatedAt
-  isDeleted     Int                     @default(0)
-  originEssay   predefined_essay        @relation(fields: [essayId], references: [id], onDelete: Cascade)
-  essayId       Int
-  answers       answer[]
-  inCustomEssay custom_essay_question[]
+  id                Int                     @id @default(autoincrement())
+  subject           String
+  question          String                  @db.LongText
+  videoLink         String                  @unique
+  imageDir          String                  @db.Text
+  createdAt         DateTime                @default(now())
+  updatedAt         DateTime                @updatedAt
+  isDeleted         Int                     @default(0)
+  predifinedEssayId Int
+  originEssay       predefined_essay        @relation(fields: [predifinedEssayId], references: [id], onDelete: Cascade)
+  answers           answer[]
+  inCustomEssay     custom_essay_question[]
 }
 
 model answer {
   id             Int             @id @default(autoincrement())
   label          String          @db.Text
   isCorrect      Int
+  questionId     Int
+  imageDir       String          @db.Text
+  isDeleted      Int             @default(0)
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
-  isDeleted      Int             @default(0)
   originQuestion question        @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  questionId     Int
   chosenIn       chosen_answer[] //respuesta seleccionado en el ensayo X realizado por el usuario Y
 }
 
 model essay_to_do {
   id                Int                     @id @default(autoincrement())
+  userId            Int
   name              String                  @unique
   isCustom          Int                     @default(0)
+  numberOfQuestions Int                     @default(0)
   completionTime    Int                     @default(0)
   score             Int                     @default(0)
-  numberOfQuestions Int                     @default(0) //no estoy seguro de que hace este atributo
+  isDeleted         Int                     @default(0)
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt
-  isDeleted         Int                     @default(0)
   creator           user                    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId            Int
   chosenAnswers     chosen_answer[] //chosen_answer
   typeOfQuestions   type_of_question[] //Conecta las preguntas con el ensayo a realizar
   questions         custom_essay_question[] // Preguntas seleccionadas para el ensayo custom
@@ -85,79 +86,79 @@ model essay_to_do {
 
 model chosen_answer {
   id          Int         @id @default(autoincrement())
+  userId      Int
+  essayToDoId Int
+  answerId    Int
   essayTime   String
   score       Int         @default(0)
+  isDeleted   Int         @default(0)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
-  isDeleted   Int         @default(0)
   answer      answer      @relation(fields: [answerId], references: [id])
-  answerId    Int
   user        user        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int
   essayToDo   essay_to_do @relation(fields: [essayToDoId], references: [id], onDelete: Cascade)
-  essayToDoId Int
 }
 
 model type_of_question {
   id                Int              @id @default(autoincrement())
+  essayToDoId       Int
+  predifinedEssayId Int
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
   isDeleted         Int              @default(0)
   essayToDo         essay_to_do      @relation(fields: [essayToDoId], references: [id])
-  essayToDoId       Int
   predifinedEssay   predefined_essay @relation(fields: [predifinedEssayId], references: [id])
-  predifinedEssayId Int
 }
 
 model avatar {
   id        Int               @id @default(autoincrement())
   name      String
   imgDir    String            @db.Text
+  isDeleted Int               @default(0)
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
-  isDeleted Int               @default(0)
   users     unlocked_avatar[]
 }
 
 model unlocked_avatar {
   id         Int      @id @default(autoincrement())
-  ownedBy    user     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     Int
-  avatarFrom avatar   @relation(fields: [avatarId], references: [id], onDelete: Cascade)
   avatarId   Int
+  isDeleted  Int      @default(0)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  isDeleted  Int      @default(0)
+  ownedBy    user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  avatarFrom avatar   @relation(fields: [avatarId], references: [id], onDelete: Cascade)
 }
 
 model theme {
   id        Int              @id @default(autoincrement())
   name      String
   imgDir    String           @db.Text
+  isDeleted Int              @default(0)
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
-  isDeleted Int              @default(0)
   users     unlocked_theme[]
 }
 
 model unlocked_theme {
   id        Int      @id @default(autoincrement())
-  ownedBy   user     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
-  themeFrom theme    @relation(fields: [themeId], references: [id], onDelete: Cascade)
   themeId   Int
+  isDeleted Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  isDeleted Int      @default(0)
+  ownedBy   user     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  themeFrom theme    @relation(fields: [themeId], references: [id], onDelete: Cascade)
 }
 
 model custom_essay_question {
   id               Int         @id @default(autoincrement())
-  selectedQuestion question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
-  questionId       Int
-  belongsTo        essay_to_do @relation(fields: [essayToDoId], references: [id], onDelete: Cascade)
   essayToDoId      Int
+  questionId       Int
+  isDeleted        Int         @default(0)
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt
-  isDeleted        Int         @default(0)
+  selectedQuestion question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  belongsTo        essay_to_do @relation(fields: [essayToDoId], references: [id], onDelete: Cascade)
 }

@@ -106,7 +106,7 @@ model type_of_question {
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
   isDeleted         Int              @default(0)
-  essayToDo         essay_to_do      @relation(fields: [essayToDoId], references: [id])
+  essayToDo         essay_to_do      @relation(fields: [essayToDoId], references: [id], onDelete: Cascade)
   predifinedEssay   predefined_essay @relation(fields: [predifinedEssayId], references: [id])
 }
 

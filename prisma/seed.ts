@@ -75,7 +75,7 @@ async function poblarBD() {
             question: ensayos[i].questions[j].question,
             videoLink: ensayos[i].questions[j].link_resolution,
             imageDir: ensayos[i].questions[j].imgDir,
-            essayId: newEnsayo.id,
+            predifinedEssayId: newEnsayo.id,
           },
         });
       } catch (error) {

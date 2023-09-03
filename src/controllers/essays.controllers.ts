@@ -1,5 +1,6 @@
+import { test } from "node:test";
 import { db } from "../db.connection";
-import { essayExist } from "../lib/find";
+import { essayExist, customEssayExist } from "../lib/find";
 import { Request, Response } from "express";
 
 export const findEssayQuestions = async (req: Request, res: Response) => {
@@ -75,3 +76,84 @@ export const findAllEssaysQuestions = async (req: Request, res: Response) => {
 
   return res.status(200).json(ensayos);
 };
+
+export const createEssay = async (req: Request, res: Response) => {
+  var newEssay;
+  var relations;
+  //definir bien el tema de los nombres
+  if (!(await customEssayExist(req.body.name))) {
+    try {
+      newEssay = await db.essay_to_do.create({
+        data: {
+          name: req.body.name,
+          userId: +req.body.userId,
+          isCustom: +req.body.isCustom,
+          numberOfQuestions: +req.body.numberOfQuestions,
+        },
+      });
+      relations = await createTypeOfQuestionRelations(
+        req.body.essayIDS,
+        newEssay.id
+      );
+      return res
+        .status(200)
+        .json({ newEssay: newEssay, newRelations: relations });
+    } catch (err) {
+      return res.status(500).json({
+        msg: "Couldn't create the new essay",
+        error: err,
+      });
+    }
+  } else {
+    return res.status(500).json({
+      msg: "Couldn't create the new essay because name already exist",
+    });
+  }
+};
+
+async function createTypeOfQuestionRelations(
+  predefinedEssayIDS: Array<string>,
+  newEssayID: number
+) {
+  var newRelation;
+  try {
+    for (var i = 0; i < predefinedEssayIDS.length; i++) {
+      newRelation = await db.type_of_question.create({
+        data: {
+          essayToDoId: newEssayID,
+          predifinedEssayId: +predefinedEssayIDS[i],
+        },
+      });
+    }
+
+    const resultado = await db.type_of_question.findMany({
+      where: { essayToDoId: newEssayID },
+    });
+    return resultado;
+  } catch (err) {
+    return { msg: "Couldn't create relation", error: err };
+  }
+}
+
+/* async function createTypeOfQuestionRelation(
+  predifinedEssayId: string,
+  newEssayID: number
+) {
+  //programar verificacion de si predefined essay exist
+  try {
+    var newRelation = await db.type_of_question.create({
+      data: {
+        essayToDoId: newEssayID,
+        predifinedEssayId: +predifinedEssayId,
+      },
+    });
+  } catch (err) {
+    return { msg: "Couldn't create relation", error: err };
+  }
+
+  return newRelation;
+} */
+async function testFunction() {
+  console.log(await createTypeOfQuestionRelations(["1", "2", "3"], 26));
+}
+/* testFunction(); */

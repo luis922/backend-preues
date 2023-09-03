@@ -8,5 +8,7 @@ router.get("/essayQuestions", essay.findEssayQuestions); //obtiene todas las pre
 router.get("/allQuestions", essay.findAllEssaysQuestions); //obtiene todas las preguntas de todos los ensayos
 router.post("/newEssay", essay.createEssay);
 router.post("/submitAnswers", tokenValidation, essay.submitAnswers);
+router.get("/submittedEssay", tokenValidation, essay.getSubmittedEssay);
+router.get("/history", tokenValidation, essay.getHistory);
 
 export default router;

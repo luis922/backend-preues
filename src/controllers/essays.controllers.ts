@@ -1,11 +1,11 @@
 import { db } from "../db.connection";
-import { essayExist, customEssayExist, existEssaytoDo } from "../lib/find";
+import * as find from "../lib/find";
 import { Request, Response } from "express";
 import { getIdfromToken } from "../lib/general";
 
 export const findEssayQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de un ensayo
-  if (await essayExist(req.body.name)) {
+  if (await find.essayExist(req.body.name)) {
     try {
       var ensayo = await db.predefined_essay.findUnique({
         where: { name: req.body.name },
@@ -81,7 +81,7 @@ export const createEssay = async (req: Request, res: Response) => {
   var newEssay;
   var relations;
   //definir bien el tema de los nombres
-  if (!(await customEssayExist(req.body.name))) {
+  if (!(await find.customEssayExist(req.body.name))) {
     try {
       newEssay = await db.essay_to_do.create({
         data: {
@@ -154,14 +154,54 @@ async function createTypeOfQuestionRelation(
   return newRelation;
 }
 
+async function createCustomEssayQuestionRelation(
+  answersIDS: Array<string>,
+  essayId: number
+) {
+  let questionId;
+  //Verifica que la respuesta exista al igual que la pregunta a la que pertenece
+  for (let j = 0; j < answersIDS.length; j++) {
+    if (await find.existAnswer(+answersIDS[j])) {
+      questionId = await find.getQuestionIdFromAnswerId(+answersIDS[j]);
+      if (questionId == -1) {
+        return "Couldn't find the question to which the answer belongs";
+      }
+      const essayQuestion = await db.custom_essay_question.create({
+        data: {
+          essayToDoId: essayId,
+          questionId: questionId,
+        },
+      });
+    } else {
+      return {
+        msg: "Couldn't find answer with id: " + answersIDS[j],
+        succes: false,
+      };
+    }
+  }
+  return await db.custom_essay_question.findMany({
+    where: { essayToDoId: essayId },
+  });
+}
+
 export const submitAnswers = async (req: Request, res: Response) => {
   const token = req.header("auth-token");
-  if (!token) return res.status(401).send("Acces denied");
+  if (!token) {
+    return res.status(401).send("Acces denied");
+  } //verifica que token exista
+
   const userID = getIdfromToken(token);
   console.log("token OK");
-  if (!existEssaytoDo(+req.body.essayId))
+
+  if (!find.existEssaytoDo(+req.body.essayId)) {
     return res.status(404).send("Essay doesn't exist");
+  } //verifica que ensayo exista
   console.log("essay ID OK");
+
+  var relations = await createCustomEssayQuestionRelation(
+    req.body.answersIDS,
+    +req.body.essayId
+  );
 
   try {
     var subAnswer;
@@ -187,10 +227,90 @@ export const submitAnswers = async (req: Request, res: Response) => {
         AND: [{ essayToDoId: +req.body.essayId }, { userId: +userID }],
       },
     });
-    return res.status(200).json(resultado);
+    return res
+      .status(200)
+      .json({ answers: resultado, QuestionEssayRelations: relations });
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't submit answer",
+      error: err,
+    });
+  }
+};
+
+export const getSubmittedEssay = async (req: Request, res: Response) => {
+  if (!find.existEssaytoDo(+req.body.id)) {
+    return res.status(404).send("Essay doesn't exist");
+  } //verifica que ensayo exista
+  console.log("essay ID OK");
+
+  try {
+    const submittedEssay = await db.essay_to_do.findUnique({
+      where: { id: +req.body.id },
+      select: {
+        id: true,
+        name: true,
+        completionTime: true,
+        numberOfQuestions: true,
+        createdAt: true,
+        score: true,
+        questions: {
+          select: {
+            selectedQuestion: {
+              select: {
+                id: true,
+                subject: true,
+                question: true,
+                videoLink: true,
+                answers: {
+                  select: {
+                    id: true,
+                    label: true,
+                    isCorrect: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        chosenAnswers: {
+          select: {
+            answer: {
+              select: {
+                id: true,
+                label: true,
+                isCorrect: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return res.status(200).json(submittedEssay);
+  } catch (err) {
+    return res.status(404).json({
+      msg: "Couldn't find the essay",
+      error: err,
+    });
+  }
+};
+
+export const getHistory = async (req: Request, res: Response) => {
+  //verificar que usuario exista
+  try {
+    const history = await db.essay_to_do.findMany({
+      where: { userId: +req.body.userId },
+      select: {
+        name: true,
+        score: true,
+        createdAt: true,
+        numberOfQuestions: true,
+      },
+    });
+    return res.status(200).json({ historial: history });
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't retrieve history",
       error: err,
     });
   }

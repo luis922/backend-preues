@@ -76,7 +76,7 @@ export async function existEssaytoDo(id: number) {
   return false;
 }
 
-async function existTOQ(id: number) {
+export async function existTOQ(id: number) {
   //exist type_of_question
   try {
     var essay = await db.type_of_question.findMany({
@@ -115,7 +115,64 @@ export async function findAllTypeOfQuestionRelations(essayId: number) {
   }
 }
 
-async function testFunction() {
-  console.log(await findAllTypeOfQuestionRelations(3));
+export async function existAnswer(id: number) {
+  try {
+    var answer = await db.answer.findUnique({
+      where: { id: id },
+    });
+  } catch (err) {
+    console.log(
+      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
+    );
+    return false;
+  }
+  if (answer) {
+    return true;
+  }
+  return false;
 }
+
+export async function existQuestion(id: number) {
+  try {
+    var question = await db.question.findUnique({
+      where: { id: id },
+    });
+  } catch (err) {
+    console.log(
+      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
+    );
+    return false;
+  }
+  if (question) {
+    return true;
+  }
+  return false;
+}
+
+export async function getQuestionIdFromAnswerId(aId: number) {
+  try {
+    var question = await db.answer.findUnique({
+      where: { id: aId },
+      select: {
+        questionId: true,
+      },
+    });
+    if (!question) {
+      console.log("Couldn't find question using answer id: " + aId);
+      return -1;
+    }
+    return question.questionId;
+  } catch (err) {
+    console.log({
+      msg: "Couldn't find question using answer id: " + aId,
+      error: err,
+    });
+    return -1;
+  }
+}
+
+async function testFunction() {
+  console.log(await getQuestionIdFromAnswerId(1));
+}
+
 /* testFunction(); */

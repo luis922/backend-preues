@@ -1,7 +1,7 @@
-import { test } from "node:test";
 import { db } from "../db.connection";
-import { essayExist, customEssayExist } from "../lib/find";
+import { essayExist, customEssayExist, existEssaytoDo } from "../lib/find";
 import { Request, Response } from "express";
+import { getIdfromToken } from "../lib/general";
 
 export const findEssayQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de un ensayo
@@ -135,7 +135,7 @@ async function createTypeOfQuestionRelations(
   }
 }
 
-/* async function createTypeOfQuestionRelation(
+async function createTypeOfQuestionRelation(
   predifinedEssayId: string,
   newEssayID: number
 ) {
@@ -152,8 +152,51 @@ async function createTypeOfQuestionRelations(
   }
 
   return newRelation;
-} */
-async function testFunction() {
-  console.log(await createTypeOfQuestionRelations(["1", "2", "3"], 26));
 }
+
+export const submitAnswers = async (req: Request, res: Response) => {
+  const token = req.header("auth-token");
+  if (!token) return res.status(401).send("Acces denied");
+  const userID = getIdfromToken(token);
+  console.log("token OK");
+  if (!existEssaytoDo(+req.body.essayId))
+    return res.status(404).send("Essay doesn't exist");
+  console.log("essay ID OK");
+
+  try {
+    var subAnswer;
+    for (let i = 0; i < req.body.answersIDS.length; i++) {
+      subAnswer = await db.chosen_answer.create({
+        data: {
+          userId: +userID,
+          answerId: +req.body.answersIDS[i],
+          essayToDoId: +req.body.essayId,
+          essayTime: req.body.essayTime,
+        },
+      });
+      console.log("indice i: " + i);
+      console.log({
+        userId: +userID,
+        answerId: +req.body.answersIDS[i],
+        essayToDoId: +req.body.essayId,
+        essayTime: req.body.essayTime,
+      });
+    }
+    const resultado = await db.chosen_answer.findMany({
+      where: {
+        AND: [{ essayToDoId: +req.body.essayId }, { userId: +userID }],
+      },
+    });
+    return res.status(200).json(resultado);
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't submit answer",
+      error: err,
+    });
+  }
+};
+
+/* async function testFunction() {
+  console.log(await createTypeOfQuestionRelations(["1", "2", "3"], 26));
+} */
 /* testFunction(); */

@@ -59,7 +59,7 @@ export async function customEssayExist(nombre: string) {
   return false;
 }
 
-async function existEssaytoDo(id: number) {
+export async function existEssaytoDo(id: number) {
   try {
     var essay = await db.essay_to_do.findUnique({
       where: { id: id },
@@ -98,6 +98,7 @@ async function existTOQ(id: number) {
 
 export async function findAllTypeOfQuestionRelations(essayId: number) {
   if (await existTOQ(essayId)) {
+    // si existe la relación
     try {
       var relations = await db.type_of_question.findMany({
         where: { essayToDoId: essayId },

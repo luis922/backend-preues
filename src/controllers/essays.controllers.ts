@@ -80,35 +80,53 @@ export const findAllEssaysQuestions = async (req: Request, res: Response) => {
 export const createEssay = async (req: Request, res: Response) => {
   var newEssay;
   var relations;
-  //definir bien el tema de los nombres
-  if (!(await find.customEssayExist(req.body.name))) {
-    try {
-      newEssay = await db.essay_to_do.create({
-        data: {
-          name: req.body.name,
-          userId: +req.body.userId,
-          isCustom: +req.body.isCustom,
-          numberOfQuestions: +req.body.numberOfQuestions,
-        },
-      });
-      relations = await createTypeOfQuestionRelations(
-        req.body.essayIDS,
-        newEssay.id
-      );
-      return res
-        .status(200)
-        .json({ newEssay: newEssay, newRelations: relations });
-    } catch (err) {
+  //----------get user id---------------------
+  const token = req.header("auth-token");
+  if (!token) {
+    return res.status(401).send("Acces denied");
+  } //verifica que token exista
+
+  const userID = getIdfromToken(token);
+  console.log("token OK");
+  //------------------------------------------
+
+  if (+req.body.isCustom == 1) {
+    //Crear limite de ensayos custom
+    if (await find.isNameRepeated(req.body.name, +userID)) {
       return res.status(500).json({
-        msg: "Couldn't create the new essay",
-        error: err,
+        msg: "Name of essay already chosen by the user",
+        repeated: true,
       });
     }
-  } else {
+  }
+
+  try {
+    newEssay = await db.essay_to_do.create({
+      data: {
+        name: req.body.name,
+        userId: +req.body.userId,
+        isCustom: +req.body.isCustom,
+        numberOfQuestions: +req.body.numberOfQuestions,
+      },
+    });
+    relations = await createTypeOfQuestionRelations(
+      req.body.essayIDS,
+      newEssay.id
+    );
+    return res
+      .status(200)
+      .json({ newEssay: newEssay, newRelations: relations });
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't create the new essay",
+      error: err,
+    });
+  }
+  /* } else {
     return res.status(500).json({
       msg: "Couldn't create the new essay because name already exist",
     });
-  }
+  } */
 };
 
 async function createTypeOfQuestionRelations(

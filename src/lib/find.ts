@@ -39,7 +39,7 @@ export async function essayExist(nombre: string) {
   return false;
 }
 
-export async function customEssayExist(nombre: string) {
+/* export async function customEssayExist(nombre: string) {
   try {
     var essay = await db.essay_to_do.findUnique({
       where: { name: nombre },
@@ -57,7 +57,7 @@ export async function customEssayExist(nombre: string) {
     return true;
   }
   return false;
-}
+} */
 
 export async function existEssaytoDo(id: number) {
   try {
@@ -171,8 +171,26 @@ export async function getQuestionIdFromAnswerId(aId: number) {
   }
 }
 
+export async function isNameRepeated(essayName: string, userID: number) {
+  try {
+    var repeatedEssay = await db.essay_to_do.findMany({
+      where: { name: essayName, AND: { isCustom: 1 } },
+    });
+  } catch (err) {
+    console.log({
+      msg: "Couldn't make the search",
+      error: err,
+    });
+    return true;
+  }
+  if (repeatedEssay.length > 0) {
+    return true;
+  }
+  return false;
+}
+
 async function testFunction() {
-  console.log(await getQuestionIdFromAnswerId(1));
+  console.log(await isNameRepeated("EnsAyo 3", 1));
 }
 
 /* testFunction(); */

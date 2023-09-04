@@ -70,7 +70,7 @@ model answer {
 model essay_to_do {
   id                Int                     @id @default(autoincrement())
   userId            Int
-  name              String                  @unique
+  name              String
   isCustom          Int                     @default(0)
   numberOfQuestions Int                     @default(0)
   completionTime    Int                     @default(0)

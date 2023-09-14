@@ -8,6 +8,7 @@ export const createToken = (idu: number, nameu: string) => {
 };
 
 export function getIdfromToken(token: string) {
+  token = token.split(" ")[1]; // quita el bearer al token
   const payload = jwt.verify(
     token,
     process.env.TOKEN_SECRET || "tokensreplacementincaseisundifined"

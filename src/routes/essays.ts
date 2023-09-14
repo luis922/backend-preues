@@ -10,5 +10,7 @@ router.post("/newEssay", tokenValidation, essay.createEssay);
 router.post("/submitAnswers", tokenValidation, essay.submitAnswers);
 router.get("/submittedEssay", tokenValidation, essay.getSubmittedEssay);
 router.get("/history", tokenValidation, essay.getHistory);
-
+router.get("/showCustomEssays", tokenValidation, essay.getCustomEssays); //Listar ensayos custom del usuario
+router.get("/customEssay", tokenValidation, essay.getCustomEssay); //Obtener los datos de un ensayo custom particular
+router.delete("/physicalDelEssay", tokenValidation, essay.physicalDeleteEssay); //Borrado fisico del ensayo
 export default router;

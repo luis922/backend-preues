@@ -6,14 +6,19 @@ export const tokenValidation = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.header("auth-token");
-  if (!token) return res.status(401).send("Acces denied");
+  try {
+    //Agregar verficación de tiempo de duración del token cuando se defina
+    const bearerToken = req.header("authorization");
 
-  const payload = jwt.verify(
-    token,
-    process.env.TOKEN_SECRET || "tokensreplacementincaseisundifined"
-  );
-  console.log(payload);
+    if (!bearerToken) return res.status(401).send("Acces denied"); // si no se envía token
 
+    const token = bearerToken.split(" ")[1]; // quita el bearer al token
+    const payload = jwt.verify(
+      token,
+      process.env.TOKEN_SECRET || "tokensreplacementincaseisundifined"
+    );
+  } catch (error) {
+    return res.status(401).send({ error: error });
+  }
   next();
 };

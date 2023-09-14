@@ -73,7 +73,7 @@ model essay_to_do {
   name              String
   isCustom          Int                     @default(0)
   numberOfQuestions Int                     @default(0)
-  completionTime    Int                     @default(0)
+  selectedTime      Int                     @default(0)
   score             Int                     @default(100)
   totalTime         Int                     @default(0)
   isDeleted         Int                     @default(0)

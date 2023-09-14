@@ -1,14 +1,16 @@
 import { db } from "../db.connection";
 import * as find from "../lib/find";
+import * as update from "../lib/updates";
 import { Request, Response } from "express";
 import { getIdfromToken } from "../lib/general";
 
 export const findEssayQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de un ensayo
-  if (await find.essayExist(req.body.name)) {
+  const essayName = req.query.name as string; //type of topic of the question
+  if (await find.essayExist(essayName)) {
     try {
       var ensayo = await db.predefined_essay.findUnique({
-        where: { name: req.body.name },
+        where: { name: essayName },
         select: {
           id: true,
           name: true,
@@ -39,7 +41,7 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
 
     return res.status(200).json(ensayo);
   }
-  return res.status(404).json("Este ensayo no existe: " + req.body.name);
+  return res.status(404).json("Este ensayo no existe: " + essayName);
 };
 
 export const findAllEssaysQuestions = async (req: Request, res: Response) => {
@@ -81,7 +83,7 @@ export const createEssay = async (req: Request, res: Response) => {
   var newEssay;
   var relations;
   //----------get user id---------------------
-  const token = req.header("auth-token");
+  const token = req.header("authorization");
   if (!token) {
     return res.status(401).send("Acces denied");
   } //verifica que token exista
@@ -153,7 +155,7 @@ async function createTypeOfQuestionRelations(
   }
 }
 
-async function createTypeOfQuestionRelation(
+/* async function createTypeOfQuestionRelation(
   predifinedEssayId: string,
   newEssayID: number
 ) {
@@ -170,7 +172,7 @@ async function createTypeOfQuestionRelation(
   }
 
   return newRelation;
-}
+} */
 
 async function createCustomEssayQuestionRelation(
   answersIDS: Array<string>,
@@ -203,7 +205,7 @@ async function createCustomEssayQuestionRelation(
 }
 
 export const submitAnswers = async (req: Request, res: Response) => {
-  const token = req.header("auth-token");
+  const token = req.header("authorization");
   if (!token) {
     return res.status(401).send("Acces denied");
   } //verifica que token exista
@@ -217,10 +219,14 @@ export const submitAnswers = async (req: Request, res: Response) => {
   console.log("essay ID OK");
 
   var relations = await createCustomEssayQuestionRelation(
+    //crea relación entre essaytoDo y question
     req.body.answersIDS,
     +req.body.essayId
   );
-
+  var updatedTime = await update.updateEssayCompletionTime(
+    +req.body.essayTime,
+    +req.body.essayId
+  );
   try {
     var subAnswer;
     for (let i = 0; i < req.body.answersIDS.length; i++) {
@@ -229,7 +235,6 @@ export const submitAnswers = async (req: Request, res: Response) => {
           userId: +userID,
           answerId: +req.body.answersIDS[i],
           essayToDoId: +req.body.essayId,
-          essayTime: req.body.essayTime,
         },
       });
       console.log("indice i: " + i);
@@ -247,7 +252,11 @@ export const submitAnswers = async (req: Request, res: Response) => {
     });
     return res
       .status(200)
-      .json({ answers: resultado, QuestionEssayRelations: relations });
+      .json({
+        answers: resultado,
+        QuestionEssayRelations: relations,
+        essay: updatedTime,
+      });
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't submit answer",
@@ -257,14 +266,15 @@ export const submitAnswers = async (req: Request, res: Response) => {
 };
 
 export const getSubmittedEssay = async (req: Request, res: Response) => {
-  if (!find.existEssaytoDo(+req.body.id)) {
+  const essayId = req.query.id as string;
+  if (!find.existEssaytoDo(+essayId)) {
     return res.status(404).send("Essay doesn't exist");
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
   try {
     const submittedEssay = await db.essay_to_do.findUnique({
-      where: { id: +req.body.id },
+      where: { id: +essayId },
       select: {
         id: true,
         name: true,
@@ -314,10 +324,10 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
 };
 
 export const getHistory = async (req: Request, res: Response) => {
-  //verificar que usuario exista
+  const userId = req.query.userId as string;
   try {
     const history = await db.essay_to_do.findMany({
-      where: { userId: +req.body.userId },
+      where: { userId: +userId },
       select: {
         name: true,
         score: true,

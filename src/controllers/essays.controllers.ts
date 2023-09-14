@@ -216,8 +216,10 @@ export const submitAnswers = async (req: Request, res: Response) => {
   const userID = getIdfromToken(token);
   console.log("token OK");
 
-  if (!find.existEssaytoDo(+req.body.essayId)) {
-    return res.status(404).send("Essay doesn't exist");
+  if (!(await find.existEssaytoDo(+req.body.essayId))) {
+    return res
+      .status(404)
+      .send("Essay id: " + +req.body.essayId + " doesn't exist");
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
@@ -264,8 +266,8 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
   //Obtiene todas las preguntas y respuestas del ensayo, mas información sobre este
   const essayId = req.query.id as string;
 
-  if (!find.existEssaytoDo(+essayId)) {
-    return res.status(404).send("Essay doesn't exist");
+  if (!(await find.existEssaytoDo(+essayId))) {
+    return res.status(404).send("Essay id: " + essayId + " doesn't exist");
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
@@ -275,7 +277,7 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
       select: {
         id: true,
         name: true,
-        completionTime: true,
+        selectedTime: true,
         numberOfQuestions: true,
         createdAt: true,
         score: true,
@@ -350,6 +352,102 @@ export const getHistory = async (req: Request, res: Response) => {
   }
 };
 
+export const getCustomEssays = async (req: Request, res: Response) => {
+  //Obtiene todos los ensayos custom del usuario
+
+  const token = req.header("authorization");
+  if (!token) {
+    return res.status(401).send("Acces denied");
+  } //verifica que token exista
+  const userId = getIdfromToken(token);
+  console.log("token OK");
+
+  try {
+    const customEssays = await db.essay_to_do.findMany({
+      where: { isCustom: 1 },
+      select: {
+        id: true,
+        name: true,
+        selectedTime: true,
+        numberOfQuestions: true,
+        createdAt: true,
+      },
+    });
+    return res.status(200).json({ customEssays: customEssays });
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't retrieve custom essays",
+      error: err,
+    });
+  }
+};
+
+export const getCustomEssay = async (req: Request, res: Response) => {
+  const essayId = req.query.essayId as string;
+
+  if (!(await find.existEssaytoDo(+essayId))) {
+    return res.status(404).send("Essay id: " + essayId + " doesn't exist");
+  } //verifica que ensayo exista
+  console.log("essay ID OK");
+
+  try {
+    const customEssay = await db.essay_to_do.findUnique({
+      where: { id: +essayId },
+      select: {
+        id: true,
+        name: true,
+        selectedTime: true,
+        numberOfQuestions: true,
+        questions: {
+          select: {
+            selectedQuestion: {
+              select: {
+                id: true,
+                subject: true,
+                question: true,
+                videoLink: true,
+                answers: {
+                  select: {
+                    id: true,
+                    label: true,
+                    isCorrect: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+    return res.status(200).json({ customEssay: customEssay });
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't retrieve custom essay",
+      error: err,
+    });
+  }
+};
+
+export const physicalDeleteEssay = async (req: Request, res: Response) => {
+  const essayId = req.query.essayId as string;
+
+  if (!(await find.existEssaytoDo(+essayId))) {
+    return res.status(404).send("Essay id: " + essayId + " doesn't exist");
+  } //verifica que ensayo exista
+  console.log("essay ID OK");
+
+  try {
+    const delEssay = await db.essay_to_do.delete({
+      where: { id: +essayId },
+    });
+    return res.status(200).json({ deletedEssay: delEssay });
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't do a physical delete of custom essay id: " + essayId,
+      error: err,
+    });
+  }
+};
 /* async function testFunction() {
   console.log(await createTypeOfQuestionRelations(["1", "2", "3"], 26));
 } */

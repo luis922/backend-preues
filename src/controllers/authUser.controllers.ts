@@ -40,6 +40,8 @@ export const login = async (req: Request, res: Response) => {
           id: true,
           name: true,
           password: true,
+          email: true,
+          //incluir img perfil
         },
       });
 
@@ -52,6 +54,7 @@ export const login = async (req: Request, res: Response) => {
             msg: "Succes, sesion started",
             id: user.id,
             name: user.name,
+            email: user.email,
             token: createToken(user.id, user.name),
           });
         } else {

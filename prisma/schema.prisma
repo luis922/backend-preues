@@ -74,7 +74,8 @@ model essay_to_do {
   isCustom          Int                     @default(0)
   numberOfQuestions Int                     @default(0)
   completionTime    Int                     @default(0)
-  score             Int                     @default(0)
+  score             Int                     @default(100)
+  totalTime         Int                     @default(0)
   isDeleted         Int                     @default(0)
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt
@@ -89,7 +90,6 @@ model chosen_answer {
   userId      Int
   essayToDoId Int
   answerId    Int
-  essayTime   String
   score       Int         @default(0)
   isDeleted   Int         @default(0)
   createdAt   DateTime    @default(now())

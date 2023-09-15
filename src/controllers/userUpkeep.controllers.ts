@@ -28,7 +28,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
     const email = await transporter.sendMail({
       from: '"PreuesApp" <preuesapp@gmail.com>', // sender address '"Fred Foo 👻" <foo@example.com>'
       to: user?.email, // list of receivers
-      subject: "Recuperación de Contraseña", // Subject line
+      subject: "Recuperar Contraseña", // Subject line
       text:
         " Estimado/a " +
         user?.name +

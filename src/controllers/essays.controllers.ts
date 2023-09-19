@@ -116,9 +116,16 @@ export const createEssay = async (req: Request, res: Response) => {
       req.body.essayIDS,
       newEssay.id
     );
+    //si es custom retorna esto
     return res
       .status(200)
       .json({ newEssay: newEssay, newRelations: relations });
+
+    //sino retorna
+    //llamado a funcion crear relacion preguntas ensayo custom se le envia ID ensayo y essaysID
+    /* eturn res
+      .status(200)
+      .json({ newEssay: newEssay, newRelations: relations, essayQuestions: funcion de realacion });  */
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't create the new essay",
@@ -131,6 +138,10 @@ export const createEssay = async (req: Request, res: Response) => {
     });
   } */
 };
+
+/* async function asignQuestionsToCustomEssay(essayId: number, predefinedEssayIDS: Array<string>){
+
+} */
 
 async function createTypeOfQuestionRelations(
   predefinedEssayIDS: Array<string>,
@@ -364,7 +375,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
 
   try {
     const customEssays = await db.essay_to_do.findMany({
-      where: { isCustom: 1 },
+      where: { AND: [{ isCustom: 1 }, { userId: +userId }] },
       select: {
         id: true,
         name: true,

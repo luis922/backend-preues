@@ -189,8 +189,43 @@ export async function isNameRepeated(essayName: string, userID: number) {
   return false;
 }
 
+export async function getPredefinedEssayQuestions(preDefEssayId: number) {
+  //Obtiene todas las preguntas de un tema segun el id del tema
+  try {
+    const questions = await db.predefined_essay.findMany({
+      where: { id: preDefEssayId },
+      select: {
+        id: true,
+        type: true,
+        questions: {
+          select: {
+            id: true,
+            subject: true,
+            question: true,
+            videoLink: true,
+            answers: {
+              select: {
+                id: true,
+                label: true,
+                isCorrect: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return questions;
+  } catch (err) {
+    console.log(
+      "No se pudo encontrar las preguntas del ensayo predefinido, msg error: " +
+        err
+    );
+    return [];
+  }
+}
+
 async function testFunction() {
-  console.log(await isNameRepeated("EnsAyo 3", 1));
+  console.log(await getPredefinedEssayQuestions(1));
 }
 
 /* testFunction(); */

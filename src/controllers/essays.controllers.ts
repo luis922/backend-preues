@@ -2,7 +2,7 @@ import { db } from "../db.connection";
 import * as find from "../lib/find";
 import * as update from "../lib/updates";
 import { Request, Response } from "express";
-import { getIdfromToken } from "../lib/general";
+import * as gen from "../lib/general";
 
 export const findEssayQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de un ensayo
@@ -89,7 +89,7 @@ export const createEssay = async (req: Request, res: Response) => {
     return res.status(401).send("Acces denied");
   } //verifica que token exista
 
-  const userID = getIdfromToken(token);
+  const userID = gen.getIdfromToken(token);
   console.log("token OK");
   //------------------------------------------
 
@@ -110,20 +110,33 @@ export const createEssay = async (req: Request, res: Response) => {
         userId: +req.body.userId,
         isCustom: +req.body.isCustom,
         numberOfQuestions: +req.body.numberOfQuestions,
+        selectedTime: +req.body.durationTime,
       },
     });
     relations = await createTypeOfQuestionRelations(
       req.body.essayIDS,
       newEssay.id
     );
-    //si es custom retorna esto
-    return res
-      .status(200)
-      .json({ newEssay: newEssay, newRelations: relations });
+    if (+req.body.isCustom == 0) {
+      return res
+        .status(200)
+        .json({ newEssay: newEssay, newRelations: relations });
+    } else {
+      const questions = await asignQuestionsToCustomEssay(
+        newEssay.id,
+        req.body.essayIDS,
+        +req.body.numberOfQuestions
+      );
+      return res.status(200).json({
+        newEssay: newEssay,
+        questions: questions,
+        newRelations: relations,
+      });
+    }
 
     //sino retorna
     //llamado a funcion crear relacion preguntas ensayo custom se le envia ID ensayo y essaysID
-    /* eturn res
+    /* return res
       .status(200)
       .json({ newEssay: newEssay, newRelations: relations, essayQuestions: funcion de realacion });  */
   } catch (err) {
@@ -139,9 +152,64 @@ export const createEssay = async (req: Request, res: Response) => {
   } */
 };
 
-/* async function asignQuestionsToCustomEssay(essayId: number, predefinedEssayIDS: Array<string>){
+async function asignQuestionsToCustomEssay(
+  essayId: number,
+  predefinedEssayIDS: Array<string>,
+  numberOfQuestions: number
+) {
+  /* */
+  try {
+    let questions: any[] = [];
+    let newRelation;
+    for (let index = 0; index < predefinedEssayIDS.length; index++) {
+      //recorre los id de los tipos de preguntas
+      questions = await find.getPredefinedEssayQuestions(
+        +predefinedEssayIDS[index]
+      ); //obtiene todas las preguntas de un tipo
+      if (questions.length == 0)
+        return { msg: "Un error ha ocurrido al obtener las preguntas" };
+      questions = gen.getRandomQuestions(
+        numberOfQuestions / predefinedEssayIDS.length,
+        questions[0].questions
+      );
+      //Obtiene un numero determinado de preguntas random
+      //Division es entre numeros multiplos, resultado nunca debiese ser con decimales
+      for (let index = 0; index < questions.length; index++) {
+        newRelation = await db.custom_essay_question.create({
+          data: {
+            essayToDoId: essayId,
+            questionId: questions[index].id,
+          },
+        });
+      }
+    }
 
-} */
+    const resultado = await db.custom_essay_question.findMany({
+      where: { essayToDoId: essayId },
+      select: {
+        selectedQuestion: {
+          select: {
+            id: true,
+            subject: true,
+            question: true,
+            videoLink: true,
+            answers: {
+              select: {
+                id: true,
+                label: true,
+                isCorrect: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return resultado;
+  } catch (err) {
+    console.log("No se pudo crear la relación ensayo pregunta, error: " + err);
+    return { msg: "No se pudo crear la relación ensayo pregunta", error: err };
+  }
+}
 
 async function createTypeOfQuestionRelations(
   predefinedEssayIDS: Array<string>,
@@ -224,7 +292,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
     return res.status(401).send("Acces denied");
   } //verifica que token exista
 
-  const userID = getIdfromToken(token);
+  const userID = gen.getIdfromToken(token);
   console.log("token OK");
 
   if (!(await find.existEssaytoDo(+req.body.essayId))) {
@@ -340,7 +408,7 @@ export const getHistory = async (req: Request, res: Response) => {
   if (!token) {
     return res.status(401).send("Acces denied");
   } //verifica que token exista
-  const userId = getIdfromToken(token);
+  const userId = gen.getIdfromToken(token);
   console.log("token OK");
 
   try {
@@ -370,7 +438,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
   if (!token) {
     return res.status(401).send("Acces denied");
   } //verifica que token exista
-  const userId = getIdfromToken(token);
+  const userId = gen.getIdfromToken(token);
   console.log("token OK");
 
   try {
@@ -459,7 +527,9 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
     });
   }
 };
+
+console.log(4 / 2);
 /* async function testFunction() {
-  console.log(await createTypeOfQuestionRelations(["1", "2", "3"], 26));
+  console.log();
 } */
 /* testFunction(); */

@@ -157,7 +157,7 @@ async function asignQuestionsToCustomEssay(
   predefinedEssayIDS: Array<string>,
   numberOfQuestions: number
 ) {
-  /* */
+  /*Crea relacion ensayo preguntas en tabla intermedia custom_essay_questions */
   try {
     let questions: any[] = [];
     let newRelation;
@@ -301,12 +301,15 @@ export const submitAnswers = async (req: Request, res: Response) => {
       .send("Essay id: " + +req.body.essayId + " doesn't exist");
   } //verifica que ensayo exista
   console.log("essay ID OK");
+  var relations;
+  if (+req.body.isCustom == 0) {
+    relations = await createCustomEssayQuestionRelation(
+      //crea relación entre essaytoDo y question si es ensayo prefefinido
+      req.body.answersIDS,
+      +req.body.essayId
+    );
+  }
 
-  var relations = await createCustomEssayQuestionRelation(
-    //crea relación entre essaytoDo y question
-    req.body.answersIDS,
-    +req.body.essayId
-  );
   var updatedTime = await update.updateEssayCompletionTime(
     //update essayTime
     +req.body.essayTime,
@@ -328,11 +331,19 @@ export const submitAnswers = async (req: Request, res: Response) => {
         AND: [{ essayToDoId: +req.body.essayId }, { userId: +userID }],
       },
     });
-    return res.status(200).json({
-      answers: resultado,
-      QuestionEssayRelations: relations,
-      essay: updatedTime,
-    });
+
+    if (+req.body.isCustom == 0) {
+      return res.status(200).json({
+        answers: resultado,
+        QuestionEssayRelations: relations,
+        essay: updatedTime,
+      });
+    } else {
+      return res.status(200).json({
+        answers: resultado,
+        essay: updatedTime,
+      });
+    }
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't submit answer",
@@ -411,17 +422,33 @@ export const getHistory = async (req: Request, res: Response) => {
   const userId = gen.getIdfromToken(token);
   console.log("token OK");
 
-  try {
-    const history = await db.essay_to_do.findMany({
+  /* const history = await db.chosen_answer.groupBy({
+      by: "essayToDoId",
       where: { userId: +userId },
-      select: {
-        id: true,
-        name: true,
-        score: true,
-        createdAt: true,
-        numberOfQuestions: true,
-      },
+    }); */
+  try {
+    var history: any[] = [];
+    //obtiene los id de los ensayos respondidos por el usuario
+    const essaysDone = await db.chosen_answer.groupBy({
+      by: "essayToDoId",
+      where: { userId: +userId },
     });
+    //obtiene la info los ensayos respondidos por el usuario en base a los id de la variable history
+    for (let index = 0; index < essaysDone.length; index++) {
+      history.push(
+        await db.essay_to_do.findUnique({
+          where: { id: essaysDone[index].essayToDoId },
+          select: {
+            id: true,
+            name: true,
+            score: true,
+            createdAt: true,
+            numberOfQuestions: true,
+          },
+        })
+      );
+    }
+
     return res.status(200).json({ historial: history });
   } catch (err) {
     return res.status(500).json({
@@ -528,7 +555,6 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
   }
 };
 
-console.log(4 / 2);
 /* async function testFunction() {
   console.log();
 } */

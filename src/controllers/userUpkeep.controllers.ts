@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 
 export const recoverPassword = async (req: Request, res: Response) => {
   //Asigna una nueva contraseña random al usuario y se la envía por email
+  //Verificar que correo exista
   const user = await db.user.findUnique({
     where: { email: req.body.email },
     select: {

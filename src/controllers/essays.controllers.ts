@@ -371,6 +371,7 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
         numberOfQuestions: true,
         createdAt: true,
         score: true,
+        isCustom: true,
         questions: {
           select: {
             selectedQuestion: {

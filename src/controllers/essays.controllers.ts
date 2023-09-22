@@ -478,6 +478,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
         selectedTime: true,
         numberOfQuestions: true,
         createdAt: true,
+        isCustom: true,
       },
     });
     return res.status(200).json({ customEssays: customEssays });
@@ -505,6 +506,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
         name: true,
         selectedTime: true,
         numberOfQuestions: true,
+        isCustom: true,
         questions: {
           select: {
             selectedQuestion: {

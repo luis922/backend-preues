@@ -36,12 +36,15 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
       return res.status(404).json({
         msg: "No se pudo realizar la búsqueda, verifique el mensaje de error",
         error: err,
+        success: 0,
       });
     }
 
     return res.status(200).json(ensayo);
   }
-  return res.status(404).json("Este ensayo no existe: " + essayName);
+  return res
+    .status(404)
+    .json({ msg: "Este ensayo no existe: " + essayName, success: 0 });
 };
 
 export const findAllEssaysQuestions = async (req: Request, res: Response) => {
@@ -73,6 +76,7 @@ export const findAllEssaysQuestions = async (req: Request, res: Response) => {
     return res.status(404).json({
       msg: "No se pudo realizar la búsqueda, verifique el mensaje de error",
       error: err,
+      success: 0,
     });
   }
 
@@ -86,7 +90,7 @@ export const createEssay = async (req: Request, res: Response) => {
   //----------get user id---------------------
   const token = req.header("authorization");
   if (!token) {
-    return res.status(401).send("Acces denied");
+    return res.status(401).json({ msg: "Acces denied", success: 0 });
   } //verifica que token exista
 
   const userID = gen.getIdfromToken(token);
@@ -99,6 +103,7 @@ export const createEssay = async (req: Request, res: Response) => {
       return res.status(500).json({
         msg: "Name of essay already chosen by the user",
         repeated: true,
+        success: 0,
       });
     }
   }
@@ -143,6 +148,7 @@ export const createEssay = async (req: Request, res: Response) => {
     return res.status(500).json({
       msg: "Couldn't create the new essay",
       error: err,
+      success: 0,
     });
   }
   /* } else {
@@ -276,7 +282,7 @@ async function createCustomEssayQuestionRelation(
     } else {
       return {
         msg: "Couldn't find answer with id: " + answersIDS[j],
-        succes: false,
+        success: false,
       };
     }
   }
@@ -289,7 +295,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
   //Almacena las respuestas escogidas por el usuario
   const token = req.header("authorization");
   if (!token) {
-    return res.status(401).send("Acces denied");
+    return res.status(401).json({ msg: "Acces denied", success: 0 });
   } //verifica que token exista
 
   const userID = gen.getIdfromToken(token);
@@ -298,7 +304,10 @@ export const submitAnswers = async (req: Request, res: Response) => {
   if (!(await find.existEssaytoDo(+req.body.essayId))) {
     return res
       .status(404)
-      .send("Essay id: " + +req.body.essayId + " doesn't exist");
+      .json({
+        msg: "Essay id: " + +req.body.essayId + " doesn't exist",
+        success: 0,
+      });
   } //verifica que ensayo exista
   console.log("essay ID OK");
   var relations;
@@ -348,6 +357,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
     return res.status(500).json({
       msg: "Couldn't submit answer",
       error: err,
+      success: 0,
     });
   }
 };
@@ -357,7 +367,9 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
   const essayId = req.query.id as string;
 
   if (!(await find.existEssaytoDo(+essayId))) {
-    return res.status(404).send("Essay id: " + essayId + " doesn't exist");
+    return res
+      .status(404)
+      .json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
@@ -409,6 +421,7 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
     return res.status(404).json({
       msg: "Couldn't find the essay",
       error: err,
+      success: 0,
     });
   }
 };
@@ -418,7 +431,7 @@ export const getHistory = async (req: Request, res: Response) => {
 
   const token = req.header("authorization");
   if (!token) {
-    return res.status(401).send("Acces denied");
+    return res.status(401).json({ msg: "Acces denied", success: 0 });
   } //verifica que token exista
   const userId = gen.getIdfromToken(token);
   console.log("token OK");
@@ -455,6 +468,7 @@ export const getHistory = async (req: Request, res: Response) => {
     return res.status(500).json({
       msg: "Couldn't retrieve history",
       error: err,
+      success: 0,
     });
   }
 };
@@ -464,7 +478,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
 
   const token = req.header("authorization");
   if (!token) {
-    return res.status(401).send("Acces denied");
+    return res.status(401).json({ msg: "Acces denied", success: 0 });
   } //verifica que token exista
   const userId = gen.getIdfromToken(token);
   console.log("token OK");
@@ -486,6 +500,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
     return res.status(500).json({
       msg: "Couldn't retrieve custom essays",
       error: err,
+      success: 0,
     });
   }
 };
@@ -494,7 +509,9 @@ export const getCustomEssay = async (req: Request, res: Response) => {
   const essayId = req.query.essayId as string;
 
   if (!(await find.existEssaytoDo(+essayId))) {
-    return res.status(404).send("Essay id: " + essayId + " doesn't exist");
+    return res
+      .status(404)
+      .json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
@@ -528,11 +545,12 @@ export const getCustomEssay = async (req: Request, res: Response) => {
         },
       },
     });
-    return res.status(200).json({ customEssay: customEssay });
+    return res.status(200).json({ customEssay });
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't retrieve custom essay",
       error: err,
+      success: 0,
     });
   }
 };
@@ -541,7 +559,9 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
   const essayId = req.query.essayId as string;
 
   if (!(await find.existEssaytoDo(+essayId))) {
-    return res.status(404).send("Essay id: " + essayId + " doesn't exist");
+    return res
+      .status(404)
+      .send({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
@@ -554,6 +574,7 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
     return res.status(500).json({
       msg: "Couldn't do a physical delete of custom essay id: " + essayId,
       error: err,
+      success: 0,
     });
   }
 };

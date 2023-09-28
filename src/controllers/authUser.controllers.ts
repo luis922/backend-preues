@@ -36,7 +36,7 @@ export const login = async (req: Request, res: Response) => {
     try {
       const user = await db.user.findUnique({
         where: {
-          name: req.body.name,
+          email: req.body.email,
         },
         select: {
           id: true,

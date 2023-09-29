@@ -17,7 +17,7 @@ model user {
   name          String            @unique
   email         String            @unique
   password      String
-  points        Int               @default(0)
+  coins         Int               @default(0)
   isDeleted     Int               @default(0)
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
@@ -74,8 +74,10 @@ model essay_to_do {
   isCustom          Int                     @default(0)
   numberOfQuestions Int                     @default(0)
   selectedTime      Int                     @default(0)
-  score             Int                     @default(100)
+  score             Int                     @default(0)
   totalTime         Int                     @default(0)
+  fatherEssay       Int                     @default(0)
+  lastRecordedName  String?
   isDeleted         Int                     @default(0)
   createdAt         DateTime                @default(now())
   updatedAt         DateTime                @updatedAt

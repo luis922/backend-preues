@@ -290,8 +290,27 @@ export async function getSubmittedEssay(essayId: number) {
   }
 }
 
-async function testFunction() {
-  console.log(await getSubmittedEssay(18));
+export async function existEmail(email: string) {
+  try {
+    var user = await db.user.findUnique({
+      where: { email: email },
+    });
+  } catch (err) {
+    console.log(
+      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
+    );
+    return false;
+  }
+
+  if (user) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-/* testFunction(); */
+async function testFunction() {
+  console.log(await existEmail("luis.romero.q@mail.pucv.cl"));
+}
+
+testFunction();

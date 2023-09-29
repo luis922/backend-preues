@@ -5,12 +5,21 @@ import { db } from "../db.connection";
 import transporter from "../emailer";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
+import * as find from "../lib/find";
 
 export const recoverPassword = async (req: Request, res: Response) => {
   //Asigna una nueva contraseña random al usuario y se la envía por email
   //Verificar que correo exista
 
   try {
+    const existEmail = await find.existEmail(req.body.email);
+    if (!existEmail) {
+      return res.status(404).json({
+        msg: "Email: " + req.body.email + " doesn't exist",
+        success: 0,
+      });
+    }
+
     const user = await db.user.findUnique({
       where: { email: req.body.email },
       select: {
@@ -30,7 +39,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
     console.log("newPassword: " + newPassword);
 
     const email = await transporter.sendMail({
-      from: '"PreuesApp" <preuesapp@gmail.com>', // sender address '"Fred Foo 👻" <foo@example.com>'
+      from: '"PreUesApp" <preuesapp@gmail.com>', // sender address '"Fred Foo 👻" <foo@example.com>'
       to: user?.email, // list of receivers
       subject: "Recuperar Contraseña", // Subject line
       text:
@@ -88,12 +97,10 @@ export const changePassword = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Invalid password", success: 0 });
     }
   } catch (err) {
-    return res
-      .status(400)
-      .json({
-        msg: "An error has ocurred, see error message. ",
-        error: err,
-        success: 0,
-      });
+    return res.status(400).json({
+      msg: "An error has ocurred, see error message. ",
+      error: err,
+      success: 0,
+    });
   }
 };

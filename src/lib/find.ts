@@ -313,4 +313,5 @@ async function testFunction() {
   console.log(await existEmail("luis.romero.q@mail.pucv.cl"));
 }
 
-testFunction();
+/* testFunction();
+ */

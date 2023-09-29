@@ -147,19 +147,51 @@ export async function formatSubmittedEssay(submittedEssay: any) {
     questions: [],
     chosenAnswers: [],
   };
-
+  //agrega las preguntas y sus alternativas al arreglo questions
   for (let i = 0; i < submittedEssay.questions.length; i++) {
     ensayo.questions?.push(submittedEssay.questions[i].selectedQuestion);
   }
-
+  //agrega las respuespuestas escogidas al arreglo chosenAnswers
   for (let i = 0; i < submittedEssay.chosenAnswers.length; i++) {
     ensayo.chosenAnswers?.push(submittedEssay.chosenAnswers[i].answer);
   }
   return ensayo;
 }
 
+export function validateEssayName(
+  essayName: string,
+  reservedChars: Array<string>
+) {
+  //valida que el nombre no contenga los caracteres "(",")"
+  for (var character of reservedChars) {
+    let isInName = essayName.includes(character);
+    if (isInName) {
+      return true;
+    }
+  }
+  return false;
+}
+
+export async function countCustomEssays(userId: number) {
+  //Cuenta ensayos custom no borrados logicamente y que no son hijos de un ensayo original
+
+  try {
+    const customEssays = await db.essay_to_do.findMany({
+      where: {
+        userId: userId,
+        AND: [{ isCustom: 1 }, { fatherEssay: 0 }, { isDeleted: 0 }],
+      },
+      select: { id: true, name: true },
+    });
+    return customEssays.length;
+  } catch (err) {
+    console.log("No se pudo contar ensayos customs, error: " + err);
+    return -1;
+  }
+}
+
 async function testFunction() {
-  console.log(getFormatedTime(3));
+  console.log(await countCustomEssays(1));
 }
 
 /* testFunction(); */

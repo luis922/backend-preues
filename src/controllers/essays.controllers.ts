@@ -4,6 +4,8 @@ import * as update from "../lib/updates";
 import { Request, Response } from "express";
 import * as gen from "../lib/general";
 
+const customEssayLimit = 5; //Limite de ensayos custom que un usuario puede crear al mismo tiempo
+
 export const findEssayQuestions = async (req: Request, res: Response) => {
   //obtiene todas las preguntas de un ensayo
   const essayName = req.query.name as string; //type of topic of the question
@@ -98,8 +100,40 @@ export const createEssay = async (req: Request, res: Response) => {
   //------------------------------------------
 
   if (+req.body.isCustom == 1) {
-    //Crear limite de ensayos custom
-    if (await find.isNameRepeated(req.body.name, +userID)) {
+    //Verifica que no se creen ensayos custom sobre el limite establecido
+    const customEssaysCount = await gen.countCustomEssays(userID);
+    if (customEssaysCount == -1) {
+      return res.status(500).json({
+        msg: "Error occurred when trying to count custom essays",
+        success: 0,
+      });
+    } else if (customEssaysCount == customEssayLimit) {
+      return res.status(409).json({
+        msg:
+          "Custom essay limit of " +
+          customEssayLimit +
+          " reached, please eliminate one or more custom essays",
+        success: 0,
+      });
+    }
+
+    //Verifica que el nombre escogido no contenga caracteres reservados o prohibidos
+    const reservedChars = ["(", ")"]; //caracteres que no puede tener un nombre de ensayo custom elegido por el usuario
+    const containsForbiddenChar = gen.validateEssayName(
+      req.body.name,
+      reservedChars
+    );
+
+    if (containsForbiddenChar) {
+      return res.status(500).json({
+        msg: "Name of essay has forbidden character: " + reservedChars,
+        success: 0,
+      });
+    }
+
+    //Verifica que el nombre del ensayo custom no este repetido
+    const repeatedName = await find.isNameRepeated(req.body.name, +userID);
+    if (repeatedName) {
       return res.status(500).json({
         msg: "Name of essay already chosen by the user",
         repeated: true,
@@ -118,10 +152,12 @@ export const createEssay = async (req: Request, res: Response) => {
         selectedTime: +req.body.durationTime,
       },
     });
+
     relations = await createTypeOfQuestionRelations(
       req.body.essayIDS,
       newEssay.id
     );
+
     if (+req.body.isCustom == 0) {
       return res
         .status(200)
@@ -132,6 +168,7 @@ export const createEssay = async (req: Request, res: Response) => {
         req.body.essayIDS,
         +req.body.numberOfQuestions
       );
+
       return res.status(200).json({
         newEssay: newEssay,
         questions: questions,
@@ -468,9 +505,10 @@ export const getCustomEssays = async (req: Request, res: Response) => {
 };
 
 export const getCustomEssay = async (req: Request, res: Response) => {
+  //Obtiene la info del ensayo custom, sus preguntas y alternativas
   const essayId = req.query.essayId as string;
-
-  if (!(await find.existEssaytoDo(+essayId))) {
+  const existEssay = await find.existEssaytoDo(+essayId);
+  if (!existEssay) {
     return res
       .status(404)
       .json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
@@ -545,3 +583,16 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
   console.log();
 } */
 /* testFunction(); */
+
+/* si hay respuestas guardadas del ensayo custom con el id del ensayo 
+Obtener esta info del ensayo custom
+"name": "numeros",
+"userId": "2",
+"isCustom": "0",
+"numberOfQuestions": "6",
+"durationTime": 700,
+"essayIDS": ["1"]
+ids preguntas
+crear nuevo ensayo con la info obtenida y nombrarlo nombre original (n)
+
+*/

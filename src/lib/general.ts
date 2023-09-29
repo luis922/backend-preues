@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { db } from "../db.connection";
 
 export const createToken = (idu: number, nameu: string) => {
   return jwt.sign(
@@ -50,8 +51,115 @@ export function getRandomQuestions(numero: number, questions: Array<any>) {
   }
   return selectedQuestions;
 }
+
+export async function countCorrectQuestions(essayId: number) {
+  try {
+    const respuestas = await db.chosen_answer.findMany({
+      where: { essayToDoId: essayId },
+      select: {
+        answerId: true,
+        answer: {
+          select: {
+            isCorrect: true,
+          },
+        },
+      },
+    });
+    let isAnswerCorrect;
+    let correctAnsers = 0;
+    for (let i = 0; i < respuestas.length; i++) {
+      isAnswerCorrect = respuestas[i].answer.isCorrect;
+      if (isAnswerCorrect == 1) correctAnsers++;
+    }
+    console.log("Respuestas correctas: " + correctAnsers);
+    return correctAnsers;
+  } catch (err) {
+    console.log("No se pudo contar las respuestas correctas");
+    return -1;
+  }
+}
+
+export function getFormatedTime(timeInSeconds: number) {
+  const hours = Math.floor(timeInSeconds / 3600);
+  const minutes = Math.floor(
+    (timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60
+  );
+  const seconds = Math.floor(
+    ((timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60 - minutes) *
+      60
+  );
+
+  let hora = hours.toString();
+  let minutos = minutes.toString();
+  let segundos = seconds.toString();
+
+  if (hours < 10) hora = "0" + hora;
+  if (minutes < 10) minutos = "0" + minutos;
+  if (seconds < 10) segundos = "0" + segundos;
+
+  /* if (hours == 0 && minutes == 0) return segundos + "s";
+  if (hours == 0) return minutos + ":" + segundos; */
+  return hora + ":" + minutos + ":" + segundos;
+}
+
+export async function formatSubmittedEssay(submittedEssay: any) {
+  type answer = {
+    id: number;
+    label: string;
+    isCorrect: number;
+  };
+
+  type question = {
+    id: number;
+    subject: string;
+    question: string;
+    videoLink: string;
+    answers: answer[];
+  };
+
+  type essay = {
+    id: number;
+    name: string;
+    selectedTime: string;
+    totalTime: string;
+    numberOfQuestions: number;
+    createdAt: number;
+    score: number;
+    isCustom: number;
+    numCorrectAnswers: number;
+    coins: number;
+    questions: question[];
+    chosenAnswers: answer[];
+  };
+
+  let numCorrectAnswers = await countCorrectQuestions(submittedEssay.id);
+  let ensayo: essay = {
+    id: submittedEssay.id,
+    name: submittedEssay.name,
+    selectedTime: getFormatedTime(submittedEssay.selectedTime),
+    totalTime: getFormatedTime(submittedEssay.totalTime),
+    numberOfQuestions: submittedEssay.numberOfQuestions,
+    createdAt: submittedEssay.createdAt,
+    score: submittedEssay.score,
+    isCustom: submittedEssay.isCustom,
+    numCorrectAnswers: numCorrectAnswers,
+    coins: numCorrectAnswers,
+    questions: [],
+    chosenAnswers: [],
+  };
+
+  for (let i = 0; i < submittedEssay.questions.length; i++) {
+    ensayo.questions?.push(submittedEssay.questions[i].selectedQuestion);
+  }
+
+  for (let i = 0; i < submittedEssay.chosenAnswers.length; i++) {
+    ensayo.chosenAnswers?.push(submittedEssay.chosenAnswers[i].answer);
+  }
+  return ensayo;
+}
+
 async function testFunction() {
-  console.log(getRandomQuestions(10, [1, 2, 3, 4, 5, 6]));
+  console.log(getFormatedTime(3));
 }
 
 /* testFunction(); */

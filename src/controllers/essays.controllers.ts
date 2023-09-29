@@ -301,13 +301,12 @@ export const submitAnswers = async (req: Request, res: Response) => {
   const userID = gen.getIdfromToken(token);
   console.log("token OK");
 
-  if (!(await find.existEssaytoDo(+req.body.essayId))) {
-    return res
-      .status(404)
-      .json({
-        msg: "Essay id: " + +req.body.essayId + " doesn't exist",
-        success: 0,
-      });
+  let existEssay = await find.existEssaytoDo(+req.body.essayId);
+  if (!existEssay) {
+    return res.status(404).json({
+      msg: "Essay id: " + +req.body.essayId + " doesn't exist",
+      success: 0,
+    });
   } //verifica que ensayo exista
   console.log("essay ID OK");
   var relations;
@@ -341,6 +340,10 @@ export const submitAnswers = async (req: Request, res: Response) => {
       },
     });
 
+    let numCorrectAnswers = await gen.countCorrectQuestions(+req.body.essayId);
+    await update.updateUserCoins(userID, numCorrectAnswers);
+    await update.updateEssayScore(+req.body.essayId, numCorrectAnswers);
+
     if (+req.body.isCustom == 0) {
       return res.status(200).json({
         answers: resultado,
@@ -365,58 +368,17 @@ export const submitAnswers = async (req: Request, res: Response) => {
 export const getSubmittedEssay = async (req: Request, res: Response) => {
   //Obtiene todas las preguntas y respuestas del ensayo, mas información sobre este
   const essayId = req.query.id as string;
-
-  if (!(await find.existEssaytoDo(+essayId))) {
-    return res
-      .status(404)
-      .json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
-  } //verifica que ensayo exista
-  console.log("essay ID OK");
-
   try {
-    const submittedEssay = await db.essay_to_do.findUnique({
-      where: { id: +essayId },
-      select: {
-        id: true,
-        name: true,
-        selectedTime: true,
-        numberOfQuestions: true,
-        createdAt: true,
-        score: true,
-        isCustom: true,
-        questions: {
-          select: {
-            selectedQuestion: {
-              select: {
-                id: true,
-                subject: true,
-                question: true,
-                videoLink: true,
-                answers: {
-                  select: {
-                    id: true,
-                    label: true,
-                    isCorrect: true,
-                  },
-                },
-              },
-            },
-          },
-        },
-        chosenAnswers: {
-          select: {
-            answer: {
-              select: {
-                id: true,
-                label: true,
-                isCorrect: true,
-              },
-            },
-          },
-        },
-      },
-    });
-    return res.status(200).json(submittedEssay);
+    const submittedEssay = await find.getSubmittedEssay(+essayId);
+    if (submittedEssay == 0) {
+      return res
+        .status(404)
+        .json({ msg: "Couldn't find the essay id: " + essayId, success: 0 });
+    } //Indica si hubo problemas al buscar el ensayo
+
+    const formatedEssay = await gen.formatSubmittedEssay(submittedEssay);
+
+    return res.status(200).json(formatedEssay);
   } catch (err) {
     return res.status(404).json({
       msg: "Couldn't find the essay",

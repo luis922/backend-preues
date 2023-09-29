@@ -224,8 +224,74 @@ export async function getPredefinedEssayQuestions(preDefEssayId: number) {
   }
 }
 
+export async function getSubmittedEssay(essayId: number) {
+  try {
+    let existEssay = await existEssaytoDo(essayId);
+    if (!existEssay) {
+      console.log({
+        msg: "Essay id: " + essayId + " doesn't exist",
+        success: 0,
+      });
+      return 0;
+    } //verifica que ensayo exista
+    console.log("essay ID OK");
+
+    const submittedEssay = await db.essay_to_do.findUnique({
+      where: { id: +essayId },
+      select: {
+        id: true,
+        name: true,
+        selectedTime: true,
+        totalTime: true,
+        numberOfQuestions: true,
+        createdAt: true,
+        score: true,
+        isCustom: true,
+        questions: {
+          select: {
+            selectedQuestion: {
+              select: {
+                id: true,
+                subject: true,
+                question: true,
+                videoLink: true,
+                answers: {
+                  select: {
+                    id: true,
+                    label: true,
+                    isCorrect: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        chosenAnswers: {
+          select: {
+            answer: {
+              select: {
+                id: true,
+                label: true,
+                isCorrect: true,
+              },
+            },
+          },
+        },
+      },
+    });
+    return submittedEssay;
+  } catch (err) {
+    console.log({
+      msg: "Couldn't find the essay",
+      error: err,
+      success: 0,
+    });
+    return 0;
+  }
+}
+
 async function testFunction() {
-  console.log(await getPredefinedEssayQuestions(1));
+  console.log(await getSubmittedEssay(18));
 }
 
 /* testFunction(); */

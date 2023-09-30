@@ -14,7 +14,7 @@ export function getIdfromToken(token: string) {
     token,
     process.env.TOKEN_SECRET || "tokensreplacementincaseisundifined"
   );
-  console.log(payload);
+
   return (<any>payload).id;
 }
 
@@ -71,7 +71,7 @@ export async function countCorrectQuestions(essayId: number) {
       isAnswerCorrect = respuestas[i].answer.isCorrect;
       if (isAnswerCorrect == 1) correctAnsers++;
     }
-    console.log("Respuestas correctas: " + correctAnsers);
+
     return correctAnsers;
   } catch (err) {
     console.log("No se pudo contar las respuestas correctas");

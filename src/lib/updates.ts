@@ -8,7 +8,7 @@ export async function updateEssayCompletionTime(time: number, essayId: number) {
         totalTime: time,
       },
     });
-    console.log(essay);
+
     return essay;
   } catch (err) {
     console.log("Couldn't update totalTime:" + err);

@@ -26,7 +26,7 @@ export async function essayExist(nombre: string) {
     });
   } catch (error) {
     console.log({
-      cod: 0, //para identificar fallo de la búsqueda
+      success: 0, //para identificar fallo de la búsqueda
       msg: "Catch: No se pudo encontrar el ensayo: " + nombre,
       err: error,
     });
@@ -88,8 +88,7 @@ export async function existTOQ(id: number) {
     );
     return false;
   }
-  /* console.log(essay);
-  console.log(essay.length); */
+
   if (essay.length > 0) {
     return true;
   }
@@ -377,7 +376,8 @@ export async function getCustomEssayForCopy(essayId: number) {
 
       var idArray = [];
       for (let i = 0; i < customEssay.typeOfQuestions.length; i++) {
-        idArray.push(customEssay.typeOfQuestions[i].predifinedEssayId);
+        let idNumber = customEssay.typeOfQuestions[i].predifinedEssayId;
+        idArray.push(idNumber.toString());
       }
       customEssay.typeOfQuestions = [];
       customEssay.typeOfQuestions = idArray as any;
@@ -406,4 +406,4 @@ async function testFunction() {
   console.log(await getCustomEssayForCopy(19));
 }
 
-testFunction();
+/* testFunction(); */

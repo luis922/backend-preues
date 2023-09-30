@@ -291,6 +291,8 @@ export async function getSubmittedEssay(essayId: number) {
 }
 
 export async function existEmail(email: string) {
+  //verifica si existe el email en la base de datos
+
   try {
     var user = await db.user.findUnique({
       where: { email: email },
@@ -302,16 +304,106 @@ export async function existEmail(email: string) {
     return false;
   }
 
-  if (user) {
-    return true;
-  } else {
+  return user ? true : false;
+}
+
+export async function isEssayAnswered(essayId: number) {
+  //Verifica si ya se respondió el ensayo
+
+  try {
+    var chosenAnswers = await db.chosen_answer.findMany({
+      where: { essayToDoId: essayId },
+      select: { id: true },
+    });
+  } catch (err) {
+    console.log("Couldn't do the search, error: " + err);
     return false;
+  }
+
+  return chosenAnswers.length > 0 ? true : false;
+}
+
+export async function isEssayCustom(essayId: number) {
+  //Verifica si un ensayo es custom
+
+  try {
+    var essay = await db.essay_to_do.findUnique({
+      where: { id: essayId },
+      select: { isCustom: true },
+    });
+  } catch (err) {
+    console.log("Couldn't do the search, error: " + err);
+    return false;
+  }
+
+  if (essay == null) {
+    console.log(
+      "Algun error ocurrió al comprobar si el ensayo es custom, ensayo: " +
+        essay
+    );
+    return false;
+  } else {
+    return essay.isCustom == 1 ? true : false;
+  }
+}
+
+export async function getCustomEssayForCopy(essayId: number) {
+  //Obtiene la información necesaria de un ensayo custom para poder realizarlo varias veces
+
+  try {
+    var customEssay = await db.essay_to_do.findUnique({
+      where: { id: essayId },
+      select: {
+        id: true,
+        userId: true,
+        name: true,
+        numberOfQuestions: true,
+        selectedTime: true,
+        lastRecordedName: true,
+        typeOfQuestions: {
+          select: {
+            predifinedEssayId: true,
+          },
+        },
+        questions: {
+          select: {
+            questionId: true,
+          },
+        },
+      },
+    });
+    if (customEssay != null) {
+      //Reformatea los arreglos typeOfQuestions y questions
+
+      var idArray = [];
+      for (let i = 0; i < customEssay.typeOfQuestions.length; i++) {
+        idArray.push(customEssay.typeOfQuestions[i].predifinedEssayId);
+      }
+      customEssay.typeOfQuestions = [];
+      customEssay.typeOfQuestions = idArray as any;
+
+      idArray = [];
+      for (let i = 0; i < customEssay.questions.length; i++) {
+        idArray.push(customEssay.questions[i].questionId);
+      }
+      customEssay.questions = [];
+      customEssay.questions = idArray as any;
+    }
+
+    return customEssay;
+  } catch (err) {
+    console.log(
+      "An error has occurred when trying to find the essay id: " +
+        essayId +
+        " ,error: " +
+        err
+    );
+    return [];
   }
 }
 
 async function testFunction() {
-  console.log(await existEmail("luis.romero.q@mail.pucv.cl"));
+  console.log(await getCustomEssayForCopy(19));
 }
 
-/* testFunction();
- */
+testFunction();

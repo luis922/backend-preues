@@ -190,8 +190,21 @@ export async function countCustomEssays(userId: number) {
   }
 }
 
+export function createCopyCustomEssayName(name: string, lastRecordedName: any) {
+  //Crea un nuevo nombre para la copia del ensayo custom en base al nombre original
+
+  if (lastRecordedName == null) return name + " (1)"; //Si es la primera copia de ensayo custom
+  const index1 = lastRecordedName.indexOf("(");
+  const index2 = lastRecordedName.indexOf(")");
+  const number = lastRecordedName.substring(index1 + 1, index2);
+  const newCount = +number + 1;
+  const newName = name + " (" + newCount + ")";
+
+  return newName;
+}
+
 async function testFunction() {
-  console.log(await countCustomEssays(1));
+  console.log(createCopyCustomEssayName("custom 1", "custom 1 (199)"));
 }
 
 /* testFunction(); */

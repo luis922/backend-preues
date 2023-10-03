@@ -6,8 +6,8 @@ import userUpkeep from "./routes/userUpkeep";
 
 dotenv.config();
 const app = express();
-app.use(express.json());
 const port = 3000;
+app.use(express.json());
 
 app.use(authUser);
 app.use(userUpkeep);

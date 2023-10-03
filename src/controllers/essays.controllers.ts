@@ -1,7 +1,7 @@
 import { db } from "../db.connection";
 import * as find from "../lib/find";
 import * as update from "../lib/updates";
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import * as gen from "../lib/general";
 
 const customEssayLimit = 5; //Limite de ensayos custom que un usuario puede crear al mismo tiempo

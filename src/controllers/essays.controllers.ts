@@ -436,10 +436,6 @@ export const getHistory = async (req: Request, res: Response) => {
   const userId = gen.getIdfromToken(token);
   console.log("token OK");
 
-  /* const history = await db.chosen_answer.groupBy({
-      by: "essayToDoId",
-      where: { userId: +userId },
-    }); */
   try {
     var history: any[] = [];
     //obtiene los id de los ensayos respondidos por el usuario

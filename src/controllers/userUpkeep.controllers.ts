@@ -45,7 +45,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
       text:
         " Estimado/a " +
         user?.name +
-        " \n Parece que has olvidado tu contraseña de acceso a PreuesApp, es por esto que se te ha asignado la siguiente clave de acceso para que puedas incicar sesión: " +
+        " \n Parece que has olvidado tu contraseña de acceso a PreUesApp, es por esto que se te ha asignado la siguiente clave para que puedas incicar sesión: " +
         newPassword +
         "\n Una vez iniciada la sesión, debes ir a tu perfil de usuario y seleccionar la opción 'Cambiar contraseña', para poder crear una nueva clave.", // plain text body
       /* html: '<p style="text-align:justify">Estimado/a user?.name</p>       ', // html body */

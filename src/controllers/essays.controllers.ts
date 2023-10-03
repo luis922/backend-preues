@@ -328,6 +328,7 @@ async function createCustomEssayQuestionRelation2(
     return [];
   }
 }
+
 export const submitAnswers = async (req: Request, res: Response) => {
   //Almacena las respuestas escogidas por el usuario
   const token = req.header("authorization");
@@ -644,7 +645,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
 };
 
 export const physicalDeleteEssay = async (req: Request, res: Response) => {
-  const essayId = req.query.essayId as string;
+  const essayId = +req.body.essayId;
 
   if (!(await find.existEssaytoDo(+essayId))) {
     return res
@@ -663,6 +664,22 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
       msg: "Couldn't do a physical delete of custom essay id: " + essayId,
       error: err,
       success: 0,
+    });
+  }
+};
+
+export const logicalDeleteEssay = async (req: Request, res: Response) => {
+  try {
+    const delEssay = await db.essay_to_do.update({
+      where: { id: +req.body.essayId },
+      data: { isDeleted: 1 },
+    });
+    return res.status(200).json({ succes: 1 });
+  } catch (err) {
+    return res.status(500).json({
+      msg: "Couldn't do logical delete of essay id: " + req.body.essayId,
+      error: err,
+      succes: 0,
     });
   }
 };

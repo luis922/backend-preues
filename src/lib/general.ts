@@ -22,7 +22,7 @@ export function getRandomQuestionsIndex(
   numero: number,
   questionsLenght: number
 ) {
-  //obtiene un numero de indices seleccionados de manera aleatoria y sin repetición
+  //obtiene un numero de indices seleccionados de manera aleatoria y sin repetición para elegir preguntas
   let randomIndex = Math.floor(Math.random() * questionsLenght); //
   let indexArray: number[] = [];
   let index = 0;
@@ -201,6 +201,58 @@ export function createCopyCustomEssayName(name: string, lastRecordedName: any) {
   const newName = name + " (" + newCount + ")";
 
   return newName;
+}
+
+export function getFormatedDate(essayDate: Date) {
+  try {
+    const formatedDate: string =
+      ("0" + essayDate.getDate()).slice(-2) +
+      "/" +
+      ("0" + (essayDate.getMonth() + 1)).slice(-2) +
+      "/" +
+      essayDate.getFullYear();
+
+    return formatedDate;
+  } catch (err) {
+    console.log(err);
+    return "error ocurred in getFormatedDate function";
+  }
+}
+
+export function formatGetScores(essayInfo: any) {
+  type scores = {
+    id: number;
+    createdAt: string;
+    score: number;
+  };
+  try {
+    const formatedScores: scores[] = [];
+    for (var info of essayInfo) {
+      let score: scores = {
+        id: info.id,
+        createdAt: getFormatedDate(info.createdAt),
+        score: info.score,
+      };
+      formatedScores.push(score);
+    }
+    return formatedScores;
+  } catch (err) {
+    return ["Couldn't format the info, error: " + err];
+  }
+}
+
+export function calculateAverageScore(scores: any) {
+  try {
+    var averageScore = 0;
+    for (var info of scores) {
+      averageScore += info.score;
+    }
+    averageScore /= scores.length;
+    return averageScore;
+  } catch (err) {
+    "Couldn't calculate average score, error: " + err;
+    return -1;
+  }
 }
 
 async function testFunction() {

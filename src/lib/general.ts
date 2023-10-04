@@ -255,6 +255,25 @@ export function calculateAverageScore(scores: any) {
   }
 }
 
+export function countCorrectAnswers(essaysInfo: any) {
+  try {
+    let totalCorrectAnswers: number = 0;
+    let totalAnswers: number = 0;
+    for (var info of essaysInfo) {
+      totalCorrectAnswers += info.score;
+      totalAnswers += info.numberOfQuestions;
+    }
+
+    return {
+      questionsAnswered: totalAnswers,
+      correctAnswers: totalCorrectAnswers / 10,
+    };
+  } catch (err) {
+    console.log("Couln't count anwers, erro " + err);
+    return -1;
+  }
+}
+
 async function testFunction() {
   console.log(createCopyCustomEssayName("custom 1", "custom 1 (199)"));
 }

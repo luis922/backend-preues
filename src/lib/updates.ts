@@ -36,13 +36,21 @@ export async function updateEssayScore(
 
 export async function updateUserCoins(userId: number, correctAnswers: number) {
   try {
-    const user = await db.user.update({
+    const userInfo = await db.user.findUnique({
       where: { id: userId },
-      data: {
-        coins: correctAnswers,
-      },
+      select: { coins: true },
     });
-    return;
+
+    if (userInfo != null) {
+      const user = await db.user.update({
+        where: { id: userId },
+        data: {
+          coins: userInfo.coins + correctAnswers,
+        },
+      });
+      return;
+    }
+    console.log("User info is null");
   } catch (err) {
     console.log("Couldn't update score:" + err);
     return;

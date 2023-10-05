@@ -481,7 +481,14 @@ export const getCustomEssays = async (req: Request, res: Response) => {
 
   try {
     const customEssays = await db.essay_to_do.findMany({
-      where: { AND: [{ isCustom: 1 }, { userId: +userId }, { isDeleted: 0 }] },
+      where: {
+        AND: [
+          { isCustom: 1 },
+          { userId: +userId },
+          { isDeleted: 0 },
+          { fatherEssay: 0 },
+        ],
+      },
       select: {
         id: true,
         name: true,

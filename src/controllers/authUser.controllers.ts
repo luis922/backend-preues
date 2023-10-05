@@ -43,6 +43,7 @@ export const login = async (req: Request, res: Response) => {
           name: true,
           password: true,
           email: true,
+          coins: true,
           //incluir img perfil
         },
       });

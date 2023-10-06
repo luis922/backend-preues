@@ -606,7 +606,8 @@ export const getCustomEssay = async (req: Request, res: Response) => {
 
     essayId = newCopyEssay.id.toString();
   }
-
+  console.log(essayId);
+  //Cuando se crea el ensayo copia se obtiene un id, hay que ver que id se envía al subir las respuestas.
   try {
     const customEssay = await db.essay_to_do.findUnique({
       where: { id: +essayId },
@@ -615,6 +616,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
         name: true,
         selectedTime: true,
         numberOfQuestions: true,
+        lastRecordedName: true,
         isCustom: true,
         questions: {
           select: {
@@ -648,7 +650,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
 };
 
 export const physicalDeleteEssay = async (req: Request, res: Response) => {
-  const essayId = +req.body.essayId;
+  const essayId = req.query.essayId as string;
 
   if (!(await find.existEssaytoDo(+essayId))) {
     return res
@@ -672,9 +674,11 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
 };
 
 export const logicalDeleteEssay = async (req: Request, res: Response) => {
+  const essayId = req.query.essayId as string;
+
   try {
     const delEssay = await db.essay_to_do.update({
-      where: { id: +req.body.essayId },
+      where: { id: +essayId },
       data: { isDeleted: 1 },
     });
     return res.status(200).json({ succes: 1 });

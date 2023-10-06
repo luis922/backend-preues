@@ -21,6 +21,7 @@ export const getScores = async (req: Request, res: Response) => {
       where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
       select: {
         id: true,
+        name: true,
         createdAt: true,
         score: true,
       },
@@ -51,6 +52,7 @@ export const getAverageScores = async (req: Request, res: Response) => {
       where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
       select: {
         id: true,
+        name: true,
         score: true,
       },
     });
@@ -84,6 +86,7 @@ export const countTopicCorrectAnswers = async (req: Request, res: Response) => {
       where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
       select: {
         id: true,
+        name: true,
         score: true,
         numberOfQuestions: true,
       },

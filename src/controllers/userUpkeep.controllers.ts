@@ -104,3 +104,27 @@ export const changePassword = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const getCoins = async (req: Request, res: Response) => {
+  try {
+    const token = req.header("authorization");
+    if (!token) {
+      return res.status(401).json({ msg: "Acces denied", success: 0 });
+    } //verifica que token exista
+
+    const userID = gen.getIdfromToken(token);
+    console.log("token OK");
+
+    const userCoins = await db.user.findUnique({
+      where: { id: userID },
+      select: {
+        coins: true,
+      },
+    });
+    return res.status(200).json(userCoins);
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ msg: "Could'nt rerieve data", error: err, success: 0 });
+  }
+};

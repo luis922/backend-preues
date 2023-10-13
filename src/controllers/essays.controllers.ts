@@ -361,6 +361,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
     +req.body.essayTime,
     +req.body.essayId
   );
+
   try {
     var subAnswer;
     for (let i = 0; i < req.body.answersIDS.length; i++) {
@@ -380,6 +381,11 @@ export const submitAnswers = async (req: Request, res: Response) => {
 
     let numCorrectAnswers = await gen.countCorrectQuestions(+req.body.essayId);
     await update.updateUserCoins(userID, numCorrectAnswers);
+    const numQuestions = await db.essay_to_do.findUnique({
+      where: { id: +req.body.essayId },
+      select: { numberOfQuestions: true },
+    });
+
     await update.updateEssayScore(+req.body.essayId, numCorrectAnswers);
 
     if (+req.body.isCustom == 0) {

@@ -21,10 +21,23 @@ export async function updateEssayScore(
   correctAnswers: number
 ) {
   try {
+    //calcular puntaje de 100 a 1000
+    const numQuestions = await db.essay_to_do.findUnique({
+      where: { id: essayId },
+      select: {
+        numberOfQuestions: true,
+      },
+    });
+    if (numQuestions == null) {
+      console.log("Couldn't update score");
+      return;
+    }
     const essay = await db.essay_to_do.update({
       where: { id: essayId },
       data: {
-        score: correctAnswers * 10,
+        score: Math.trunc(
+          100 + (900 / numQuestions.numberOfQuestions) * correctAnswers
+        ),
       },
     });
     return;

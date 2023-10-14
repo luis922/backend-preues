@@ -8,8 +8,8 @@ import stats from "./routes/statistics";
 dotenv.config();
 const app = express();
 const port = 3000;
-app.use(express.json());
 
+app.use(express.json());
 app.use(authUser);
 app.use(userUpkeep);
 app.use(essays);

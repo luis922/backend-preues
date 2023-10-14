@@ -4,8 +4,10 @@ import { tokenValidation } from "../controllers/tokenValidation";
 
 const router = express.Router();
 
-router.get("/scores/", tokenValidation, stats.getScores); //obtiene todos los puntajes de un tipo de ensayo no custom
-router.get("/averageScore/", tokenValidation, stats.getAverageScores); //obtiene el promedio de puntajes de un tipo de ensayo no custom
+router.get("/scores/", tokenValidation, stats.getScore); //obtiene todos los puntajes de un tipo de ensayo no custom
+router.get("/allScores/", tokenValidation, stats.getAllScores); //obtiene todos los puntajes de ensayos no custom
+router.get("/averageScore/", tokenValidation, stats.getAverageScore); //obtiene el promedio de puntajes de un tipo de ensayo no custom
+router.get("/allAverageScore/", tokenValidation, stats.getAllAverageScores); //obtiene el promedio de puntajes de cada ensayo no custom
 router.get(
   "/topicCorrectAnswers/",
   tokenValidation,

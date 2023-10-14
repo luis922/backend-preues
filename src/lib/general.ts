@@ -250,23 +250,130 @@ export function calculateAverageScore(scores: any) {
     averageScore /= scores.length;
     return averageScore;
   } catch (err) {
-    "Couldn't calculate average score, error: " + err;
+    console.log("Couldn't calculate average score, error: " + err);
     return -1;
   }
 }
+export async function calculateAllAverageScore(scores: any) {
+  type promedio = {
+    id: number;
+    name: string;
+    promedio: number;
+  };
+  try {
+    const tipos = await db.predefined_essay.findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    });
 
+    let avgNumeros: number = 0;
+    let avgAlgebra: number = 0;
+    let avgGeometria: number = 0;
+    let avgProbabilidad: number = 0;
+
+    let numNumeros: number = 0;
+    let numAlgebra: number = 0;
+    let numGeometria: number = 0;
+    let numProbabilidad: number = 0;
+
+    let promedios: promedio[] = [];
+
+    for (var info of scores) {
+      if (info.typeOfQuestions[0].predifinedEssay.name == "ensayo numeros") {
+        avgNumeros += info.score;
+        numNumeros++;
+      }
+      if (info.typeOfQuestions[0].predifinedEssay.name == "ensayo algebra") {
+        avgAlgebra += info.score;
+        numAlgebra++;
+      }
+      if (
+        info.typeOfQuestions[0].predifinedEssay.name == "ensayo probabilidades"
+      ) {
+        avgProbabilidad += info.score;
+        numProbabilidad++;
+      }
+      if (info.typeOfQuestions[0].predifinedEssay.name == "ensayo geometria") {
+        avgGeometria += info.score;
+        numGeometria++;
+      }
+    }
+    var datos: promedio;
+    for (var item of tipos) {
+      if (item.name == "ensayo numeros") {
+        datos = {
+          id: item.id,
+          name: item.name,
+          promedio: Math.trunc(avgNumeros / numNumeros),
+        };
+
+        if (avgNumeros == 0) {
+          datos.promedio = 100;
+        }
+        promedios.push(datos);
+      }
+      if (item.name == "ensayo algebra") {
+        datos = {
+          id: item.id,
+          name: item.name,
+          promedio: Math.trunc(avgAlgebra / numAlgebra),
+        };
+
+        if (avgAlgebra == 0) {
+          datos.promedio = 100;
+        }
+        promedios.push(datos);
+      }
+      if (item.name == "ensayo probabilidades") {
+        datos = {
+          id: item.id,
+          name: item.name,
+          promedio: Math.trunc(avgProbabilidad / numProbabilidad),
+        };
+
+        if (avgProbabilidad == 0) {
+          datos.promedio = 100;
+        }
+        promedios.push(datos);
+      }
+      if (item.name == "ensayo geometria") {
+        datos = {
+          id: item.id,
+          name: item.name,
+          promedio: Math.trunc(avgGeometria / numGeometria),
+        };
+
+        if (avgGeometria == 0) {
+          datos.promedio = 100;
+        }
+        promedios.push(datos);
+      }
+    }
+    console.log(0 / 0);
+    return promedios;
+  } catch (err) {
+    console.log("Couldn't calculate average scores, error: " + err);
+    return -1;
+  }
+}
 export function countCorrectAnswers(essaysInfo: any) {
   try {
     let totalCorrectAnswers: number = 0;
     let totalAnswers: number = 0;
     for (var info of essaysInfo) {
-      totalCorrectAnswers += info.score;
+      /* puntaje = 100 + (900 / numQuestions) * CorrectAnswers)
+      (puntaje -100)/(900/numquestions) = correctAnswers */
+      totalCorrectAnswers +=
+        (info.score - 100) / (900 / info.numberOfQuestions);
+      console.log((info.score - 100) / (900 / info.numberOfQuestions));
       totalAnswers += info.numberOfQuestions;
     }
 
     return {
       questionsAnswered: totalAnswers,
-      correctAnswers: totalCorrectAnswers / 10,
+      correctAnswers: totalCorrectAnswers,
     };
   } catch (err) {
     console.log("Couln't count anwers, erro " + err);

@@ -305,7 +305,7 @@ export async function calculateAllAverageScore(scores: any) {
       if (item.name == "ensayo numeros") {
         datos = {
           id: item.id,
-          name: item.name,
+          name: "Números",
           promedio: Math.trunc(avgNumeros / numNumeros),
         };
 
@@ -317,7 +317,7 @@ export async function calculateAllAverageScore(scores: any) {
       if (item.name == "ensayo algebra") {
         datos = {
           id: item.id,
-          name: item.name,
+          name: "Álgebra",
           promedio: Math.trunc(avgAlgebra / numAlgebra),
         };
 
@@ -329,7 +329,7 @@ export async function calculateAllAverageScore(scores: any) {
       if (item.name == "ensayo probabilidades") {
         datos = {
           id: item.id,
-          name: item.name,
+          name: "Probabilidades",
           promedio: Math.trunc(avgProbabilidad / numProbabilidad),
         };
 
@@ -341,7 +341,7 @@ export async function calculateAllAverageScore(scores: any) {
       if (item.name == "ensayo geometria") {
         datos = {
           id: item.id,
-          name: item.name,
+          name: "Geometría",
           promedio: Math.trunc(avgGeometria / numGeometria),
         };
 
@@ -358,7 +358,7 @@ export async function calculateAllAverageScore(scores: any) {
     return -1;
   }
 }
-export function countCorrectAnswers(essaysInfo: any) {
+export function countCorrectAnswers(essaysInfo: any, essayName: string) {
   try {
     let totalCorrectAnswers: number = 0;
     let totalAnswers: number = 0;
@@ -367,17 +367,63 @@ export function countCorrectAnswers(essaysInfo: any) {
       (puntaje -100)/(900/numquestions) = correctAnswers */
       totalCorrectAnswers +=
         (info.score - 100) / (900 / info.numberOfQuestions);
-      console.log((info.score - 100) / (900 / info.numberOfQuestions));
       totalAnswers += info.numberOfQuestions;
     }
 
     return {
+      name: essayName,
       questionsAnswered: totalAnswers,
       correctAnswers: totalCorrectAnswers,
     };
   } catch (err) {
     console.log("Couln't count anwers, erro " + err);
     return -1;
+  }
+}
+
+export async function countAllCorrectAnswers(userId: number, materia: string) {
+  try {
+    var essays = await db.essay_to_do.findMany({
+      where: { userId: userId, AND: { isCustom: 0 } },
+      select: {
+        id: true,
+        score: true,
+        numberOfQuestions: true,
+      },
+    });
+
+    return countCorrectAnswers(essays, "Resumen respuestas " + materia);
+  } catch (err) {
+    return {
+      msg: "An error has ocurred when trying to count all the correct answers of no custom essays",
+      error: err,
+      success: 0,
+    };
+  }
+}
+
+export async function countTopicCorrectAnswers(
+  userId: number,
+  essayName: string
+) {
+  try {
+    var essays = await db.essay_to_do.findMany({
+      where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
+      select: {
+        id: true,
+        name: true,
+        score: true,
+        numberOfQuestions: true,
+      },
+    });
+
+    return countCorrectAnswers(essays, essayName);
+  } catch (err) {
+    return {
+      msg: "An error has ocurred when trying to count the correct answer of a topic",
+      error: err,
+      success: 0,
+    };
   }
 }
 

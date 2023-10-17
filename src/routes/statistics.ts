@@ -18,4 +18,9 @@ router.get(
   tokenValidation,
   stats.countAllCorrectAnswers
 ); //obtiene número de preguntas respondidas correctamente de todos los ensayos no custom
+router.get(
+  "/groupTopicCorrectAnswers/",
+  tokenValidation,
+  stats.countAllSubjectCorrectAnswers
+); //obtiene número de preguntas respondidas correctamente de una materia y su desglose (ej:matematicas)
 export default router;

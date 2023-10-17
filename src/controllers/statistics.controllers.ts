@@ -27,7 +27,7 @@ export const getScore = async (req: Request, res: Response) => {
       },
     });
     if (essays.length == 0) {
-      return res.status(200).json({ score: 0 });
+      return res.status(200).json({ score: 0 }); // null
     }
     return res.status(200).json(gen.formatGetScores(essays));
   } catch (err) {
@@ -81,6 +81,7 @@ export const getAllScores = async (req: Request, res: Response) => {
 };
 
 export const getAverageScore = async (req: Request, res: Response) => {
+  //revisar
   /* Obtiene el promedio de puntajes de un tipo de ensayo no custom 
     Entrada: name = nombre del tema / no para ensayos custom*/
   try {
@@ -158,6 +159,7 @@ export const getAllAverageScores = async (req: Request, res: Response) => {
 };
 
 export const countTopicCorrectAnswers = async (req: Request, res: Response) => {
+  //revisar
   /*obtiene número de preguntas respondidas correctamente de un tema
    Entrada: name = nombre del tema / no para ensayos custom*/
   try {
@@ -166,21 +168,12 @@ export const countTopicCorrectAnswers = async (req: Request, res: Response) => {
       return res.status(401).json({ msg: "Acces denied", success: 0 });
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const essayName = req.query.name as string;
 
-    var essays = await db.essay_to_do.findMany({
-      where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
-      select: {
-        id: true,
-        name: true,
-        score: true,
-        numberOfQuestions: true,
-      },
-    });
-
-    return res.status(200).json(gen.countCorrectAnswers(essays));
+    return res
+      .status(200)
+      .json(await gen.countTopicCorrectAnswers(userId, essayName));
   } catch (err) {
     return res.status(500).json({
       msg: "An error has ocurred when trying to count the correct answer of a topic",
@@ -199,21 +192,54 @@ Entrada: no tiene*/
       return res.status(401).json({ msg: "Acces denied", success: 0 });
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
-    var essays = await db.essay_to_do.findMany({
-      where: { userId: userId, AND: { isCustom: 0 } },
-      select: {
-        id: true,
-        score: true,
-        numberOfQuestions: true,
-      },
-    });
-
-    return res.status(200).json(gen.countCorrectAnswers(essays));
+    return res.status(200).json(await gen.countAllCorrectAnswers(userId, ""));
   } catch (err) {
     return res.status(500).json({
       msg: "An error has ocurred when trying to count all the correct answers of no custom essays",
+      error: err,
+      success: 0,
+    });
+  }
+};
+
+export const countAllSubjectCorrectAnswers = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const token = req.header("authorization");
+    if (!token) {
+      return res.status(401).json({ msg: "Acces denied", success: 0 });
+    } //verifica que token exista
+    const userId = gen.getIdfromToken(token);
+
+    const matematica: string[] = [
+      "Álgebra",
+      "Números",
+      "Probabilidades",
+      "Geometría",
+    ]; //Agregar general mates???
+    /* const lenguaje:string[] = [] 
+    const historia:string[] = [] 
+    const ciencias:string[] = [] 
+    const fisica:string[] = [] 
+    const quimica:string[] = [] 
+    const biologia:string[] = [] 
+    */
+    const cuenta = [];
+    const materia = req.query.materia as string;
+
+    if (materia == "matematica") {
+      cuenta.push(await gen.countAllCorrectAnswers(userId, materia));
+      for (var tema of matematica) {
+        cuenta.push(await gen.countTopicCorrectAnswers(userId, tema));
+      }
+    }
+    return res.status(200).json(cuenta);
+  } catch (err) {
+    return res.status(500).json({
+      msg: "An error has ocurred when trying to count all the correct answers of certain topic",
       error: err,
       success: 0,
     });

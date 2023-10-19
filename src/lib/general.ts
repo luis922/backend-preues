@@ -223,15 +223,34 @@ export function formatGetScores(essayInfo: any) {
   type scores = {
     id: number;
     createdAt: string;
-    score: number;
+    value: number;
+    name: string;
+    color: string;
   };
   try {
     const formatedScores: scores[] = [];
+    let color: string = "";
     for (var info of essayInfo) {
+      console.log(info);
+      console.log(info.name);
+      if (info.name == "Álgebra") {
+        color = "bgAlgebra";
+      }
+      if (info.name == "Números") {
+        color = "bgNumeros";
+      }
+      if (info.name == "Probabilidades") {
+        color = "bgProb";
+      }
+      if (info.name == "Geometría") {
+        color = "bgGeometria";
+      }
       let score: scores = {
         id: info.id,
         createdAt: getFormatedDate(info.createdAt),
-        score: info.score,
+        value: info.score,
+        name: info.name,
+        color: color,
       };
       formatedScores.push(score);
     }

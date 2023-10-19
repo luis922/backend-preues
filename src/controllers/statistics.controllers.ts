@@ -27,7 +27,7 @@ export const getScore = async (req: Request, res: Response) => {
       },
     });
     if (essays.length == 0) {
-      return res.status(200).json({ score: 0 }); // null
+      return res.status(200).json([]); // null
     }
     return res.status(200).json(gen.formatGetScores(essays));
   } catch (err) {

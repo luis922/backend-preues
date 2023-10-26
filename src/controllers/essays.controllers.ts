@@ -612,8 +612,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
 
     essayId = newCopyEssay.id.toString();
   }
-  console.log(essayId);
-  //Cuando se crea el ensayo copia se obtiene un id, hay que ver que id se envía al subir las respuestas.
+
   try {
     const customEssay = await db.essay_to_do.findUnique({
       where: { id: +essayId },
@@ -657,6 +656,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
 
 export const physicalDeleteEssay = async (req: Request, res: Response) => {
   const essayId = req.query.essayId as string;
+  const ensayoIniciado = req.query.started as string;
 
   if (!(await find.existEssaytoDo(+essayId))) {
     return res
@@ -664,6 +664,9 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
       .send({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
   console.log("essay ID OK");
+
+  if (+ensayoIniciado == 1 && (await find.isFatherEssay(+essayId)))
+    return res.status(200).json("no se elimino por ser ensayo custom padre");
 
   try {
     const delEssay = await db.essay_to_do.delete({

@@ -44,9 +44,7 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
 
     return res.status(200).json(ensayo);
   }
-  return res
-    .status(404)
-    .json({ msg: "Este ensayo no existe: " + essayName, success: 0 });
+  return res.status(404).json({ msg: "Este ensayo no existe: " + essayName, success: 0 });
 };
 
 export const findAllEssaysQuestions = async (req: Request, res: Response) => {
@@ -109,20 +107,14 @@ export const createEssay = async (req: Request, res: Response) => {
       });
     } else if (customEssaysCount == customEssayLimit) {
       return res.status(409).json({
-        msg:
-          "Custom essay limit of " +
-          customEssayLimit +
-          " reached, please eliminate one or more custom essays",
+        msg: "Custom essay limit of " + customEssayLimit + " reached, please eliminate one or more custom essays",
         success: 0,
       });
     }
 
     //Verifica que el nombre escogido no contenga caracteres reservados o prohibidos
     const reservedChars = ["(", ")"]; //caracteres que no puede tener un nombre de ensayo custom elegido por el usuario
-    const containsForbiddenChar = gen.validateEssayName(
-      req.body.name,
-      reservedChars
-    );
+    const containsForbiddenChar = gen.validateEssayName(req.body.name, reservedChars);
 
     if (containsForbiddenChar) {
       return res.status(409).json({
@@ -153,21 +145,12 @@ export const createEssay = async (req: Request, res: Response) => {
       },
     });
 
-    relations = await createTypeOfQuestionRelations(
-      req.body.essayIDS,
-      newEssay.id
-    );
+    relations = await createTypeOfQuestionRelations(req.body.essayIDS, newEssay.id);
 
     if (+req.body.isCustom == 0) {
-      return res
-        .status(200)
-        .json({ newEssay: newEssay, newRelations: relations });
+      return res.status(200).json({ newEssay: newEssay, newRelations: relations });
     } else {
-      const questions = await asignQuestionsToCustomEssay(
-        newEssay.id,
-        req.body.essayIDS,
-        +req.body.numberOfQuestions
-      );
+      const questions = await asignQuestionsToCustomEssay(newEssay.id, req.body.essayIDS, +req.body.numberOfQuestions);
 
       return res.status(200).json({
         newEssay: newEssay,
@@ -195,15 +178,9 @@ async function asignQuestionsToCustomEssay(
     let newRelation;
     for (let index = 0; index < predefinedEssayIDS.length; index++) {
       //recorre los id de los tipos de preguntas
-      questions = await find.getPredefinedEssayQuestions(
-        +predefinedEssayIDS[index]
-      ); //obtiene todas las preguntas de un tipo
-      if (questions.length == 0)
-        return { msg: "Un error ha ocurrido al obtener las preguntas" };
-      questions = gen.getRandomQuestions(
-        numberOfQuestions / predefinedEssayIDS.length,
-        questions[0].questions
-      );
+      questions = await find.getPredefinedEssayQuestions(+predefinedEssayIDS[index]); //obtiene todas las preguntas de un tipo
+      if (questions.length == 0) return { msg: "Un error ha ocurrido al obtener las preguntas" };
+      questions = gen.getRandomQuestions(numberOfQuestions / predefinedEssayIDS.length, questions[0].questions);
       //Obtiene un numero determinado de preguntas random
       //Division es entre numeros multiplos, resultado nunca debiese ser con decimales
       for (let index = 0; index < questions.length; index++) {
@@ -243,10 +220,7 @@ async function asignQuestionsToCustomEssay(
   }
 }
 
-async function createTypeOfQuestionRelations(
-  predefinedEssayIDS: Array<string>,
-  newEssayID: number
-) {
+async function createTypeOfQuestionRelations(predefinedEssayIDS: Array<string>, newEssayID: number) {
   //crea relacion entre la tabla essayToDo y predefined_essay
   var newRelation;
   try {
@@ -269,10 +243,7 @@ async function createTypeOfQuestionRelations(
   }
 }
 
-async function createCustomEssayQuestionRelation(
-  answersIDS: Array<string>,
-  essayId: number
-) {
+async function createCustomEssayQuestionRelation(answersIDS: Array<string>, essayId: number) {
   var questionId;
 
   //Verifica que la respuesta exista al igual que la pregunta a la que pertenece
@@ -303,10 +274,7 @@ async function createCustomEssayQuestionRelation(
   });
 }
 
-async function createCustomEssayQuestionRelation2(
-  essayId: number,
-  questionsId: number[]
-) {
+async function createCustomEssayQuestionRelation2(essayId: number, questionsId: number[]) {
   //Establece la relación a partir de un arreglo con las ids de las preguntas y el id del ensayo
 
   try {
@@ -322,9 +290,7 @@ async function createCustomEssayQuestionRelation2(
       where: { essayToDoId: essayId },
     });
   } catch (err) {
-    console.log(
-      "Couldn't create custom_essay_question relations, error: " + err
-    );
+    console.log("Couldn't create custom_essay_question relations, error: " + err);
     return [];
   }
 }
@@ -415,9 +381,7 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
   try {
     const submittedEssay = await find.getSubmittedEssay(+essayId);
     if (submittedEssay == 0) {
-      return res
-        .status(404)
-        .json({ msg: "Couldn't find the essay id: " + essayId, success: 0 });
+      return res.status(404).json({ msg: "Couldn't find the essay id: " + essayId, success: 0 });
     } //Indica si hubo problemas al buscar el ensayo
 
     const formatedEssay = await gen.formatSubmittedEssay(submittedEssay);
@@ -488,12 +452,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
   try {
     const customEssays = await db.essay_to_do.findMany({
       where: {
-        AND: [
-          { isCustom: 1 },
-          { userId: +userId },
-          { isDeleted: 0 },
-          { fatherEssay: 0 },
-        ],
+        AND: [{ isCustom: 1 }, { userId: +userId }, { isDeleted: 0 }, { fatherEssay: 0 }],
       },
       select: {
         id: true,
@@ -516,10 +475,7 @@ export const getCustomEssays = async (req: Request, res: Response) => {
 
 async function createCopyCustomEssay(essayInfo: any) {
   try {
-    const essayName = gen.createCopyCustomEssayName(
-      essayInfo.name,
-      essayInfo.lastRecordedName
-    );
+    const essayName = gen.createCopyCustomEssayName(essayInfo.name, essayInfo.lastRecordedName);
 
     const newCopyEssay = await db.essay_to_do.create({
       data: {
@@ -532,33 +488,21 @@ async function createCopyCustomEssay(essayInfo: any) {
       },
     });
 
-    const newTypeQuestionRelation = await createTypeOfQuestionRelations(
-      essayInfo.typeOfQuestions,
-      newCopyEssay.id
-    );
+    const newTypeQuestionRelation = await createTypeOfQuestionRelations(essayInfo.typeOfQuestions, newCopyEssay.id);
 
     if (newTypeQuestionRelation.length == 0) {
-      console.log(
-        "An error has occurred when trying to create typeQuestion relations"
-      );
+      console.log("An error has occurred when trying to create typeQuestion relations");
       return null;
     }
-    const newEssayQuestionRelation = await createCustomEssayQuestionRelation2(
-      newCopyEssay.id,
-      essayInfo.questions
-    );
+    const newEssayQuestionRelation = await createCustomEssayQuestionRelation2(newCopyEssay.id, essayInfo.questions);
 
     if (newEssayQuestionRelation.length == 0) {
-      console.log(
-        "An error has occurred when trying to essay question relations"
-      );
+      console.log("An error has occurred when trying to essay question relations");
       return null;
     }
     return newCopyEssay;
   } catch (err) {
-    console.log(
-      "An error has ocurred when trying to create the copy essay, error: " + err
-    );
+    console.log("An error has ocurred when trying to create the copy essay, error: " + err);
     return null;
   }
 }
@@ -569,18 +513,14 @@ export const getCustomEssay = async (req: Request, res: Response) => {
   var essayId = req.query.essayId as string;
   const existEssay = await find.existEssaytoDo(+essayId);
   if (!existEssay) {
-    return res
-      .status(404)
-      .json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
+    return res.status(404).json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
   console.log("essay ID OK");
 
   //Verifica que el id del ensayo corresponda a uno custom
   const isEssayCustom = await find.isEssayCustom(+essayId);
   if (!isEssayCustom) {
-    return res
-      .status(409)
-      .json({ msg: "Essay id: " + essayId + " isn't custom", success: 0 });
+    return res.status(409).json({ msg: "Essay id: " + essayId + " isn't custom", success: 0 });
   }
 
   //Verifica si el ensayo ya ha sido respondido
@@ -589,9 +529,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
     //Crea una copia de la información del ensayo padre/original
     const copyEssay = await find.getCustomEssayForCopy(+essayId);
     if (copyEssay == null) {
-      return res
-        .status(409)
-        .json({ msg: "Couldn't coppy Essay id: " + essayId, success: 0 });
+      return res.status(409).json({ msg: "Couldn't coppy Essay id: " + essayId, success: 0 });
     }
 
     //Crea un ensayo copia del ensayo original en la bd
@@ -659,9 +597,7 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
   const ensayoIniciado = req.query.started as string;
 
   if (!(await find.existEssaytoDo(+essayId))) {
-    return res
-      .status(404)
-      .send({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
+    return res.status(404).send({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
   console.log("essay ID OK");
 

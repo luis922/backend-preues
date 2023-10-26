@@ -402,6 +402,19 @@ export async function getCustomEssayForCopy(essayId: number) {
   }
 }
 
+export async function isFatherEssay(essayId: number) {
+  const essay = await db.essay_to_do.findUnique({
+    where: { id: essayId },
+    select: {
+      isCustom: true,
+      lastRecordedName: true,
+    },
+  });
+
+  if (essay == null) return false;
+  return essay.isCustom == 1 && essay.lastRecordedName == null ? true : false;
+}
+
 async function testFunction() {
   console.log(await getCustomEssayForCopy(19));
 }

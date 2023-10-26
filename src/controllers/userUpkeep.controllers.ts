@@ -90,9 +90,7 @@ export const changePassword = async (req: Request, res: Response) => {
           password: await bcrypt.hash(req.body.newPassword, 10),
         },
       });
-      return res
-        .status(200)
-        .json({ msg: "Password changed successfully", success: 1 });
+      return res.status(200).json({ msg: "Password changed successfully", success: 1 });
     } else {
       return res.status(400).json({ error: "Invalid password", success: 0 });
     }
@@ -123,8 +121,6 @@ export const getCoins = async (req: Request, res: Response) => {
     });
     return res.status(200).json(userCoins);
   } catch (err) {
-    return res
-      .status(500)
-      .json({ msg: "Could'nt rerieve data", error: err, success: 0 });
+    return res.status(500).json({ msg: "Could'nt rerieve data", error: err, success: 0 });
   }
 };

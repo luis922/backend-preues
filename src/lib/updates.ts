@@ -16,10 +16,7 @@ export async function updateEssayCompletionTime(time: number, essayId: number) {
   }
 }
 
-export async function updateEssayScore(
-  essayId: number,
-  correctAnswers: number
-) {
+export async function updateEssayScore(essayId: number, correctAnswers: number) {
   try {
     //calcular puntaje de 100 a 1000
     const numQuestions = await db.essay_to_do.findUnique({
@@ -35,9 +32,7 @@ export async function updateEssayScore(
     const essay = await db.essay_to_do.update({
       where: { id: essayId },
       data: {
-        score: Math.trunc(
-          100 + (900 / numQuestions.numberOfQuestions) * correctAnswers
-        ),
+        score: Math.trunc(100 + (900 / numQuestions.numberOfQuestions) * correctAnswers),
       },
     });
     return;

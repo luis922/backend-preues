@@ -10,18 +10,12 @@ export const createToken = (idu: number, nameu: string) => {
 
 export function getIdfromToken(token: string) {
   token = token.split(" ")[1]; // quita el bearer al token
-  const payload = jwt.verify(
-    token,
-    process.env.TOKEN_SECRET || "tokensreplacementincaseisundifined"
-  );
+  const payload = jwt.verify(token, process.env.TOKEN_SECRET || "tokensreplacementincaseisundifined");
 
   return (<any>payload).id;
 }
 
-export function getRandomQuestionsIndex(
-  numero: number,
-  questionsLenght: number
-) {
+export function getRandomQuestionsIndex(numero: number, questionsLenght: number) {
   //obtiene un numero de indices seleccionados de manera aleatoria y sin repetición para elegir preguntas
   let randomIndex = Math.floor(Math.random() * questionsLenght); //
   let indexArray: number[] = [];
@@ -81,13 +75,8 @@ export async function countCorrectQuestions(essayId: number) {
 
 export function getFormatedTime(timeInSeconds: number) {
   const hours = Math.floor(timeInSeconds / 3600);
-  const minutes = Math.floor(
-    (timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60
-  );
-  const seconds = Math.floor(
-    ((timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60 - minutes) *
-      60
-  );
+  const minutes = Math.floor((timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60);
+  const seconds = Math.floor(((timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60 - minutes) * 60);
 
   let hora = hours.toString();
   let minutos = minutes.toString();
@@ -158,18 +147,15 @@ export async function formatSubmittedEssay(submittedEssay: any) {
   return ensayo;
 }
 
-export function validateEssayName(
-  essayName: string,
-  reservedChars: Array<string>
-) {
+export function validateEssayName(essayName: string, reservedChars: Array<string>) {
   //valida que el nombre no contenga los caracteres "(",")"
   for (var character of reservedChars) {
     let isInName = essayName.includes(character);
     if (isInName) {
-      return true;
+      return true; //Incluye parentesis
     }
   }
-  return false;
+  return false; //No incluye parentesis
 }
 
 export async function countCustomEssays(userId: number) {
@@ -308,9 +294,7 @@ export async function calculateAllAverageScore(scores: any) {
         avgAlgebra += info.score;
         numAlgebra++;
       }
-      if (
-        info.typeOfQuestions[0].predifinedEssay.name == "ensayo probabilidades"
-      ) {
+      if (info.typeOfQuestions[0].predifinedEssay.name == "ensayo probabilidades") {
         avgProbabilidad += info.score;
         numProbabilidad++;
       }
@@ -384,8 +368,7 @@ export function countCorrectAnswers(essaysInfo: any, essayName: string) {
     for (var info of essaysInfo) {
       /* puntaje = 100 + (900 / numQuestions) * CorrectAnswers)
       (puntaje -100)/(900/numquestions) = correctAnswers */
-      totalCorrectAnswers +=
-        (info.score - 100) / (900 / info.numberOfQuestions);
+      totalCorrectAnswers += (info.score - 100) / (900 / info.numberOfQuestions);
       totalAnswers += info.numberOfQuestions;
     }
 
@@ -421,10 +404,7 @@ export async function countAllCorrectAnswers(userId: number, materia: string) {
   }
 }
 
-export async function countTopicCorrectAnswers(
-  userId: number,
-  essayName: string
-) {
+export async function countTopicCorrectAnswers(userId: number, essayName: string) {
   try {
     var essays = await db.essay_to_do.findMany({
       where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },

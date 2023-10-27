@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
             email: user.email,
             token: createToken(user.id, user.name),
             success: 1,
-            coins: user.coins
+            coins: user.coins,
           });
         } else {
           return res.status(500).json({ msg: "Wrong password", success: 0 });

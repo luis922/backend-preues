@@ -1,4 +1,5 @@
 import { db } from "../db.connection";
+import { validateEssayName } from "./general";
 
 export async function findUserbyName(name: string) {
   try {
@@ -65,9 +66,7 @@ export async function existEssaytoDo(id: number) {
       where: { id: id },
     });
   } catch (err) {
-    console.log(
-      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
-    );
+    console.log("No se pudo realizar la búsqueda, el error fue el siguiente: " + err);
     return false;
   }
   if (essay) {
@@ -83,9 +82,7 @@ export async function existTOQ(id: number) {
       where: { essayToDoId: id },
     });
   } catch (err) {
-    console.log(
-      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
-    );
+    console.log("No se pudo realizar la búsqueda, el error fue el siguiente: " + err);
     return false;
   }
 
@@ -120,9 +117,7 @@ export async function existAnswer(id: number) {
       where: { id: id },
     });
   } catch (err) {
-    console.log(
-      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
-    );
+    console.log("No se pudo realizar la búsqueda, el error fue el siguiente: " + err);
     return false;
   }
   if (answer) {
@@ -137,9 +132,7 @@ export async function existQuestion(id: number) {
       where: { id: id },
     });
   } catch (err) {
-    console.log(
-      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
-    );
+    console.log("No se pudo realizar la búsqueda, el error fue el siguiente: " + err);
     return false;
   }
   if (question) {
@@ -215,10 +208,7 @@ export async function getPredefinedEssayQuestions(preDefEssayId: number) {
     });
     return questions;
   } catch (err) {
-    console.log(
-      "No se pudo encontrar las preguntas del ensayo predefinido, msg error: " +
-        err
-    );
+    console.log("No se pudo encontrar las preguntas del ensayo predefinido, msg error: " + err);
     return [];
   }
 }
@@ -297,9 +287,7 @@ export async function existEmail(email: string) {
       where: { email: email },
     });
   } catch (err) {
-    console.log(
-      "No se pudo realizar la búsqueda, el error fue el siguiente: " + err
-    );
+    console.log("No se pudo realizar la búsqueda, el error fue el siguiente: " + err);
     return false;
   }
 
@@ -336,10 +324,7 @@ export async function isEssayCustom(essayId: number) {
   }
 
   if (essay == null) {
-    console.log(
-      "Algun error ocurrió al comprobar si el ensayo es custom, ensayo: " +
-        essay
-    );
+    console.log("Algun error ocurrió al comprobar si el ensayo es custom, ensayo: " + essay);
     return false;
   } else {
     return essay.isCustom == 1 ? true : false;
@@ -392,18 +377,27 @@ export async function getCustomEssayForCopy(essayId: number) {
 
     return customEssay;
   } catch (err) {
-    console.log(
-      "An error has occurred when trying to find the essay id: " +
-        essayId +
-        " ,error: " +
-        err
-    );
+    console.log("An error has occurred when trying to find the essay id: " + essayId + " ,error: " + err);
     return [];
   }
 }
 
+export async function isFatherEssay(essayId: number) {
+  const essay = await db.essay_to_do.findUnique({
+    where: { id: essayId },
+    select: {
+      isCustom: true,
+      name: true,
+    },
+  });
+
+  if (essay == null) return false;
+  return essay.isCustom == 1 && validateEssayName(essay.name, ["(", ")"]) == false ? true : false;
+  //ensayos padres no debiesen tener parentesis en sus nombres, solo los hijos pueden
+}
+
 async function testFunction() {
-  console.log(await getCustomEssayForCopy(19));
+  console.log(await isFatherEssay(30));
 }
 
 /* testFunction(); */

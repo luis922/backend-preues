@@ -31,9 +31,7 @@ export const getScore = async (req: Request, res: Response) => {
     }
     return res.status(200).json(gen.formatGetScores(essays));
   } catch (err) {
-    return res
-      .status(500)
-      .json({ msg: "Couldn't obtain the scores", error: err, succes: 0 });
+    return res.status(500).json({ msg: "Couldn't obtain the scores", error: err, succes: 0 });
   }
 };
 
@@ -106,9 +104,7 @@ export const getAverageScore = async (req: Request, res: Response) => {
     if (essays.length == 0) {
       return res.status(200).json({ averageScore: 0 }); // 0 o 100
     }
-    return res
-      .status(200)
-      .json({ averageScore: gen.calculateAverageScore(essays) });
+    return res.status(200).json({ averageScore: gen.calculateAverageScore(essays) });
   } catch (err) {
     return res.status(500).json({
       msg: "An error has ocurred when trying to calculate average score",
@@ -171,9 +167,7 @@ export const countTopicCorrectAnswers = async (req: Request, res: Response) => {
 
     const essayName = req.query.name as string;
 
-    return res
-      .status(200)
-      .json(await gen.countTopicCorrectAnswers(userId, essayName));
+    return res.status(200).json(await gen.countTopicCorrectAnswers(userId, essayName));
   } catch (err) {
     return res.status(500).json({
       msg: "An error has ocurred when trying to count the correct answer of a topic",
@@ -203,10 +197,7 @@ Entrada: no tiene*/
   }
 };
 
-export const countAllSubjectCorrectAnswers = async (
-  req: Request,
-  res: Response
-) => {
+export const countAllSubjectCorrectAnswers = async (req: Request, res: Response) => {
   try {
     const token = req.header("authorization");
     if (!token) {
@@ -214,12 +205,7 @@ export const countAllSubjectCorrectAnswers = async (
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
 
-    const matematica: string[] = [
-      "Álgebra",
-      "Números",
-      "Probabilidades",
-      "Geometría",
-    ]; //Agregar general mates???
+    const matematica: string[] = ["Álgebra", "Números", "Probabilidades", "Geometría"]; //Agregar general mates???
     /* const lenguaje:string[] = [] 
     const historia:string[] = [] 
     const ciencias:string[] = [] 

@@ -125,7 +125,7 @@ export async function formatSubmittedEssay(submittedEssay: any) {
   let ensayo: essay = {
     id: submittedEssay.id,
     name: submittedEssay.name,
-    selectedTime: getFormatedTime(submittedEssay.selectedTime),
+    selectedTime: getFormatedTime(submittedEssay.selectedTime * 60),
     totalTime: getFormatedTime(submittedEssay.totalTime),
     numberOfQuestions: submittedEssay.numberOfQuestions,
     createdAt: submittedEssay.createdAt,
@@ -366,12 +366,12 @@ export function countCorrectAnswers(essaysInfo: any, essayName: string) {
     let totalCorrectAnswers: number = 0;
     let totalAnswers: number = 0;
     for (var info of essaysInfo) {
-      /* puntaje = 100 + (900 / numQuestions) * CorrectAnswers)
+      /*formula de puntaje puntaje = 100 + (900 / numQuestions) * CorrectAnswers)
       (puntaje -100)/(900/numquestions) = correctAnswers */
-      totalCorrectAnswers += (info.score - 100) / (900 / info.numberOfQuestions);
+      totalCorrectAnswers += Math.trunc((info.score - 100) / (900 / info.numberOfQuestions)); //cambio aqui para quitar
       totalAnswers += info.numberOfQuestions;
     }
-
+    console.log();
     return {
       name: essayName,
       questionsAnswered: totalAnswers,

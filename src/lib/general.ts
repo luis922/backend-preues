@@ -217,8 +217,6 @@ export function formatGetScores(essayInfo: any) {
     const formatedScores: scores[] = [];
     let color: string = "";
     for (var info of essayInfo) {
-      console.log(info);
-      console.log(info.name);
       if (info.name == "Álgebra") {
         color = "bgAlgebra";
       }

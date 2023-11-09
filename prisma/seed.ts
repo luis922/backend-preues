@@ -1,5 +1,7 @@
 import { db } from "../src/db.connection";
 import { ensayos } from "./preguntas";
+import * as path from "path";
+import { readfiles } from "../src/lib/general";
 
 /* function maxLargoPregunta() {
   let mayor = 0;
@@ -33,7 +35,28 @@ import { ensayos } from "./preguntas";
 
 maxLargoPregunta(); */
 
+async function poblarAvatares() {
+  try {
+    const result: string = path.join(__dirname, "../img/avatars"); //cambiar segun ubicacion de seed.ts y la carpeta img
+    //console.log(result);
+    const r = readfiles(result);
+    //console.log(r);
+    for (var item of r) {
+      const newAvatar = await db.avatar.create({
+        data: {
+          name: item.split("/")[3],
+          imgDir: item,
+        },
+      });
+    }
+    return "Guardado de info de avatares completado";
+  } catch (err) {
+    return "No se pudo guardar info de avatares, error: " + err;
+  }
+}
+
 async function poblarBD() {
+  console.log(await poblarAvatares());
   //recorre los ensayos
   var newEnsayo;
   var newPregunta;
@@ -48,22 +71,8 @@ async function poblarBD() {
         },
       });
     } catch (error) {
-      console.log(
-        "No se pudo crear el ensayo, " +
-          ensayos[i].name +
-          ". Indice i: " +
-          i +
-          " error : " +
-          error
-      );
-      return (
-        "No se pudo crear el ensayo, " +
-        ensayos[i].name +
-        ". Indice i: " +
-        i +
-        " error : " +
-        error
-      );
+      console.log("No se pudo crear el ensayo, " + ensayos[i].name + ". Indice i: " + i + " error : " + error);
+      return "No se pudo crear el ensayo, " + ensayos[i].name + ". Indice i: " + i + " error : " + error;
     }
     //recorre las preguntas del actual ensayo
     for (let j = 0; j < ensayos[i].questions.length; j++) {
@@ -79,19 +88,9 @@ async function poblarBD() {
           },
         });
       } catch (error) {
-        console.log(
-          "No se pudo guardar la pregunta: " +
-            ensayos[i].questions[j].question +
-            "\nerror : " +
-            error
-        );
+        console.log("No se pudo guardar la pregunta: " + ensayos[i].questions[j].question + "\nerror : " + error);
         return (
-          "No se pudo guardar la pregunta: " +
-          ensayos[i].questions[j].question +
-          "indice :" +
-          j +
-          "\nerror : " +
-          error
+          "No se pudo guardar la pregunta: " + ensayos[i].questions[j].question + "indice :" + j + "\nerror : " + error
         );
       }
       //recorre las respuestas a las preguntas del actual ensayo
@@ -106,33 +105,12 @@ async function poblarBD() {
             },
           });
         } catch (error) {
-          /* console.log(
-            "No se pudo guardar la respuesta: " +
-              ensayos[i].questions[j].answer[k].label +
-              "\nerror : " +
-              error
-          ); */
-          /* console.log("No se pudo guardar la respuesta: \nerror : " + error); */
           console.log({
             lastPreSave: newRespuesta,
-            errMsg:
-              "No se pudo guardar la respuesta: indice: " +
-              k +
-              " \nerror : " +
-              error,
+            errMsg: "No se pudo guardar la respuesta: indice: " + k + " \nerror : " + error,
           });
-          /* return (
-            "No se pudo guardar la respuesta: " +
-            ensayos[i].questions[j].answer[k].label +
-            "\nerror : " +
-            error
-          ); */
-          return (
-            "No se pudo guardar la respuesta: indice: " +
-            k +
-            " \nerror : " +
-            error
-          );
+
+          return "No se pudo guardar la respuesta: indice: " + k + " \nerror : " + error;
         }
       }
     }

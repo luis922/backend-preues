@@ -16,6 +16,4 @@ router.delete("/physicalDelEssay/", tokenValidation, essay.physicalDeleteEssay);
 router.delete("/logicalDelEssay/", tokenValidation, essay.logicalDeleteEssay); //Borrado lógico del ensayo
 export default router;
 
-//verificacion que id respuestas correspondan a las preguntas de ensayo custom
-//TRATAR TODOS LOS IDS COMO ENTEROS INCLUSO DESDE EL FRONT
 //actualizar readme con credenciales emailer

@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 import { db } from "../db.connection";
+import * as fs from "node:fs";
+import path from "path";
 
 export const createToken = (idu: number, nameu: string) => {
   return jwt.sign(
@@ -424,8 +426,32 @@ export async function countTopicCorrectAnswers(userId: number, essayName: string
   }
 }
 
+export function readfiles(directory: string) {
+  let dirs: string[] = [];
+  fs.readdirSync(directory).forEach((file) => {
+    dirs.push("/img/avatars/" + file);
+  });
+  return dirs;
+}
+
+export function getFullPaths(avatars: any) {
+  //recibe [{imgDir: string}]
+  try {
+    let dirs: string[] = [];
+    for (var item of avatars) {
+      console.log(item.imgDir);
+      let newPath = path.join(__dirname.split("\\src\\lib")[0], "." + item.imgDir); //cambiar segun ubicacion del archivo
+      dirs.push(newPath);
+    }
+    return dirs;
+  } catch (err) {
+    console.log(err);
+    return [""];
+  }
+}
+
 async function testFunction() {
-  console.log(createCopyCustomEssayName("custom 1", "custom 1 (199)"));
+  console.log();
 }
 
 /* testFunction(); */

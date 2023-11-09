@@ -5,19 +5,15 @@ import * as find from "../lib/find";
 import transporter from "../emailer";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
-import { getFullPaths } from "../lib/general";
 
 export const signup = async (req: Request, res: Response) => {
-  let avatarDir: string[] = getFullPaths([{ imgDir: "/img/avatars/avatar 3.jpg" }]);
-  console.log(avatarDir);
-  console.log("av 0 " + avatarDir[0]);
   try {
     const newUser = await db.user.create({
       data: {
         name: req.body.name,
         email: req.body.email,
         password: await bcrypt.hash(req.body.password, 10), //hashing password
-        dirAvatar: avatarDir[0],
+        dirAvatar: "avatar1.png",
       },
     });
 
@@ -205,11 +201,11 @@ export const getAvatars = async (req: Request, res: Response) => {
   try {
     const avatars = await db.avatar.findMany({
       select: {
-        imgDir: true,
+        name: true,
       },
     });
 
-    return res.status(200).json(gen.getFullPaths(avatars));
+    return res.status(200).json(avatars);
   } catch (err) {
     return res.status(500).json(err);
   }

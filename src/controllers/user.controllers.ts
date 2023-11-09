@@ -5,32 +5,35 @@ import * as find from "../lib/find";
 import transporter from "../emailer";
 import bcrypt from "bcrypt";
 import crypto from "crypto";
+import { getFullPaths } from "../lib/general";
 
 export const signup = async (req: Request, res: Response) => {
-  {
-    try {
-      const newUser = await db.user.create({
-        data: {
-          name: req.body.name,
-          email: req.body.email,
-          password: await bcrypt.hash(req.body.password, 10), //hashing password
-        },
-      });
+  let avatarDir: string[] = getFullPaths([{ imgDir: "/img/avatars/avatar 3.jpg" }]);
+  console.log(avatarDir);
+  console.log("av 0 " + avatarDir[0]);
+  try {
+    const newUser = await db.user.create({
+      data: {
+        name: req.body.name,
+        email: req.body.email,
+        password: await bcrypt.hash(req.body.password, 10), //hashing password
+        dirAvatar: avatarDir[0],
+      },
+    });
 
-      return res.status(201).json({
-        msg: "User created",
-        id: newUser.id,
-        name: newUser.name,
-        token: gen.createToken(newUser.id, newUser.name),
-        success: 1,
-      });
-    } catch (error) {
-      return res.status(500).json({
-        msg: "Couldn't create user",
-        err: error,
-        success: 0,
-      });
-    }
+    return res.status(201).json({
+      msg: "User created",
+      id: newUser.id,
+      name: newUser.name,
+      token: gen.createToken(newUser.id, newUser.name),
+      success: 1,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      msg: "Couldn't create user",
+      err: error,
+      success: 0,
+    });
   }
 };
 
@@ -47,7 +50,7 @@ export const login = async (req: Request, res: Response) => {
           password: true,
           email: true,
           coins: true,
-          //incluir img perfil
+          dirAvatar: true,
         },
       });
 
@@ -61,9 +64,10 @@ export const login = async (req: Request, res: Response) => {
             id: user.id,
             name: user.name,
             email: user.email,
+            avatar: user.dirAvatar,
+            coins: user.coins,
             token: gen.createToken(user.id, user.name),
             success: 1,
-            coins: user.coins,
           });
         } else {
           return res.status(500).json({ msg: "Wrong password", success: 0 });
@@ -193,6 +197,65 @@ export const getCoins = async (req: Request, res: Response) => {
     });
     return res.status(200).json(userCoins);
   } catch (err) {
-    return res.status(500).json({ msg: "Could'nt rerieve data", error: err, success: 0 });
+    return res.status(500).json({ msg: "Could'nt retrieve data", error: err, success: 0 });
+  }
+};
+
+export const getAvatars = async (req: Request, res: Response) => {
+  try {
+    const avatars = await db.avatar.findMany({
+      select: {
+        imgDir: true,
+      },
+    });
+
+    return res.status(200).json(gen.getFullPaths(avatars));
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+};
+
+export const getCurrentAvatar = async (req: Request, res: Response) => {
+  try {
+    const token = req.header("authorization");
+    if (!token) {
+      return res.status(401).json({ msg: "Acces denied", success: 0 });
+    } //verifica que token exista
+
+    const userID = gen.getIdfromToken(token);
+    console.log("token OK");
+
+    const userAvatar = await db.user.findUnique({
+      where: { id: userID },
+      select: {
+        dirAvatar: true,
+      },
+    });
+    return res.status(200).json(userAvatar);
+  } catch (err) {
+    return res.status(500).json({ msg: "Could'nt retrieve data", error: err, success: 0 });
+  }
+};
+
+export const changeAvatar = async (req: Request, res: Response) => {
+  try {
+    const newAvatar = req.query.dirAvatar as string;
+    const token = req.header("authorization");
+    if (!token) {
+      return res.status(401).json({ msg: "Acces denied", success: 0 });
+    } //verifica que token exista
+
+    const userID = gen.getIdfromToken(token);
+    console.log("token OK");
+
+    const userAvatar = await db.user.update({
+      where: { id: userID },
+      data: {
+        dirAvatar: newAvatar,
+      },
+    });
+    return res.status(200).json(userAvatar);
+  } catch (err) {
+    return res.status(500).json({ msg: "Could'nt retrieve data", error: err, success: 0 });
   }
 };

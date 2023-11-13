@@ -235,7 +235,6 @@ export const getCurrentAvatar = async (req: Request, res: Response) => {
 
 export const changeAvatar = async (req: Request, res: Response) => {
   try {
-    const newAvatar = req.query.dirAvatar as string;
     const token = req.header("authorization");
     if (!token) {
       return res.status(401).json({ msg: "Acces denied", success: 0 });
@@ -247,7 +246,7 @@ export const changeAvatar = async (req: Request, res: Response) => {
     const userAvatar = await db.user.update({
       where: { id: userID },
       data: {
-        dirAvatar: newAvatar,
+        dirAvatar: req.body.dirAvatar,
       },
     });
     return res.status(200).json(userAvatar);

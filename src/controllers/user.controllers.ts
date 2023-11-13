@@ -60,7 +60,7 @@ export const login = async (req: Request, res: Response) => {
             id: user.id,
             name: user.name,
             email: user.email,
-            avatar: user.dirAvatar,
+            avatar: user.dirAvatar.split(".")[0],
             coins: user.coins,
             token: gen.createToken(user.id, user.name),
             success: 1,

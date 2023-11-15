@@ -1,6 +1,4 @@
 import { db } from "../db.connection";
-import * as find from "../lib/find";
-import * as update from "../lib/updates";
 import { Request, Response } from "express";
 import * as gen from "../lib/general";
 

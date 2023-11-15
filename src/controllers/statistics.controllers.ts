@@ -13,7 +13,6 @@ export const getScore = async (req: Request, res: Response) => {
       return res.status(401).json({ msg: "Acces denied", success: 0 });
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const essayName = req.query.name as string;
 
@@ -44,7 +43,6 @@ export const getAllScores = async (req: Request, res: Response) => {
       return res.status(401).json({ msg: "Acces denied", success: 0 });
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
     var essays = await db.essay_to_do.findMany({
       where: { userId: userId, AND: { isCustom: 0 } },
@@ -88,7 +86,6 @@ export const getAverageScore = async (req: Request, res: Response) => {
       return res.status(401).json({ msg: "Acces denied", success: 0 });
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const essayName = req.query.name as string;
 
@@ -123,7 +120,6 @@ export const getAllAverageScores = async (req: Request, res: Response) => {
       return res.status(401).json({ msg: "Acces denied", success: 0 });
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
     var essays = await db.essay_to_do.findMany({
       where: { userId: userId, AND: { isCustom: 0 } },

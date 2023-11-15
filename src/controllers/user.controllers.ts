@@ -140,7 +140,6 @@ export const changePassword = async (req: Request, res: Response) => {
       return res.status(401).send("Acces denied");
     } //verifica que token exista
     const userId = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const user = await db.user.findUnique({
       where: {
@@ -183,7 +182,6 @@ export const getCoins = async (req: Request, res: Response) => {
     } //verifica que token exista
 
     const userID = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const userCoins = await db.user.findUnique({
       where: { id: userID },
@@ -219,7 +217,6 @@ export const getCurrentAvatar = async (req: Request, res: Response) => {
     } //verifica que token exista
 
     const userID = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const userAvatar = await db.user.findUnique({
       where: { id: userID },
@@ -241,7 +238,6 @@ export const changeAvatar = async (req: Request, res: Response) => {
     } //verifica que token exista
 
     const userID = gen.getIdfromToken(token);
-    console.log("token OK");
 
     const userAvatar = await db.user.update({
       where: { id: userID },

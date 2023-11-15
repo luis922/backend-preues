@@ -94,7 +94,7 @@ export const createEssay = async (req: Request, res: Response) => {
   } //verifica que token exista
 
   const userID = gen.getIdfromToken(token);
-  console.log("token OK");
+
   //------------------------------------------
 
   if (+req.body.isCustom == 1) {
@@ -303,7 +303,6 @@ export const submitAnswers = async (req: Request, res: Response) => {
   } //verifica que token exista
 
   const userID = gen.getIdfromToken(token);
-  console.log("token OK");
 
   let existEssay = await find.existEssaytoDo(+req.body.essayId);
   if (!existEssay) {
@@ -404,7 +403,6 @@ export const getHistory = async (req: Request, res: Response) => {
     return res.status(401).json({ msg: "Acces denied", success: 0 });
   } //verifica que token exista
   const userId = gen.getIdfromToken(token);
-  console.log("token OK");
 
   try {
     var history: any[] = [];
@@ -447,7 +445,6 @@ export const getCustomEssays = async (req: Request, res: Response) => {
     return res.status(401).json({ msg: "Acces denied", success: 0 });
   } //verifica que token exista
   const userId = gen.getIdfromToken(token);
-  console.log("token OK");
 
   try {
     const customEssays = await db.essay_to_do.findMany({

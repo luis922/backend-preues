@@ -15,5 +15,3 @@ router.get("/customEssay/", tokenValidation, essay.getCustomEssay); //Obtener lo
 router.delete("/physicalDelEssay/", tokenValidation, essay.physicalDeleteEssay); //Borrado físico del ensayo
 router.delete("/logicalDelEssay/", tokenValidation, essay.logicalDeleteEssay); //Borrado lógico del ensayo
 export default router;
-
-//actualizar readme con credenciales emailer

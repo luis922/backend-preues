@@ -120,7 +120,7 @@ export const getAllAverageScores = async (req: Request, res: Response) => {
     const userId = gen.getIdfromToken(token);
 
     var essays = await db.essay_to_do.findMany({
-      where: { userId: userId, AND: { isCustom: 0 } },
+      where: { userId: userId, AND: { isCustom: 0 }, NOT: { name: "General" } },
       select: {
         id: true,
         name: true,

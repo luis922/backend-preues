@@ -386,7 +386,7 @@ export function countCorrectAnswers(essaysInfo: any, essayName: string) {
 export async function countAllCorrectAnswers(userId: number, materia: string) {
   try {
     var essays = await db.essay_to_do.findMany({
-      where: { userId: userId, AND: { isCustom: 0 } },
+      where: { userId: userId, AND: { isCustom: 0 }, NOT: { name: "General" } },
       select: {
         id: true,
         score: true,

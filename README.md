@@ -28,7 +28,7 @@ En el caso de DATABASE_URL, a continuación se explican los componentes de la UR
 | Port     | PORT          | Puerto en el que su servidor de base de datos está corriendo, ej: 5432 |
 | Database | DATABASE_NAME | Nombre de la base de datos que se quiere utilizar, ej: mydb            |
 
-Una vez definidas estas variables de entorno, recordar guardar los cambios en el archivo .env, ya que luego se procederá a crear las tablas en la base de datos con el siguiente comando:
+Una vez definidas estas variables de entorno, recordar guardar los cambios en el archivo .env, ya que luego se procederá a crear las tablas en la base de datos con el siguiente comando en el mismo terminal que se uso el `npm install` :
 
 `npx prisma migrate dev --name cualquier_nombre_aqui`
 

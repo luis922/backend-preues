@@ -107,7 +107,10 @@ export const createEssay = async (req: Request, res: Response) => {
       });
     } else if (customEssaysCount == customEssayLimit) {
       return res.status(409).json({
-        msg: "Custom essay limit of " + customEssayLimit + " reached, please eliminate one or more custom essays",
+        msg:
+          "Límite de " +
+          customEssayLimit +
+          " ensayos custom creados alcanzado, por favor elimina uno o más ensayos personalizados",
         success: 0,
       });
     }
@@ -118,7 +121,7 @@ export const createEssay = async (req: Request, res: Response) => {
 
     if (containsForbiddenChar) {
       return res.status(409).json({
-        msg: "Name of essay has forbidden character: " + reservedChars,
+        msg: "Nombre del ensayo tiene caracacteres prohibidos: " + reservedChars,
         success: 0,
       });
     }
@@ -127,7 +130,7 @@ export const createEssay = async (req: Request, res: Response) => {
     const repeatedName = await find.isNameRepeated(req.body.name, +userID);
     if (repeatedName) {
       return res.status(409).json({
-        msg: "Name of essay already chosen by the user",
+        msg: "Nombre para ensayo custom ya existe, por favor elija otro",
         repeated: true,
         success: 0,
       });
@@ -311,7 +314,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
       success: 0,
     });
   } //verifica que ensayo exista
-  console.log("essay ID OK");
+
   var relations;
   if (+req.body.isCustom == 0) {
     relations = await createCustomEssayQuestionRelation(

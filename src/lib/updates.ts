@@ -1,4 +1,5 @@
 import { db } from "../db.connection";
+import { createCopyCustomEssayName } from "./general";
 
 export async function updateEssayCompletionTime(time: number, essayId: number) {
   try {
@@ -61,6 +62,47 @@ export async function updateUserCoins(userId: number, correctAnswers: number) {
     console.log("User info is null");
   } catch (err) {
     console.log("Couldn't update score:" + err);
+    return;
+  }
+}
+
+export async function updateLastRecordedName(essayId: number) {
+  try {
+    const essayInfo = await db.essay_to_do.findUnique({
+      where: { id: essayId },
+      select: {
+        name: true,
+        fatherEssay: true,
+      },
+    });
+
+    if (essayInfo != null) {
+      const nombreSinParentesis = essayInfo.name.split(" (")[0];
+      const index1 = essayInfo.name.indexOf("(");
+      const index2 = essayInfo.name.indexOf(")");
+      const numero = essayInfo.name.substring(index1 + 1, index2);
+
+      if (numero == "1") {
+        const user = await db.essay_to_do.update({
+          where: { id: essayInfo.fatherEssay },
+          data: {
+            lastRecordedName: null,
+          },
+        });
+      } else {
+        const user = await db.essay_to_do.update({
+          where: { id: essayInfo.fatherEssay },
+          data: {
+            lastRecordedName: createCopyCustomEssayName(nombreSinParentesis, essayInfo.name, 1),
+          },
+        });
+      }
+
+      return;
+    }
+    console.log("Essay info is null");
+  } catch (err) {
+    console.log("Couldn't update lastRecordedName:" + err);
     return;
   }
 }

@@ -15,7 +15,7 @@ export const getScore = async (req: Request, res: Response) => {
     const essayName = req.query.name as string;
 
     var essays = await db.essay_to_do.findMany({
-      where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
+      where: { name: essayName, NOT: { name: "General" }, AND: [{ userId: userId }, { isCustom: 0 }] },
       select: {
         id: true,
         name: true,

@@ -134,7 +134,7 @@ export async function formatSubmittedEssay(submittedEssay: any) {
     score: submittedEssay.score,
     isCustom: submittedEssay.isCustom,
     numCorrectAnswers: numCorrectAnswers,
-    coins: numCorrectAnswers,
+    coins: submittedEssay.isCustom == 1 ? 2 : numCorrectAnswers,
     questions: [],
     chosenAnswers: [],
   };
@@ -178,14 +178,20 @@ export async function countCustomEssays(userId: number) {
   }
 }
 
-export function createCopyCustomEssayName(name: string, lastRecordedName: any) {
+export function createCopyCustomEssayName(name: string, lastRecordedName: any, fix?: number) {
   //Crea un nuevo nombre para la copia del ensayo custom en base al nombre original
 
   if (lastRecordedName == null) return name + " (1)"; //Si es la primera copia de ensayo custom
   const index1 = lastRecordedName.indexOf("(");
   const index2 = lastRecordedName.indexOf(")");
   const number = lastRecordedName.substring(index1 + 1, index2);
-  const newCount = +number + 1;
+  if (fix == 1) {
+    //Caso en en que se borra ensayo personalizado antes de ser finalizado
+    var newCount = +number - 1;
+  } else {
+    var newCount = +number + 1;
+  }
+
   const newName = name + " (" + newCount + ")";
 
   return newName;

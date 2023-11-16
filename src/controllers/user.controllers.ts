@@ -18,7 +18,7 @@ export const signup = async (req: Request, res: Response) => {
     });
 
     return res.status(201).json({
-      msg: "User created",
+      msg: "Usuario creado",
       id: newUser.id,
       name: newUser.name,
       token: gen.createToken(newUser.id, newUser.name),
@@ -51,7 +51,7 @@ export const login = async (req: Request, res: Response) => {
       });
 
       if (user == null) {
-        return res.status(404).json({ msg: "User not found", success: 0 });
+        return res.status(404).json({ msg: "Usuario no encontrado", success: 0 });
       } else {
         if (await bcrypt.compare(req.body.password, user.password)) {
           //Comparación de contraseñas
@@ -66,7 +66,7 @@ export const login = async (req: Request, res: Response) => {
             success: 1,
           });
         } else {
-          return res.status(500).json({ msg: "Wrong password", success: 0 });
+          return res.status(500).json({ msg: "Clave inconrrecta", success: 0 });
         }
       }
     } catch (err) {
@@ -87,7 +87,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
     const existEmail = await find.existEmail(req.body.email);
     if (!existEmail) {
       return res.status(404).json({
-        msg: "Email: " + req.body.email + " doesn't exist",
+        msg: "Email: " + req.body.email + " no existe",
         success: 0,
       });
     }
@@ -122,7 +122,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
         "\n Una vez iniciada la sesión, debes ir a tu perfil de usuario y seleccionar la opción 'Cambiar contraseña', para poder crear una nueva clave.", // plain text body
       /* html: '<p style="text-align:justify">Estimado/a user?.name</p>       ', // html body */
     });
-    return res.status(202).json({ msg: "Email sent successfully", success: 1 });
+    return res.status(202).json({ msg: "Email enviado, revise su bandeja de enetrada", success: 1 });
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't send the email",
@@ -161,9 +161,9 @@ export const changePassword = async (req: Request, res: Response) => {
           password: await bcrypt.hash(req.body.newPassword, 10),
         },
       });
-      return res.status(200).json({ msg: "Password changed successfully", success: 1 });
+      return res.status(200).json({ msg: "Contraseña cambiada con éxito", success: 1 });
     } else {
-      return res.status(400).json({ error: "Invalid password", success: 0 });
+      return res.status(400).json({ error: "Contraseña invalida", success: 0 });
     }
   } catch (err) {
     return res.status(400).json({

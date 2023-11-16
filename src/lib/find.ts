@@ -393,7 +393,7 @@ export async function isFatherEssay(essayId: number) {
 
   if (essay == null) return false;
   return essay.isCustom == 1 && validateEssayName(essay.name, ["(", ")"]) == false ? true : false;
-  //ensayos padres no debiesen tener parentesis en sus nombres, solo los hijos pueden
+  //ensayos padres no pueden tener parentesis en sus nombres, solo los hijos pueden
 }
 
 async function testFunction() {

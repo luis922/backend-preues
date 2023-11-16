@@ -328,7 +328,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
       +req.body.essayId
     );
   }
-  console.log(req.body.essayTime, +req.body.essayTime);
+
   var updatedTime = await update.updateEssayCompletionTime(
     //update essayTime
     +req.body.essayTime,
@@ -353,7 +353,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
     });
 
     let numCorrectAnswers = await gen.countCorrectQuestions(+req.body.essayId);
-    await update.updateUserCoins(userID, numCorrectAnswers);
+
     const numQuestions = await db.essay_to_do.findUnique({
       where: { id: +req.body.essayId },
       select: { numberOfQuestions: true },
@@ -362,12 +362,14 @@ export const submitAnswers = async (req: Request, res: Response) => {
     await update.updateEssayScore(+req.body.essayId, numCorrectAnswers);
 
     if (+req.body.isCustom == 0) {
+      await update.updateUserCoins(userID, numCorrectAnswers);
       return res.status(200).json({
         answers: resultado,
         QuestionEssayRelations: relations,
         essay: updatedTime,
       });
     } else {
+      await update.updateUserCoins(userID, 2);
       return res.status(200).json({
         answers: resultado,
         essay: updatedTime,
@@ -523,7 +525,6 @@ export const getCustomEssay = async (req: Request, res: Response) => {
   if (!existEssay) {
     return res.status(404).json({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
-  console.log("essay ID OK");
 
   //Verifica que el id del ensayo corresponda a uno custom
   const isEssayCustom = await find.isEssayCustom(+essayId);
@@ -607,10 +608,13 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
   if (!(await find.existEssaytoDo(+essayId))) {
     return res.status(404).send({ msg: "Essay id: " + essayId + " doesn't exist", success: 0 });
   } //verifica que ensayo exista
-  console.log("essay ID OK");
 
   if (+ensayoIniciado == 1 && (await find.isFatherEssay(+essayId)))
     return res.status(200).json("no se elimino por ser ensayo custom padre");
+
+  if (+ensayoIniciado == 1 && !((await find.isFatherEssay(+essayId)) && find.isEssayCustom(+essayId))) {
+    await update.updateLastRecordedName(+essayId);
+  }
 
   try {
     const delEssay = await db.essay_to_do.delete({

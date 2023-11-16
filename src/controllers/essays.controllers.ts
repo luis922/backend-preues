@@ -121,7 +121,12 @@ export const createEssay = async (req: Request, res: Response) => {
 
     if (containsForbiddenChar) {
       return res.status(409).json({
-        msg: "Nombre del ensayo tiene caracacteres prohibidos: " + reservedChars,
+        msg:
+          'Nombre del ensayo tiene uno o más de los siguientes caracacteres prohibidos: "' +
+          reservedChars[0] +
+          '" , "' +
+          reservedChars[1] +
+          '"',
         success: 0,
       });
     }

@@ -114,7 +114,7 @@ export async function formatSubmittedEssay(submittedEssay: any) {
     selectedTime: string;
     totalTime: string;
     numberOfQuestions: number;
-    createdAt: number;
+    createdAt: string;
     score: number;
     isCustom: number;
     numCorrectAnswers: number;
@@ -130,7 +130,7 @@ export async function formatSubmittedEssay(submittedEssay: any) {
     selectedTime: getFormatedTime(submittedEssay.selectedTime * 60),
     totalTime: getFormatedTime(submittedEssay.totalTime),
     numberOfQuestions: submittedEssay.numberOfQuestions,
-    createdAt: submittedEssay.createdAt,
+    createdAt: getFormatedDate(submittedEssay.createdAt),
     score: submittedEssay.score,
     isCustom: submittedEssay.isCustom,
     numCorrectAnswers: numCorrectAnswers,

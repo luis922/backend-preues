@@ -122,7 +122,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
         "\n Una vez iniciada la sesión, debes ir a tu perfil de usuario y seleccionar la opción 'Cambiar contraseña', para poder crear una nueva clave.", // plain text body
       /* html: '<p style="text-align:justify">Estimado/a user?.name</p>       ', // html body */
     });
-    return res.status(202).json({ msg: "Email enviado, revise su bandeja de enetrada", success: 1 });
+    return res.status(202).json({ msg: "Email enviado, revise su bandeja de entrada", success: 1 });
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't send the email",

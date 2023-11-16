@@ -323,7 +323,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
       +req.body.essayId
     );
   }
-
+  console.log(req.body.essayTime, +req.body.essayTime);
   var updatedTime = await update.updateEssayCompletionTime(
     //update essayTime
     +req.body.essayTime,
@@ -387,7 +387,6 @@ export const getSubmittedEssay = async (req: Request, res: Response) => {
     } //Indica si hubo problemas al buscar el ensayo
 
     const formatedEssay = await gen.formatSubmittedEssay(submittedEssay);
-
     return res.status(200).json(formatedEssay);
   } catch (err) {
     return res.status(404).json({
@@ -428,6 +427,10 @@ export const getHistory = async (req: Request, res: Response) => {
           },
         })
       );
+    }
+    //Cambia formato de la fecha de creación
+    for (var info of history) {
+      info.createdAt = gen.getFormatedDate(info.createdAt);
     }
 
     return res.status(200).json({ historial: history });

@@ -99,7 +99,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
         email: true,
       },
     });
-    console.log(user);
+
     const newPassword = crypto.randomBytes(4).toString("hex");
     var changePassword = await db.user.update({
       where: { email: req.body.email },
@@ -108,7 +108,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
       },
     });
 
-    console.log("newPassword: " + newPassword);
+    /*  console.log("newPassword: " + newPassword); */
 
     const email = await transporter.sendMail({
       from: '"PreUesApp" <preuesapp@gmail.com>', // sender address '"Fred Foo 👻" <foo@example.com>'

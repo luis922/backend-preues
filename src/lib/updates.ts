@@ -61,7 +61,7 @@ export async function updateUserCoins(userId: number, correctAnswers: number) {
     }
     console.log("User info is null");
   } catch (err) {
-    console.log("Couldn't update score:" + err);
+    console.log("Couldn't update coins:" + err);
     return;
   }
 }

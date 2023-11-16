@@ -149,6 +149,49 @@ export async function formatSubmittedEssay(submittedEssay: any) {
   return ensayo;
 }
 
+export function formatCustomEssay(customEssay: any) {
+  type answer = {
+    id: number;
+    label: string;
+    isCorrect: number;
+  };
+
+  type question = {
+    id: number;
+    subject: string;
+    question: string;
+    videoLink: string;
+    answers: answer[];
+  };
+
+  type essay = {
+    id: number;
+    name: string;
+    selectedTime: number;
+    numberOfQuestions: number;
+    lastRecordedName: string | null;
+    isCustom: number;
+    questions: question[];
+  };
+
+  let ensayo: essay = {
+    id: customEssay.id,
+    name: customEssay.name,
+    selectedTime: customEssay.selectedTime,
+    numberOfQuestions: customEssay.numberOfQuestions,
+    lastRecordedName: customEssay.lastRecordedName,
+    isCustom: customEssay.isCustom,
+    questions: [],
+  };
+
+  //agrega las preguntas y sus alternativas al arreglo questions
+  for (let i = 0; i < customEssay.questions.length; i++) {
+    ensayo.questions?.push(customEssay.questions[i].selectedQuestion);
+  }
+
+  return ensayo;
+}
+
 export function validateEssayName(essayName: string, reservedChars: Array<string>) {
   //valida que el nombre no contenga los caracteres "(",")"
   for (var character of reservedChars) {
@@ -360,7 +403,7 @@ export async function calculateAllAverageScore(scores: any) {
         promedios.push(datos);
       }
     }
-    console.log(0 / 0);
+
     return promedios;
   } catch (err) {
     console.log("Couldn't calculate average scores, error: " + err);
@@ -377,7 +420,7 @@ export function countCorrectAnswers(essaysInfo: any, essayName: string) {
       totalCorrectAnswers += Math.trunc((info.score - 100) / (900 / info.numberOfQuestions)); //cambio aqui para quitar
       totalAnswers += info.numberOfQuestions;
     }
-    console.log();
+
     return {
       name: essayName,
       questionsAnswered: totalAnswers,
@@ -445,7 +488,6 @@ export function getFullPaths(avatars: any) {
   try {
     let dirs: string[] = [];
     for (var item of avatars) {
-      console.log(item.imgDir);
       let newPath = path.join(__dirname.split("\\src\\lib")[0], "." + item.imgDir); //cambiar segun ubicacion del archivo
       dirs.push(newPath);
     }
@@ -455,6 +497,14 @@ export function getFullPaths(avatars: any) {
     return [""];
   }
 }
+
+export function shuffleArray(array: any) {
+  array.sort(() => Math.random() - 0.5);
+  return array;
+}
+/* for (let i = 0; i < post.length; i++) {
+  post[i].answer = shuffleArray(post[i].answer);
+} */
 
 async function testFunction() {
   console.log();

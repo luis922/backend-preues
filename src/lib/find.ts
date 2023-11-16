@@ -13,7 +13,6 @@ export async function findUserbyName(name: string) {
         email: true,
       },
     });
-    console.log(user);
   } catch (error) {
     console.log(error);
   }
@@ -223,7 +222,6 @@ export async function getSubmittedEssay(essayId: number) {
       });
       return 0;
     } //verifica que ensayo exista
-    console.log("essay ID OK");
 
     const submittedEssay = await db.essay_to_do.findUnique({
       where: { id: +essayId },

@@ -95,7 +95,7 @@ export const getAverageScore = async (req: Request, res: Response) => {
         score: true,
       },
     });
-    console.log(essays);
+
     if (essays.length == 0) {
       return res.status(200).json({ averageScore: 0 }); // 0 o 100
     }

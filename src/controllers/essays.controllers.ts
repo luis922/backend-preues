@@ -34,6 +34,15 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
           },
         },
       });
+
+      //ramdomiza orden de preguntas y respuestas
+      if (ensayo != null) {
+        gen.shuffleArray(ensayo.questions);
+        for (var pregunta of ensayo.questions) {
+          gen.shuffleArray(pregunta.answers);
+        }
+      }
+      return res.status(200).json(ensayo);
     } catch (err) {
       return res.status(404).json({
         msg: "No se pudo realizar la búsqueda, verifique el mensaje de error",
@@ -41,8 +50,6 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
         success: 0,
       });
     }
-
-    return res.status(200).json(ensayo);
   }
   return res.status(404).json({ msg: "Este ensayo no existe: " + essayName, success: 0 });
 };
@@ -72,6 +79,16 @@ export const findAllEssaysQuestions = async (req: Request, res: Response) => {
         },
       },
     });
+    //ramdomiza orden de preguntas y respuestas
+    if (ensayos != null) {
+      for (var tema of ensayos) {
+        gen.shuffleArray(tema.questions);
+        for (var pregunta of tema.questions) {
+          gen.shuffleArray(pregunta.answers);
+        }
+      }
+    }
+    return res.status(200).json(ensayos);
   } catch (err) {
     return res.status(404).json({
       msg: "No se pudo realizar la búsqueda, verifique el mensaje de error",
@@ -79,8 +96,6 @@ export const findAllEssaysQuestions = async (req: Request, res: Response) => {
       success: 0,
     });
   }
-
-  return res.status(200).json(ensayos);
 };
 
 export const createEssay = async (req: Request, res: Response) => {
@@ -591,7 +606,16 @@ export const getCustomEssay = async (req: Request, res: Response) => {
         },
       },
     });
-    return res.status(200).json({ customEssay });
+    const formatedEssay = gen.formatCustomEssay(customEssay);
+
+    //Randomiza orden de preguntas y respuestas
+    gen.shuffleArray(formatedEssay.questions);
+    for (var pregunta of formatedEssay.questions) {
+      gen.shuffleArray(pregunta.answers);
+    }
+
+    return res.status(200).json(formatedEssay);
+    /* return res.status(200).json(customEssay); */
   } catch (err) {
     return res.status(500).json({
       msg: "Couldn't retrieve custom essay",

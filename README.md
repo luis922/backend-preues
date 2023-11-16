@@ -18,6 +18,7 @@ EMAILER_USER= revisar credencial en archivo subido al aula con link del reposito
 EMAILER_PASSWORD= revisar credencial en archivo subido al aula con link del repositorio
 ```
 
+Como se mencionó, el contenido de las variables de entorno "EMAILER" se encuentrar en el .txt subido al aula con el link a este repositorio.
 En el caso de DATABASE_URL, a continuación se explican los componentes de la URL los cuales deben ser reemplazados por valores reales.
 
 | Nombre   | Placeholder   | Descripción                                                            |

@@ -199,35 +199,35 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{¿Cual de las siguientes opciones presenta una resolución correcta de } {\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9}}?",
-        subject: "numeros",
-        link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=755",
-        imgDir: "no",
-        answer: [
-          {
-            label:
-              "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} =\\frac{(27^3)^\\frac{1}{3}}{8}*\\frac{(4^2)\\frac{1}{2}}{9} = \\frac{3}{8}*\\frac{4}{9} = \\frac{12}{72} = \\frac{1}{6}}",
-            right: 1,
-          },
-          {
-            label:
-              "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} = (\\frac{27}{8})^\\frac{1}{3}*(\\frac{16}{9})^\\frac{1}{2} = \\frac{3}{2}*\\frac{4}{3} = 2}",
-            right: 0,
-          },
-          {
-            label:
-              "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} = (\\frac{27*16}{8*9})^{\\frac{1}{3}*\\frac{1}{2}} = 6^\\frac{1}{6}}",
-            right: 0,
-          },
-          {
-            label:
-              "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} = \\frac{27^\\frac{1}{3}*16^\\frac{1}{2}}{8*9} = \\frac{9}{8}*\\frac{8}{9} = 1}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{¿Cual de las siguientes opciones presenta una resolución correcta de } {\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9}}?",
+      //   subject: "numeros",
+      //   link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=755",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label:
+      //         "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} =\\frac{(27^3)^\\frac{1}{3}}{8}*\\frac{(4^2)\\frac{1}{2}}{9} = \\frac{3}{8}*\\frac{4}{9} = \\frac{12}{72} = \\frac{1}{6}}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label:
+      //         "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} = (\\frac{27}{8})^\\frac{1}{3}*(\\frac{16}{9})^\\frac{1}{2} = \\frac{3}{2}*\\frac{4}{3} = 2}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label:
+      //         "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} = (\\frac{27*16}{8*9})^{\\frac{1}{3}*\\frac{1}{2}} = 6^\\frac{1}{6}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label:
+      //         "{\\frac{27^\\frac{1}{3}}{8}*\\frac{16^\\frac{1}{2}}{9} = \\frac{27^\\frac{1}{3}*16^\\frac{1}{2}}{8*9} = \\frac{9}{8}*\\frac{8}{9} = 1}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question: "\\text{¿Cual es el valor de } {\\sqrt{8}}({\\sqrt{18}}-{\\sqrt{8})}?",
         subject: "numeros",
@@ -252,56 +252,56 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{Por el arriendo de un juego inflable se cobra una cuota fija de \\$120.000 por cuatro horas, más \\$25.000  por cada hora adicional.} \\newline \\text{¿Cuántas horas como máximo puede arrendar una empresa el juego inflable si tiene un presupuesto de \\$240.000 para este efecto?}",
-        subject: "numeros",
-        link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=6",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{8}",
-            right: 1,
-          },
-          {
-            label: "{4}",
-            right: 0,
-          },
-          {
-            label: "{9}",
-            right: 0,
-          },
-          {
-            label: "{10}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        question:
-          "\\text{Considera el número p distinto de cero que es multiplicado dos veces por 1,25 y luego, dos veces por 0,75, tal como se representa a continuación: } \\newline{ p \\cdot 1,25 \\cdot 1,25 \\cdot 0,75 \\cdot 0,75 }\\newline \\text{¿Qué pueden representar dichas multiplicaciones, respecto del número original } {p} ?",
-        subject: "numeros",
-        link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=71",
-        imgDir: "no",
-        answer: [
-          {
-            label: "\\text{Que hubo dos aumentos del } {25 }\\% \\text{y luego, dos disminuciones del } {25 } \\%",
-            right: 1,
-          },
-          {
-            label: "\\text{Que no hubo aumento de p ni disminución de p}",
-            right: 0,
-          },
-          {
-            label: "\\text{Que hubo dos aumentos de} {0,25} \\text{ y luego, dos disminuciones de } {0,75}",
-            right: 0,
-          },
-          {
-            label: "\\text{Que hubo dos aumentos del } {25} \\% \\text{y luego, dos disminuciones del } {75 } \\%",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{Por el arriendo de un juego inflable se cobra una cuota fija de \\$120.000 por cuatro horas, más \\$25.000  por cada hora adicional.} \\newline \\text{¿Cuántas horas como máximo puede arrendar una empresa el juego inflable si tiene un presupuesto de \\$240.000 para este efecto?}",
+      //   subject: "numeros",
+      //   link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=6",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{8}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{4}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{9}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{10}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   question:
+      //     "\\text{Considera el número p distinto de cero que es multiplicado dos veces por 1,25 y luego, dos veces por 0,75, tal como se representa a continuación: } \\newline{ p \\cdot 1,25 \\cdot 1,25 \\cdot 0,75 \\cdot 0,75 }\\newline \\text{¿Qué pueden representar dichas multiplicaciones, respecto del número original } {p} ?",
+      //   subject: "numeros",
+      //   link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=71",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "\\text{Que hubo dos aumentos del } {25 }\\% \\text{y luego, dos disminuciones del } {25 } \\%",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "\\text{Que no hubo aumento de p ni disminución de p}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{Que hubo dos aumentos de} {0,25} \\text{ y luego, dos disminuciones de } {0,75}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{Que hubo dos aumentos del } {25} \\% \\text{y luego, dos disminuciones del } {75 } \\%",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       //no pude hacerlo.
       // {
       //   question:
@@ -328,56 +328,56 @@ export const ensayos = [
       //     },
       //   ],
       // },
-      {
-        question:
-          "\\text{En la temporada de invierno, la diferencia horaria entre Nueva Zelanda y Chile es de 16 h , desde Chile.} \\newline \\text{Por ejemplo, si en Chile son las 11 de la mañana de un lunes, en Nueva Zelanda son las 3 de la mañana del martes.}\\newline\\text{En la misma temporada la diferencia horaria entre México y Chile es de -1 h , desde Chile. Es decir, cuando en Chile son las 11 de la mañana de un lunes, en México son las 10 de la mañana del mismo día.}\\newline\\text{¿Cuál es la diferencia horaria entre Nueva Zelanda y México, desde México, en la temporada de invierno?}",
-        subject: "numeros",
-        link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=430",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{17}",
-            right: 1,
-          },
-          {
-            label: "{-17}",
-            right: 0,
-          },
-          {
-            label: "{-15}",
-            right: 0,
-          },
-          {
-            label: "{15}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        question:
-          "\\text{Un comerciante compra una cantidad de naranjas a razón de 3 kilogramos por \\$600 y las vende todas a razón de 4 kilogramos por \\$1000.}\\newline\\text{Si obtuvo una ganancia de \\$3000 , ¿cuántos kilogramos de naranjas compró?}",
-        subject: "numeros",
-        link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=500",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{60}",
-            right: 1,
-          },
-          {
-            label: "{25}",
-            right: 0,
-          },
-          {
-            label: "{12}",
-            right: 0,
-          },
-          {
-            label: "{8}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{En la temporada de invierno, la diferencia horaria entre Nueva Zelanda y Chile es de 16 h , desde Chile.} \\newline \\text{Por ejemplo, si en Chile son las 11 de la mañana de un lunes, en Nueva Zelanda son las 3 de la mañana del martes.}\\newline\\text{En la misma temporada la diferencia horaria entre México y Chile es de -1 h , desde Chile. Es decir, cuando en Chile son las 11 de la mañana de un lunes, en México son las 10 de la mañana del mismo día.}\\newline\\text{¿Cuál es la diferencia horaria entre Nueva Zelanda y México, desde México, en la temporada de invierno?}",
+      //   subject: "numeros",
+      //   link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=430",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{17}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{-17}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{-15}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{15}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   question:
+      //     "\\text{Un comerciante compra una cantidad de naranjas a razón de 3 kilogramos por \\$600 y las vende todas a razón de 4 kilogramos por \\$1000.}\\newline\\text{Si obtuvo una ganancia de \\$3000 , ¿cuántos kilogramos de naranjas compró?}",
+      //   subject: "numeros",
+      //   link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=500",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{60}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{25}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{12}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{8}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
 
       {
         question: "\\text{¿Cuál es el } {40}\\% \\text{ del }{15}\\% \\text{ de 300 ?}",
@@ -404,32 +404,32 @@ export const ensayos = [
         ],
       },
 
-      {
-        question:
-          "\\text{Si el precio de un helado es \\$500 , ¿cuál de las siguientes expresiones representa el valor del helado aumentado en su } {120}\\% ?",
-        subject: "numeros",
-        link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=653",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{2,2 \\cdot 500}",
-            right: 1,
-          },
-          {
-            label: "{1,2 \\cdot 500}",
-            right: 0,
-          },
-          {
-            label: "{50 + 20 \\cdot 500}",
-            right: 0,
-          },
-          {
-            label: "{50 + 120 \\cdot 500}",
-            right: 0,
-          },
-        ],
-      },
-      {
+      // {
+      //   question:
+      //     "\\text{Si el precio de un helado es \\$500 , ¿cuál de las siguientes expresiones representa el valor del helado aumentado en su } {120}\\% ?",
+      //   subject: "numeros",
+      //   link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=653",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{2,2 \\cdot 500}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{1,2 \\cdot 500}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{50 + 20 \\cdot 500}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{50 + 120 \\cdot 500}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      /* {
         question: "\\text{¿Qué porcentaje es 4740 de 15800 ?}",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/2nghljBMp1k?start=814",
@@ -452,7 +452,7 @@ export const ensayos = [
             right: 0,
           },
         ],
-      },
+      }, */
     ],
   },
   {
@@ -483,31 +483,31 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{Un bidon tiene ocupada con gasolina la mitad de su capacidad maxima. Al agregar 8L de gasolina se llega a las }{\\frac{5}{6}} \\text{ partes de su capacidad. ¿Cual es la capacidad maxima del bidon?}",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=4290",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{24 L}",
-            right: 1,
-          },
-          {
-            label: "{10 L}",
-            right: 0,
-          },
-          {
-            label: "{12 L}",
-            right: 0,
-          },
-          {
-            label: "{20 L}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{Un bidon tiene ocupada con gasolina la mitad de su capacidad maxima. Al agregar 8L de gasolina se llega a las }{\\frac{5}{6}} \\text{ partes de su capacidad. ¿Cual es la capacidad maxima del bidon?}",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=4290",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{24 L}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{10 L}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{12 L}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{20 L}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question:
           "\\text{Si } {log_2{(-2x + 3p)} = 3} \\text{ y } {log_3{(x +2p)} = 1} \\text{ ¿Cual es el valor de } {x-2p} ?",
@@ -631,31 +631,31 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{En una tienda de mascotas se dispone de un monto máximo de \\$50000 para pagar la electricidad que se onsume en un mes.}\\newline\\text{La empresa eléctrica que suministra este servicio realiza el cobro, en pesos, mediante la función }{c(x) = 100x + 5000}\\text{ , siendo }{x}\\text{ la cantidad de kWh consumidos en el mes.}\\newline\\text{¿Cuál de los siguientes conjuntos contiene a todos y únicamente los posibles valores del consumo en kWh en el mes que se puede solventar con el montodisponible en esa tienda?}",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=525",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{\\lbrack 0, 450\\rbrack}",
-            right: 1,
-          },
-          {
-            label: "{\\lbrack 0, 450\\lbrack}",
-            right: 0,
-          },
-          {
-            label: "{\\lbrack 0, 550\\lbrack}",
-            right: 0,
-          },
-          {
-            label: "{\\lbrack 0, 5500\\rbrack}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{En una tienda de mascotas se dispone de un monto máximo de \\$50000 para pagar la electricidad que se onsume en un mes.}\\newline\\text{La empresa eléctrica que suministra este servicio realiza el cobro, en pesos, mediante la función }{c(x) = 100x + 5000}\\text{ , siendo }{x}\\text{ la cantidad de kWh consumidos en el mes.}\\newline\\text{¿Cuál de los siguientes conjuntos contiene a todos y únicamente los posibles valores del consumo en kWh en el mes que se puede solventar con el montodisponible en esa tienda?}",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=525",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{\\lbrack 0, 450\\rbrack}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{\\lbrack 0, 450\\lbrack}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\lbrack 0, 550\\lbrack}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\lbrack 0, 5500\\rbrack}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question:
           "\\text{En una frutería cada durazno cuesta \\$480 y cada mango cuesta \\$400 . Una persona gastó \\$6800 en total comprando solo 16 frutas entre duraznos y mangos.}\\newline\\text{¿Cuál de las siguientes ecuaciones permite determinar la cantidad }{x}\\text{ de duraznos que compró la persona?}",
@@ -705,60 +705,60 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{Ignacio se dedica a vender productos encargados por sus clientes, que importa mediante una aplicación móvil. El precio de venta al que Ignacio vende los productos lo determina según la función }{P(x) = 1,5x + 2500}\\text{ , tal que }{x}\\text{ representa el precio, en pesos, al que compra el producto en la aplicación.}\\newline\\text{¿Cuál de las siguientes afirmaciones es verdadera?}",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=496",
-        imgDir: "no",
-        answer: [
-          {
-            label:
-              "\\text{Ignacio realiza un recargo de un }{50}\\% \\text{del precio del producto importado sin considerar ese recargo en el cargo fijo.}",
-            right: 1,
-          },
-          {
-            label:
-              "\\text{Ignacio cobra un costo fijo de } {\\$(1,5 + 2500)} \\text{ a todos los productos que vende.}",
-            right: 0,
-          },
-          {
-            label:
-              "\\text{Ignacio cobra un costo fijo de }{\\$1,5 \\cdot 2500)} \\text{ a todos los productos que vende.}",
-            right: 0,
-          },
-          {
-            label:
-              "\\text{Ignacio realiza un recargo de }{1,5}\\% \\text{del precio del producto importado sin considerar el cargo fijo.}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        question:
-          "\\text{En una distribuidora envasaron 360 L de detergente líquido en bidones de 3 L y de 5 L de capacidad.}\\newline\\text{Si se ocuparon en total 100 bidones, ¿cuál de los siguientes valores es la diferencia entre la cantidad de bidones de distinta capacidad que se usaron?}",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=550",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{40}",
-            right: 1,
-          },
-          {
-            label: "{25}",
-            right: 0,
-          },
-          {
-            label: "{48}",
-            right: 0,
-          },
-          {
-            label: "{50}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{Ignacio se dedica a vender productos encargados por sus clientes, que importa mediante una aplicación móvil. El precio de venta al que Ignacio vende los productos lo determina según la función }{P(x) = 1,5x + 2500}\\text{ , tal que }{x}\\text{ representa el precio, en pesos, al que compra el producto en la aplicación.}\\newline\\text{¿Cuál de las siguientes afirmaciones es verdadera?}",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=496",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label:
+      //         "\\text{Ignacio realiza un recargo de un }{50}\\% \\text{del precio del producto importado sin considerar ese recargo en el cargo fijo.}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label:
+      //         "\\text{Ignacio cobra un costo fijo de } {\\$(1,5 + 2500)} \\text{ a todos los productos que vende.}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label:
+      //         "\\text{Ignacio cobra un costo fijo de }{\\$1,5 \\cdot 2500)} \\text{ a todos los productos que vende.}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label:
+      //         "\\text{Ignacio realiza un recargo de }{1,5}\\% \\text{del precio del producto importado sin considerar el cargo fijo.}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   question:
+      //     "\\text{En una distribuidora envasaron 360 L de detergente líquido en bidones de 3 L y de 5 L de capacidad.}\\newline\\text{Si se ocuparon en total 100 bidones, ¿cuál de los siguientes valores es la diferencia entre la cantidad de bidones de distinta capacidad que se usaron?}",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=550",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{40}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{25}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{48}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{50}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question:
           "\\text{Considera la ecuación }{3x - p = 2x + p + 1}.\\newline\\text{¿Cuál es el menor valor que puede tomar x para que p sea un número entero positivo?}",
@@ -809,7 +809,7 @@ export const ensayos = [
           },
         ],
       },
-      {
+      /* {
         question:
           "\\text{Considera la ecuación } {(x -3)(x - 4) = 2}.\\newline \\text{¿Cuál de los siguientes argumentos es válido?}",
         subject: "algebra",
@@ -837,85 +837,85 @@ export const ensayos = [
             right: 0,
           },
         ],
-      },
-      {
-        // 16
-        question:
-          "\\text{Una empresa vende crema para las manos en envases con forma de cilindros rectos de 20 cm de altura y de distintos diámetros.}{\\newline}\\text{ Por una promoción se decide aumentar en su }{20}\\%\\text{ la capacidad de cada envase, manteniendo la altura de los envases cilíndricos. }\\newline\\text{¿Cuál de las siguientes funciones permite determinar el volumen de los nuevos envases, en }{cm^{3}}\\text{ , con r el radio del envase sin promoción, en cm?}",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=162",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{g(r) = 24 \\cdot r^{2} \\cdot \\pi}",
-            right: 1,
-          },
-          {
-            label: "{p(r) = 16 \\cdot r^{2} \\cdot \\pi}",
-            right: 0,
-          },
-          {
-            label: "{f(r) = 28,8 \\cdot r^{2} \\cdot \\pi}",
-            right: 0,
-          },
-          {
-            label: "{h(r) = 24 \\cdot r^{2} \\cdot \\pi}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        // 17
-        question:
-          "\\text{Para cierta actividad se aconseja beber diariamente al menos 1 L de agua por cada 35 kg de masa corporal.}\\newline\\text{Para una persona de masa corporal P kg que tiene una botella de forma cilíndrica de diámetro 6 cm y altura 20 cm, ¿cuál de las siguientes expresiones permite determinar la cantidad de veces, en un día, que debe consumir el contenido de la botella llena de agua, para cumplir lo que se aconseja?}",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=285",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{\\frac{\\frac{P}{35} \\cdot 1000}{\\pi \\cdot 9 \\cdot 20}}",
-            right: 1,
-          },
-          {
-            label: "{\\frac{P}{\\pi \\cdot 36 \\cdot 20}}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{P}{\\pi \\cdot 9 \\cdot 20}}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{P}{35 \\pi \\cdot 9 \\cdot 20}}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        // 18
-        question:
-          "\\text{Dos ciclistas viajan en sentidos opuestos en una misma carretera y en línea recta, uno al encuentro del otro. Se encuentran separados inicialmente por una distancia d , y la rapidez a la que se desplazan son v y w .} \\newline\\text{¿Cuál de las siguientes funciones permite calcular la distancia a la que están los dos ciclistas, antes de encontrarse, en función del tiempo t }?",
-        subject: "algebra",
-        link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1168",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{m(t) = d - (v + w)t}",
-            right: 1,
-          },
-          {
-            label: "{f(t) = (v -w)t - d}",
-            right: 0,
-          },
-          {
-            label: "{p(t) = d - (v - w)t}",
-            right: 0,
-          },
-          {
-            label: "{n(t) = (v -w)t - d}",
-            right: 0,
-          },
-        ],
-      },
+      }, */
+      // {
+      //   // 16
+      //   question:
+      //     "\\text{Una empresa vende crema para las manos en envases con forma de cilindros rectos de 20 cm de altura y de distintos diámetros.}{\\newline}\\text{ Por una promoción se decide aumentar en su }{20}\\%\\text{ la capacidad de cada envase, manteniendo la altura de los envases cilíndricos. }\\newline\\text{¿Cuál de las siguientes funciones permite determinar el volumen de los nuevos envases, en }{cm^{3}}\\text{ , con r el radio del envase sin promoción, en cm?}",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=162",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{g(r) = 24 \\cdot r^{2} \\cdot \\pi}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{p(r) = 16 \\cdot r^{2} \\cdot \\pi}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{f(r) = 28,8 \\cdot r^{2} \\cdot \\pi}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{h(r) = 24 \\cdot r^{2} \\cdot \\pi}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   // 17
+      //   question:
+      //     "\\text{Para cierta actividad se aconseja beber diariamente al menos 1 L de agua por cada 35 kg de masa corporal.}\\newline\\text{Para una persona de masa corporal P kg que tiene una botella de forma cilíndrica de diámetro 6 cm y altura 20 cm, ¿cuál de las siguientes expresiones permite determinar la cantidad de veces, en un día, que debe consumir el contenido de la botella llena de agua, para cumplir lo que se aconseja?}",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=285",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{\\frac{\\frac{P}{35} \\cdot 1000}{\\pi \\cdot 9 \\cdot 20}}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{\\frac{P}{\\pi \\cdot 36 \\cdot 20}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{P}{\\pi \\cdot 9 \\cdot 20}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{P}{35 \\pi \\cdot 9 \\cdot 20}}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   // 18
+      //   question:
+      //     "\\text{Dos ciclistas viajan en sentidos opuestos en una misma carretera y en línea recta, uno al encuentro del otro. Se encuentran separados inicialmente por una distancia d , y la rapidez a la que se desplazan son v y w .} \\newline\\text{¿Cuál de las siguientes funciones permite calcular la distancia a la que están los dos ciclistas, antes de encontrarse, en función del tiempo t }?",
+      //   subject: "algebra",
+      //   link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1168",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{m(t) = d - (v + w)t}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{f(t) = (v -w)t - d}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{p(t) = d - (v - w)t}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{n(t) = (v -w)t - d}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
     ],
   },
   {
@@ -1022,31 +1022,31 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{A un grupo de personas se le consultó acerca de la cantidad de películas vistas el último mes. En la tabla adjunta se presenta la distribución de los resultados de dicha consulta.}\\newline {\\begin{array}{c:c} \\text{Cantidad de películas vistas el último mes} & \\text{Frecuencia} \\newline  1 & h \\newline  2 & 200 \\newline  3 & t \\newline  4 & 50 \\newline  \\end{array}} \\newline\\text{Si se agregan personas al grupo de tal manera que la frecuencia de todos los datos aumenta en un }{20}\\%\\text{, ¿cuál de las siguientes expresiones representa la cantidad total de personas que hay finalmente en el grupo?}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/Kdr9QVeILdI?start=358",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{300 + 1,2h + 1,2t}",
-            right: 1,
-          },
-          {
-            label: "{1,2h + 1,2t}",
-            right: 0,
-          },
-          {
-            label: "{300}",
-            right: 0,
-          },
-          {
-            label: "{12}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{A un grupo de personas se le consultó acerca de la cantidad de películas vistas el último mes. En la tabla adjunta se presenta la distribución de los resultados de dicha consulta.}\\newline {\\begin{array}{c:c} \\text{Cantidad de películas vistas el último mes} & \\text{Frecuencia} \\newline  1 & h \\newline  2 & 200 \\newline  3 & t \\newline  4 & 50 \\newline  \\end{array}} \\newline\\text{Si se agregan personas al grupo de tal manera que la frecuencia de todos los datos aumenta en un }{20}\\%\\text{, ¿cuál de las siguientes expresiones representa la cantidad total de personas que hay finalmente en el grupo?}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/Kdr9QVeILdI?start=358",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{300 + 1,2h + 1,2t}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{1,2h + 1,2t}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{300}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{12}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question:
           "\\text{Los resultados de las dos primeras pruebas de matemática de Esteban son un 5,3 y un 5,9.}\\newline\\text{¿Cuál de las siguientes notas es la mínima que debe obtener Esteban en la tercera prueba para que su promedio sea de al menos un 5,9 en las tres pruebas?}",
@@ -1072,56 +1072,56 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{Se consultó a un grupo de 50 personas acerca de su sabor favorito de cierto tipo de helado. En la tabla adjunta se registran los resultados obtenidos.}\\newline {\\begin{array}{c:c} \\text{Sabor} & \\text{Frecuencia} \\newline  Vainilla & 9 \\newline  Chocolate & 15 \\newline  Frutilla & 6 \\newline  Manjar & 20 \\newline  \\end{array}}\\newline\\text{Si se elige a una de estas personas al azar, ¿cuál es la probabilidad de que su sabor favorito sea de vainilla o de frutilla?}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=226",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{\\frac{3}{10}}",
-            right: 1,
-          },
-          {
-            label: "{\\frac{9}{50} \\cdot \\frac{6}{50}}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{1}{54}}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{1}{15}}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        question:
-          "\\text{Una caja contiene seis tarjetas todas del mismo tipo y en cada una de ellas hay una palabra escrita. Las palabras escritas en cuatro de las tarjetas son: CLASE, SOL, TEMPRANO y LEON.}\\newline\\text{Se sabe que al extraer al azar una tarjeta de la caja la probabilidad de que la palabra escrita en ella tenga menos de tres letras vocales es }{\\frac{2}{3}}.\\newline\\text{¿Cuáles de las siguientes palabras podrían estar escritas en las otras dos tarjetas?}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=275",
-        imgDir: "no",
-        answer: [
-          {
-            label: "\\text{CUADRILATERO y CANTO}",
-            right: 1,
-          },
-          {
-            label: "\\text{VASO y RED}",
-            right: 0,
-          },
-          {
-            label: "\\text{CINCO y SEIS}",
-            right: 0,
-          },
-          {
-            label: "\\text{PARALELOGRAMO y GIGANTESCO}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{Se consultó a un grupo de 50 personas acerca de su sabor favorito de cierto tipo de helado. En la tabla adjunta se registran los resultados obtenidos.}\\newline {\\begin{array}{c:c} \\text{Sabor} & \\text{Frecuencia} \\newline  Vainilla & 9 \\newline  Chocolate & 15 \\newline  Frutilla & 6 \\newline  Manjar & 20 \\newline  \\end{array}}\\newline\\text{Si se elige a una de estas personas al azar, ¿cuál es la probabilidad de que su sabor favorito sea de vainilla o de frutilla?}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=226",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{\\frac{3}{10}}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{\\frac{9}{50} \\cdot \\frac{6}{50}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{1}{54}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{1}{15}}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   question:
+      //     "\\text{Una caja contiene seis tarjetas todas del mismo tipo y en cada una de ellas hay una palabra escrita. Las palabras escritas en cuatro de las tarjetas son: CLASE, SOL, TEMPRANO y LEON.}\\newline\\text{Se sabe que al extraer al azar una tarjeta de la caja la probabilidad de que la palabra escrita en ella tenga menos de tres letras vocales es }{\\frac{2}{3}}.\\newline\\text{¿Cuáles de las siguientes palabras podrían estar escritas en las otras dos tarjetas?}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=275",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "\\text{CUADRILATERO y CANTO}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "\\text{VASO y RED}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{CINCO y SEIS}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{PARALELOGRAMO y GIGANTESCO}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question: "\\text{Si se lanzan tres monedas, ¿cuál es la probabilidad de obtener al menos un sello?}",
         subject: "probabilidades",
@@ -1171,81 +1171,81 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{Considera las tiendas A , B y C dedicadas a la venta de relojes. Si un cliente compra un reloj en una de estas tres tiendas, la probabilidad de que compre en A es 0,2 ; en B es 0,3 y en C es 0,5. Se sabe que la probabilidad de que cualquier reloj que se venda en las tiendas A, B y C tenga fallas es 0,3; 0,5 y 0,6 , respectivamente.}\\newline\\text{Si Teresa compra un reloj que no tiene fallas, ¿cuál es la probabilidad de que lo haya comprado en la tienda A?}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2931",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{\\frac{0,2 \\cdot 0,7}{0,2 \\cdot 0,7 + 0,3 \\cdot 0,5 + 0,5 \\cdot 0,4}}",
-            right: 1,
-          },
-          {
-            label: "{0,2 \\cdot 0,7}",
-            right: 0,
-          },
-          {
-            label: "{0,2 \\cdot 0,3}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{0,2 \\cdot 0,3}{0,2 \\cdot 0,3 + 0,3 \\cdot 0,5 + 0,5 \\cdot 0,6}}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        question:
-          "\\text{Cada uno de los estudiantes de los terceros medios de un colegio lleva una botella individual para hidratarse, ya sea de agua o jugo.}\\newline\\text{Al seleccionar un estudiante de tercero medio de este colegio al azar, se puede determinar la probabilidad de que sea una mujer que lleva agua, si se sabe que:}\\newline\\text{(1) el }{60}\\%\\text{ de los estudiantes son hombres y de estos }{\\frac{5}{6}}\\text{ llevan agua.}\\newline\\text{(2) los }{\\frac{2}{3}}\\text{ de las mujeres llevan jugo.}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=3221",
-        imgDir: "no",
-        answer: [
-          {
-            label: "\\text{Ambas juntas, (1) y (2)}",
-            right: 1,
-          },
-          {
-            label: "\\text{(1) por sí sola}",
-            right: 0,
-          },
-          {
-            label: "\\text{(2) por sí sola}",
-            right: 0,
-          },
-          {
-            label: "\\text{Se requiere información adicional}",
-            right: 0,
-          },
-        ],
-      },
-      {
-        question:
-          "\\text{De un grupo de 100 personas, 40 de ellas son fumadores. Un }{20}\\%\\text{ de los fumadores no presenta una enfermedad respiratoria. Al seleccionar una persona al azar del grupo total, la probabilidad de que presente una enfermedad respiratoria es 0,35.}\\newline\\text{Al seleccionar una persona al azar del grupo total, ¿cuál es la probabilidad de que no fume dado que no tiene una enfermedad respiratoria?}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=3006",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{\\frac{57}{65}}",
-            right: 1,
-          },
-          {
-            label: "{\\frac{45}{60}}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{57}{60}}",
-            right: 0,
-          },
-          {
-            label: "{\\frac{45}{65}}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{Considera las tiendas A , B y C dedicadas a la venta de relojes. Si un cliente compra un reloj en una de estas tres tiendas, la probabilidad de que compre en A es 0,2 ; en B es 0,3 y en C es 0,5. Se sabe que la probabilidad de que cualquier reloj que se venda en las tiendas A, B y C tenga fallas es 0,3; 0,5 y 0,6 , respectivamente.}\\newline\\text{Si Teresa compra un reloj que no tiene fallas, ¿cuál es la probabilidad de que lo haya comprado en la tienda A?}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2931",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{\\frac{0,2 \\cdot 0,7}{0,2 \\cdot 0,7 + 0,3 \\cdot 0,5 + 0,5 \\cdot 0,4}}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{0,2 \\cdot 0,7}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{0,2 \\cdot 0,3}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{0,2 \\cdot 0,3}{0,2 \\cdot 0,3 + 0,3 \\cdot 0,5 + 0,5 \\cdot 0,6}}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   question:
+      //     "\\text{Cada uno de los estudiantes de los terceros medios de un colegio lleva una botella individual para hidratarse, ya sea de agua o jugo.}\\newline\\text{Al seleccionar un estudiante de tercero medio de este colegio al azar, se puede determinar la probabilidad de que sea una mujer que lleva agua, si se sabe que:}\\newline\\text{(1) el }{60}\\%\\text{ de los estudiantes son hombres y de estos }{\\frac{5}{6}}\\text{ llevan agua.}\\newline\\text{(2) los }{\\frac{2}{3}}\\text{ de las mujeres llevan jugo.}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=3221",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "\\text{Ambas juntas, (1) y (2)}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "\\text{(1) por sí sola}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{(2) por sí sola}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{Se requiere información adicional}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
+      // {
+      //   question:
+      //     "\\text{De un grupo de 100 personas, 40 de ellas son fumadores. Un }{20}\\%\\text{ de los fumadores no presenta una enfermedad respiratoria. Al seleccionar una persona al azar del grupo total, la probabilidad de que presente una enfermedad respiratoria es 0,35.}\\newline\\text{Al seleccionar una persona al azar del grupo total, ¿cuál es la probabilidad de que no fume dado que no tiene una enfermedad respiratoria?}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=3006",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{\\frac{57}{65}}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{\\frac{45}{60}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{57}{60}}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{\\frac{45}{65}}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         // 15
         question:
@@ -1298,32 +1298,32 @@ export const ensayos = [
           },
         ],
       },
-      {
-        // 17
-        question:
-          "\\text{En un cajón hay 12 pañuelos azules y una cierta cantidad de pañuelos blancos, todos de idéntica forma y sin la presencia de pañuelos de otros colores. Si la probabilidad de sacar al azar un pañuelo blanco es de }{\\frac{3}{5}}\\text{, ¿cuántos pañuelos hay en total en el cajón?}",
-        subject: "probabilidades",
-        link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=1412",
-        imgDir: "no",
-        answer: [
-          {
-            label: "{30}",
-            right: 1,
-          },
-          {
-            label: "{18}",
-            right: 0,
-          },
-          {
-            label: "{20}",
-            right: 0,
-          },
-          {
-            label: "{24}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   // 17
+      //   question:
+      //     "\\text{En un cajón hay 12 pañuelos azules y una cierta cantidad de pañuelos blancos, todos de idéntica forma y sin la presencia de pañuelos de otros colores. Si la probabilidad de sacar al azar un pañuelo blanco es de }{\\frac{3}{5}}\\text{, ¿cuántos pañuelos hay en total en el cajón?}",
+      //   subject: "probabilidades",
+      //   link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=1412",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "{30}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "{18}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{20}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "{24}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         // 18
         question:
@@ -1554,31 +1554,31 @@ export const ensayos = [
           },
         ],
       },
-      {
-        question:
-          "\\text{Se necesita determinar el perímetro del rectángulo ABCD, cuyo largo y ancho miden} {(4x + 1)}\text{cm y }{(x + 2)} \\text{cm, respectivamente.} \\newline \\text{Se sabe que ABCD es semejante a un rectángulo cuyo largo y ancho miden 10cm y 8cm, respectivamente.}\\newline\\text{Para determinar el perímetro del rectángulo ABCD se realiza el siguiente procedimiento, cometiéndose un error:} \\newline \\text{Paso 1: como los rectángulos son semejantes se plantea la expresión: } {\\frac{4x + 1}{8} = \\frac{x + 2}{10}}\\newline \\text{Paso 2: se resuelve la expresión anterior, obteniéndose } {x = \\frac{3}{16}} \\newline \\text{Paso 3: se reemplaza este valor de x en } {(4x + 1)} \\text{cm y } {(x + 2)} \\text{cm, obteniéndose que el largo y el ancho del rectángulo son } {\\frac{7}{4}} \\text{cm y }{\\frac{35}{16}} \\text{cm, respectivamente.}\\newline \\text{Paso 4: se calcula el perímetro del rectángulo obteniéndose } {\\frac{63}{8}}cm.\\newline \\text{¿En cuál de los pasos se cometió el error?}",
-        subject: "geometria",
-        link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1758",
-        imgDir: "no",
-        answer: [
-          {
-            label: "\\text{En el Paso 1}",
-            right: 1,
-          },
-          {
-            label: "\\text{En el Paso 2}",
-            right: 0,
-          },
-          {
-            label: "\\text{En el Paso 3}",
-            right: 0,
-          },
-          {
-            label: "\\text{En el Paso 4}",
-            right: 0,
-          },
-        ],
-      },
+      // {
+      //   question:
+      //     "\\text{Se necesita determinar el perímetro del rectángulo ABCD, cuyo largo y ancho miden} {(4x + 1)}\text{cm y }{(x + 2)} \\text{cm, respectivamente.} \\newline \\text{Se sabe que ABCD es semejante a un rectángulo cuyo largo y ancho miden 10cm y 8cm, respectivamente.}\\newline\\text{Para determinar el perímetro del rectángulo ABCD se realiza el siguiente procedimiento, cometiéndose un error:} \\newline \\text{Paso 1: como los rectángulos son semejantes se plantea la expresión: } {\\frac{4x + 1}{8} = \\frac{x + 2}{10}}\\newline \\text{Paso 2: se resuelve la expresión anterior, obteniéndose } {x = \\frac{3}{16}} \\newline \\text{Paso 3: se reemplaza este valor de x en } {(4x + 1)} \\text{cm y } {(x + 2)} \\text{cm, obteniéndose que el largo y el ancho del rectángulo son } {\\frac{7}{4}} \\text{cm y }{\\frac{35}{16}} \\text{cm, respectivamente.}\\newline \\text{Paso 4: se calcula el perímetro del rectángulo obteniéndose } {\\frac{63}{8}}cm.\\newline \\text{¿En cuál de los pasos se cometió el error?}",
+      //   subject: "geometria",
+      //   link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1758",
+      //   imgDir: "no",
+      //   answer: [
+      //     {
+      //       label: "\\text{En el Paso 1}",
+      //       right: 1,
+      //     },
+      //     {
+      //       label: "\\text{En el Paso 2}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{En el Paso 3}",
+      //       right: 0,
+      //     },
+      //     {
+      //       label: "\\text{En el Paso 4}",
+      //       right: 0,
+      //     },
+      //   ],
+      // },
       {
         question:
           "\\text{La razón de semejanza entre las figuras P y Q, en ese orden, es } {\\frac{3}{5}}, \\text{ mientras que la razón de semejanza entre las figuras R y P , en ese orden, es } {\\frac{7}{3}} \\text{.} \\newline \\text{¿Cuál es la razón de semejanza entre las figuras R y Q, en ese orden?}",
@@ -1629,7 +1629,7 @@ export const ensayos = [
           },
         ],
       },
-      {
+      /* {
         question:
           "\\text{Dentro de un sistema de coordenadas cartesianas se tienen los puntos A(2,3), B(5,8) y C(7,2).}\\newline\\text{¿Cuál es el área del triángulo ABC?}",
         subject: "geometria",
@@ -1726,7 +1726,7 @@ export const ensayos = [
             right: 0,
           },
         ],
-      },
+      }, */
     ],
   },
 ];

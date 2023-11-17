@@ -49,6 +49,7 @@ export function getRandomQuestions(numero: number, questions: Array<any>) {
 }
 
 export async function countCorrectQuestions(essayId: number) {
+  //Cuenta las preguntas correctas de un ensayo
   try {
     const respuestas = await db.chosen_answer.findMany({
       where: { essayToDoId: essayId },
@@ -76,6 +77,7 @@ export async function countCorrectQuestions(essayId: number) {
 }
 
 export function getFormatedTime(timeInSeconds: number) {
+  //Le da formato hh:mm:ss al tiempo recibido en segundos
   const hours = Math.floor(timeInSeconds / 3600);
   const minutes = Math.floor((timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60);
   const seconds = Math.floor(((timeInSeconds / 3600 - Math.floor(timeInSeconds / 3600)) * 60 - minutes) * 60);
@@ -94,6 +96,7 @@ export function getFormatedTime(timeInSeconds: number) {
 }
 
 export async function formatSubmittedEssay(submittedEssay: any) {
+  //Ordena información obteneida de la BD para mandarla al frontend
   type answer = {
     id: number;
     label: string;
@@ -150,6 +153,7 @@ export async function formatSubmittedEssay(submittedEssay: any) {
 }
 
 export function formatCustomEssay(customEssay: any) {
+  //Ordena información obteneida de la BD para mandarla al frontend
   type answer = {
     id: number;
     label: string;
@@ -241,6 +245,7 @@ export function createCopyCustomEssayName(name: string, lastRecordedName: any, f
 }
 
 export function getFormatedDate(essayDate: Date) {
+  //Le da formato dd/mm/aaaa a la fecha
   try {
     const formatedDate: string =
       ("0" + essayDate.getDate()).slice(-2) +
@@ -257,6 +262,7 @@ export function getFormatedDate(essayDate: Date) {
 }
 
 export function formatGetScores(essayInfo: any) {
+  //Ordena información obteneida de la BD para mandarla al frontend
   type scores = {
     id: number;
     createdAt: string;
@@ -296,6 +302,7 @@ export function formatGetScores(essayInfo: any) {
 }
 
 export function calculateAverageScore(scores: any) {
+  //Calcula promedio de puntajes entegados
   try {
     var averageScore = 0;
     for (var info of scores) {
@@ -309,6 +316,7 @@ export function calculateAverageScore(scores: any) {
   }
 }
 export async function calculateAllAverageScore(scores: any) {
+  //Calcula promedio de puntajes de todos los temas de ensayos
   type promedio = {
     id: number;
     name: string;
@@ -411,6 +419,7 @@ export async function calculateAllAverageScore(scores: any) {
   }
 }
 export function countCorrectAnswers(essaysInfo: any, essayName: string) {
+  //Obtiene el numero de respuestas correctas de un ensayo
   try {
     let totalCorrectAnswers: number = 0;
     let totalAnswers: number = 0;
@@ -433,6 +442,7 @@ export function countCorrectAnswers(essaysInfo: any, essayName: string) {
 }
 
 export async function countAllCorrectAnswers(userId: number, materia: string) {
+  //Obtiene el numero de respuestas correctas de ensayos de matemáticas sin contar el ensayo "general"
   try {
     var essays = await db.essay_to_do.findMany({
       where: { userId: userId, AND: { isCustom: 0 }, NOT: { name: "General" } },
@@ -454,6 +464,7 @@ export async function countAllCorrectAnswers(userId: number, materia: string) {
 }
 
 export async function countTopicCorrectAnswers(userId: number, essayName: string) {
+  //Obtiene el numero de respuestas correctas de ensayos por tema
   try {
     var essays = await db.essay_to_do.findMany({
       where: { name: essayName, AND: [{ userId: userId }, { isCustom: 0 }] },
@@ -476,6 +487,7 @@ export async function countTopicCorrectAnswers(userId: number, essayName: string
 }
 
 export function readfiles(directory: string) {
+  //Obtiene direcciones relativas de las imagenes para avatares
   let dirs: string[] = [];
   fs.readdirSync(directory).forEach((file) => {
     dirs.push("/img/avatars/" + file);
@@ -484,6 +496,7 @@ export function readfiles(directory: string) {
 }
 
 export function getFullPaths(avatars: any) {
+  //Obtiene direcciones enteras de las imagenes para avatares
   //recibe [{imgDir: string}]
   try {
     let dirs: string[] = [];
@@ -499,6 +512,7 @@ export function getFullPaths(avatars: any) {
 }
 
 export function shuffleArray(array: any) {
+  //Desordena el orden del contenido de un arreglo
   array.sort(() => Math.random() - 0.5);
   return array;
 }

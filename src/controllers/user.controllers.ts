@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 import crypto from "crypto";
 
 export const signup = async (req: Request, res: Response) => {
+  //Registro de usuario
   try {
     const newUser = await db.user.create({
       data: {
@@ -34,6 +35,7 @@ export const signup = async (req: Request, res: Response) => {
 };
 
 export const login = async (req: Request, res: Response) => {
+  //Inicio de sesión
   {
     try {
       const user = await db.user.findUnique({
@@ -133,6 +135,7 @@ export const recoverPassword = async (req: Request, res: Response) => {
 };
 
 export const changePassword = async (req: Request, res: Response) => {
+  //Cambia contraseña desde el perfil de ususario
   /* recibe old password y new password */
   try {
     const token = req.header("authorization");
@@ -175,6 +178,7 @@ export const changePassword = async (req: Request, res: Response) => {
 };
 
 export const getCoins = async (req: Request, res: Response) => {
+  //Obtiene las monedas actuales del usuario
   try {
     const token = req.header("authorization");
     if (!token) {
@@ -196,6 +200,7 @@ export const getCoins = async (req: Request, res: Response) => {
 };
 
 export const getAvatars = async (req: Request, res: Response) => {
+  //Obtiene las direcciones de todos los avatares
   try {
     const avatars = await db.avatar.findMany({
       select: {
@@ -210,6 +215,7 @@ export const getAvatars = async (req: Request, res: Response) => {
 };
 
 export const getCurrentAvatar = async (req: Request, res: Response) => {
+  //Obtiene la dirección del avatar actual del usuario
   try {
     const token = req.header("authorization");
     if (!token) {
@@ -231,6 +237,7 @@ export const getCurrentAvatar = async (req: Request, res: Response) => {
 };
 
 export const changeAvatar = async (req: Request, res: Response) => {
+  //Cambia avatar de usuario
   try {
     const token = req.header("authorization");
     if (!token) {

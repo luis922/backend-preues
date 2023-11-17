@@ -2,6 +2,7 @@ import { db } from "../db.connection";
 
 //Eliminar usuario
 export const delUserByID = async (idu: number) => {
+  //Elimina usuario por id
   try {
     const deletedUser = await db.user.delete({
       where: {
@@ -15,6 +16,7 @@ export const delUserByID = async (idu: number) => {
 };
 
 export const delUserByName = async (name: string) => {
+  //Elimina usuario por nombre
   try {
     const deletedUser = await db.user.delete({
       where: {

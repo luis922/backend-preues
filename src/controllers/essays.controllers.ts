@@ -7,7 +7,7 @@ import * as gen from "../lib/general";
 const customEssayLimit = 5; //Limite de ensayos custom que un usuario puede crear al mismo tiempo
 
 export const findEssayQuestions = async (req: Request, res: Response) => {
-  //obtiene todas las preguntas de un ensayo
+  //Obtiene todas las preguntas de un ensayo
   const essayName = req.query.name as string; //type of topic of the question
   if (await find.essayExist(essayName)) {
     try {
@@ -55,7 +55,7 @@ export const findEssayQuestions = async (req: Request, res: Response) => {
 };
 
 export const findAllEssaysQuestions = async (req: Request, res: Response) => {
-  //obtiene todas las preguntas de todos los ensayos
+  //Obtiene todas las preguntas de todos los ensayos
   try {
     var ensayos = await db.predefined_essay.findMany({
       select: {
@@ -99,7 +99,7 @@ export const findAllEssaysQuestions = async (req: Request, res: Response) => {
 };
 
 export const createEssay = async (req: Request, res: Response) => {
-  //crea un nuevo ensayo que puede ser o no custom
+  //Crea nuevos ensayos custom o predefinidos
   var newEssay;
   var relations;
   //----------get user id---------------------
@@ -400,7 +400,7 @@ export const submitAnswers = async (req: Request, res: Response) => {
 };
 
 export const getSubmittedEssay = async (req: Request, res: Response) => {
-  //Obtiene todas las preguntas y respuestas del ensayo, mas información sobre este
+  //Obtiene el detalle de un ensayo ya realizado
   const essayId = req.query.id as string;
   try {
     const submittedEssay = await find.getSubmittedEssay(+essayId);
@@ -626,6 +626,7 @@ export const getCustomEssay = async (req: Request, res: Response) => {
 };
 
 export const physicalDeleteEssay = async (req: Request, res: Response) => {
+  //Borrado físico del ensayo
   const essayId = req.query.essayId as string;
   const ensayoIniciado = req.query.started as string;
 
@@ -638,7 +639,7 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
 
   if (+ensayoIniciado == 1 && !((await find.isFatherEssay(+essayId)) && find.isEssayCustom(+essayId))) {
     await update.updateLastRecordedName(+essayId);
-  }
+  } //Para evitar que se reserve un nombre de ensayo custom cuando se cancela la realización de un ensayo
 
   try {
     const delEssay = await db.essay_to_do.delete({
@@ -655,6 +656,7 @@ export const physicalDeleteEssay = async (req: Request, res: Response) => {
 };
 
 export const logicalDeleteEssay = async (req: Request, res: Response) => {
+  //Borrado lógico del ensayo
   const essayId = req.query.essayId as string;
 
   try {

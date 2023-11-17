@@ -192,6 +192,7 @@ Entrada: no tiene*/
 };
 
 export const countAllSubjectCorrectAnswers = async (req: Request, res: Response) => {
+  //obtiene número de preguntas respondidas correctamente de una materia y su desglose (ej:matematicas)
   try {
     const token = req.header("authorization");
     if (!token) {

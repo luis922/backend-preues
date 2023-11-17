@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 
 export const tokenValidation = (req: Request, res: Response, next: NextFunction) => {
+  //Valida el token
   try {
     //Agregar verficación de tiempo de duración del token cuando se defina
     const bearerToken = req.header("authorization");

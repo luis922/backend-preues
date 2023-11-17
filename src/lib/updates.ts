@@ -2,6 +2,7 @@ import { db } from "../db.connection";
 import { createCopyCustomEssayName } from "./general";
 
 export async function updateEssayCompletionTime(time: number, essayId: number) {
+  //Actualiza el tiempo en que se completo un ensayo
   try {
     const essay = await db.essay_to_do.update({
       where: { id: essayId },
@@ -19,7 +20,7 @@ export async function updateEssayCompletionTime(time: number, essayId: number) {
 
 export async function updateEssayScore(essayId: number, correctAnswers: number) {
   try {
-    //calcular puntaje de 100 a 1000
+    //Calcula puntaje del ensayo (de 100 a 1000) y lo actualiza en la bd
     const numQuestions = await db.essay_to_do.findUnique({
       where: { id: essayId },
       select: {
@@ -44,6 +45,7 @@ export async function updateEssayScore(essayId: number, correctAnswers: number) 
 }
 
 export async function updateUserCoins(userId: number, correctAnswers: number) {
+  //Actualiza el numero de monedas del usuario
   try {
     const userInfo = await db.user.findUnique({
       where: { id: userId },
@@ -67,6 +69,7 @@ export async function updateUserCoins(userId: number, correctAnswers: number) {
 }
 
 export async function updateLastRecordedName(essayId: number) {
+  //Actualiza el campo lastRecordedName en un ensayo personalizado padre indicando el ultimo nombre asignado al ensayo custom
   try {
     const essayInfo = await db.essay_to_do.findUnique({
       where: { id: essayId },

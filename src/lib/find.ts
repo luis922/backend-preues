@@ -2,6 +2,7 @@ import { db } from "../db.connection";
 import { validateEssayName } from "./general";
 
 export async function findUserbyName(name: string) {
+  //Encontrar usuario por nombre
   try {
     const user = await db.user.findUnique({
       where: {
@@ -20,6 +21,7 @@ export async function findUserbyName(name: string) {
 
 //ensayo
 export async function essayExist(nombre: string) {
+  //Verifica si existe tema de preguntas segun nombre
   try {
     var essay = await db.predefined_essay.findUnique({
       where: { name: nombre },
@@ -60,6 +62,7 @@ export async function essayExist(nombre: string) {
 } */
 
 export async function existEssaytoDo(id: number) {
+  //Verifica si existe un ensayo por id
   try {
     var essay = await db.essay_to_do.findUnique({
       where: { id: id },
@@ -75,7 +78,7 @@ export async function existEssaytoDo(id: number) {
 }
 
 export async function existTOQ(id: number) {
-  //exist type_of_question
+  //Verifica si existe relacion type_of_question
   try {
     var essay = await db.type_of_question.findMany({
       where: { essayToDoId: id },
@@ -92,6 +95,7 @@ export async function existTOQ(id: number) {
 }
 
 export async function findAllTypeOfQuestionRelations(essayId: number) {
+  //Encuentra las relaciones entre ensayo realizado y tipo de ensayo de un ensayo en especifico
   if (await existTOQ(essayId)) {
     // si existe la relación
     try {
@@ -111,6 +115,7 @@ export async function findAllTypeOfQuestionRelations(essayId: number) {
 }
 
 export async function existAnswer(id: number) {
+  //Verifica si existe una respuesta
   try {
     var answer = await db.answer.findUnique({
       where: { id: id },
@@ -126,6 +131,7 @@ export async function existAnswer(id: number) {
 }
 
 export async function existQuestion(id: number) {
+  //Verifica si existe una pregunta
   try {
     var question = await db.question.findUnique({
       where: { id: id },
@@ -141,6 +147,7 @@ export async function existQuestion(id: number) {
 }
 
 export async function getQuestionIdFromAnswerId(aId: number) {
+  //Obtiene el id de una pregunta a partir de la id de una respeusta
   try {
     var question = await db.answer.findUnique({
       where: { id: aId },
@@ -163,6 +170,7 @@ export async function getQuestionIdFromAnswerId(aId: number) {
 }
 
 export async function isNameRepeated(essayName: string, userID: number) {
+  //Verifica que un nombre de ensayo personalizado no esta repetido
   try {
     var repeatedEssay = await db.essay_to_do.findMany({
       where: { name: essayName, AND: { isCustom: 1 } },
@@ -213,6 +221,7 @@ export async function getPredefinedEssayQuestions(preDefEssayId: number) {
 }
 
 export async function getSubmittedEssay(essayId: number) {
+  //Obtiene la información necesaria para mostrar en el feedback que se da sobre un ensayo
   try {
     let existEssay = await existEssaytoDo(essayId);
     if (!existEssay) {
@@ -381,6 +390,7 @@ export async function getCustomEssayForCopy(essayId: number) {
 }
 
 export async function isFatherEssay(essayId: number) {
+  //Verifica si un ensayo custom es padre(ensayo custom original)
   const essay = await db.essay_to_do.findUnique({
     where: { id: essayId },
     select: {

@@ -56,6 +56,7 @@ async function poblarAvatares() {
 }
 
 async function poblarBD() {
+  //Funcion para poblar la base de datos
   console.log(await poblarAvatares());
   //recorre los ensayos
   var newEnsayo;

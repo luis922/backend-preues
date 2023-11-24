@@ -27,7 +27,7 @@ export const signup = async (req: Request, res: Response) => {
     });
   } catch (error) {
     return res.status(500).json({
-      msg: "Couldn't create user",
+      msg: "No se pudo crear usuario, nombre de cuenta o email ya registrados",
       err: error,
       success: 0,
     });

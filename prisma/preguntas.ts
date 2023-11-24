@@ -127,7 +127,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{¿Cuál de las siguientes cantidades corresponde al } {5}\\% \\text{ del precio de un articulo?}",
+          "\\text{¿Cuál de las siguientes cantidades corresponde al } {5}\\% \\newline \\text{ del precio de un articulo?}",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=1540",
         imgDir: "no",
@@ -176,7 +176,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{¿Cual de las siguientes expresiones representa el } {22}\\%  \\text { del } {15}\\% \\text{ de P ?}",
+          "\\text{¿Cual de las siguientes expresiones representa el } {22}\\% \\newline \\text { del } {15}\\% \\text{ de P ?}",
         subject: "numeros",
         link_resolution: "https://www.youtube.com/embed/nKR73i6zASg?start=577",
         imgDir: "no",
@@ -510,7 +510,7 @@ export const ensayos = [
       // },
       {
         question:
-          "\\text{Si } {log_2{(-2x + 3p)} = 3} \\text{ y } {log_3{(x +2p)} = 1} \\text{ ¿Cual es el valor de } {x-2p} ?",
+          "\\text{Si } {log_2{(-2x + 3p)} = 3} \\text{ y } {log_3{(x +2p)} = 1}\\newline \\text{ ¿Cuál es el valor de } {x-2p} ?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=5349",
         imgDir: "no",
@@ -559,7 +559,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Para que el doble de } {(a + c)} \\text{ sea igual a } {18}\\text{ , le faltan } {4} \\text{ unidades, se expresa como:}",
+          "\\text{Para que el doble de } {(a + c)} \\text{ sea igual a } {18}\\text{ , le faltan }\\newline {4} \\text{ unidades, se expresa como:}",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/jZGMcWoN-_M?start=1382",
         imgDir: "no",
@@ -584,7 +584,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{La expresión }{(a + 2)^{2} + (a + 1)(a - 3)}\\text{ se factoriza como el producto de dos factores, tal que uno de ellos es }{(a + 1)}.\\newline\\text{¿Cuál de las siguientes expresiones corresponde al otro factor de la expresión?}",
+          "\\text{La expresión }{(a + 2)^{2} + (a + 1)(a - 3)}\\text{ se factoriza como}\\newline \\text{el producto de dos factores, tal que uno de ellos es }{(a + 1)}.\\newline\\text{¿Cuál de las siguientes expresiones corresponde al otro}\\newline \\text{factor de la expresión?}",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=196",
         imgDir: "no",
@@ -608,7 +608,8 @@ export const ensayos = [
         ],
       },
       {
-        question: "\\text{¿Cuál de las siguientes expresiones es igual que } {(a + (b + c)) \\cdot (a + (b - c))}?",
+        question:
+          "\\text{¿Cuál de las siguientes expresiones es igual que }\\newline {(a + (b + c)) \\cdot (a + (b - c))}?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/fhSir6Yd4pQ?start=1",
         imgDir: "no",
@@ -658,7 +659,7 @@ export const ensayos = [
       // },
       {
         question:
-          "\\text{En una frutería cada durazno cuesta \\$480 y cada mango cuesta \\$400 . Una persona gastó \\$6800 en total comprando solo 16 frutas entre duraznos y mangos.}\\newline\\text{¿Cuál de las siguientes ecuaciones permite determinar la cantidad }{x}\\text{ de duraznos que compró la persona?}",
+          "\\text{En una frutería cada durazno cuesta \\$480 y cada mango} \\newline \\text{cuesta \\$400 . Una persona gastó \\$6800 en total compran-}\\newline\\text{do solo 16 frutas entre duraznos y mangos.}\\newline\\text{¿Cuál de las siguientes ecuaciones permite determinar}\\newline \\text{la cantidad }{x}\\text{ de duraznos que compró la persona?}",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=2",
         imgDir: "no",
@@ -682,7 +683,7 @@ export const ensayos = [
         ],
       },
       {
-        question: "\\text{¿Cuáles son las soluciones de la ecuación } {x^{2} -12x +35 = 0} ?",
+        question: "\\text{¿Cuáles son las soluciones de la ecuación } \\newline{x^{2} -12x +35 = 0} ?",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/APzM_Ein_bE?start=197",
         imgDir: "no",
@@ -761,7 +762,7 @@ export const ensayos = [
       // },
       {
         question:
-          "\\text{Considera la ecuación }{3x - p = 2x + p + 1}.\\newline\\text{¿Cuál es el menor valor que puede tomar x para que p sea un número entero positivo?}",
+          "\\text{Considera la ecuación }{3x - p = 2x + p + 1}.\\newline\\text{¿Cuál es el menor valor que puede tomar } {x} \\text{ para}\\newline \\text{que p sea un número entero positivo?}",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=762",
         imgDir: "no",
@@ -786,7 +787,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Considera el sistema }{\\begin{rcases} ax + by + 1 = 0 \\newline bx + ay + 1 = 0 \\end{rcases}}\\text{, en x e y , con a y b números reales distintos entre sí, distintos de cero y }{a \\mathrlap{/}{=} -b}.\\newline\\text{¿Cuál es la solución del sistema?}",
+          "\\text{Considera el sistema }{\\begin{rcases} ax + by + 1 = 0 \\newline bx + ay + 1 = 0 \\end{rcases}}\\text{, en x e y ,} \\newline \\text{con a y b números reales distintos entre sí, distintos de}\\newline \\text{cero y }{a \\mathrlap{/}{=} -b}.\\newline\\text{¿Cuál es la solución del sistema?}",
         subject: "algebra",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1083",
         imgDir: "no",
@@ -924,7 +925,7 @@ export const ensayos = [
     questions: [
       {
         question:
-          "\\text{El dinero total que tienen ahorrado tres amigas es  }{\\$210.000}\\text{. Se sabe que Claudia aporto el doble que Maria y que Yasna aporto el doble que Claudia. ¿Cual es el promedio de dinero aportado por Claudia y Yasna?}",
+          "\\text{El dinero total que tienen ahorrado tres amigas es de}\\newline{\\$210.000.}\\text{ Se sabe que Claudia aporto el doble que Maria}\\newline \\text{y que Yasna aporto el doble que Claudia.}\\newline \\text{¿Cuál es el promedio de dinero aportado por Claudia}\\newline \\text{y Yasna?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=13136",
         imgDir: "no",
@@ -949,7 +950,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{En la siguiente tabla se muestra la distribucion de las edades, en años, de un grupo de niños.}\\newline {\\begin{array}{c:c} \\text{Edad} & \\text{Frecuencia} \\newline 2 & 5 \\newline 3 & 6 \\newline  4 & 9 \\newline 5 & 3 \\newline  \\end{array}} \\newline\\text{¿Cuál es la mediana de edad de este grupo de niños?}",
+          "\\text{En la siguiente tabla se muestra la distribucion de las}\\newline \\text{edades, en años, de un grupo de niños.}\\newline {\\begin{array}{c:c} \\text{Edad} & \\text{Frecuencia} \\newline 2 & 5 \\newline 3 & 6 \\newline  4 & 9 \\newline 5 & 3 \\newline  \\end{array}} \\newline\\text{¿Cuál es la mediana de edad de este grupo de niños?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=13314",
         imgDir: "no",
@@ -974,7 +975,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Al lanzar un dado cargado, numerado del 1 al 6, la probabilidad de que salga un número par es el doble de la probabilidad de que salga un número impar. Si se lanza este dado, ¿cuál es la probabilidad de que salga un número impar?}",
+          "\\text{Al lanzar un dado cargado, numerado del 1 al 6, la}\\newline \\text{probabilidad de que salga un número par es el doble de la}\\newline \\text{probabilidad de que salga un número impar.}\\newline \\text{Si se lanza este dado, ¿cuál es la probabilidad de que salga}\\newline \\text{un número impar?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=14765",
         imgDir: "no",
@@ -999,7 +1000,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{En un mazo de cartas de naipes inglés 52 cartas, 13 de ellas son de trébol. Si se extraen del mazo dos cartas al azar, una despues de la otra y sin reposición, ¿cuál es la probabilidad de que ambas sean de trébol?}",
+          "\\text{En un mazo de cartas de naipes inglés 52 cartas, 13 de}\\newline \\text{ellas son de trébol. Si se extraen del mazo dos cartas al}\\newline \\text{azar, una después de la otra y sin reposición,}\\newline \\text{¿cuál es la probabilidad de que ambas sean de trébol?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=14941",
         imgDir: "no",
@@ -1049,7 +1050,7 @@ export const ensayos = [
       // },
       {
         question:
-          "\\text{Los resultados de las dos primeras pruebas de matemática de Esteban son un 5,3 y un 5,9.}\\newline\\text{¿Cuál de las siguientes notas es la mínima que debe obtener Esteban en la tercera prueba para que su promedio sea de al menos un 5,9 en las tres pruebas?}",
+          "\\text{Los resultados de las dos primeras pruebas de matemá-}\\newline \\text{tica de Esteban son un 5,3 y un 5,9.}\\newline\\text{¿Cuál de las siguientes notas es la mínima que debe obte-}\\newline \\text{ner Esteban en la tercera prueba para que su promedio}\\newline \\text{sea de al menos un 5,9 en las tres pruebas?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/Kdr9QVeILdI?start=570",
         imgDir: "no",
@@ -1123,7 +1124,8 @@ export const ensayos = [
       //   ],
       // },
       {
-        question: "\\text{Si se lanzan tres monedas, ¿cuál es la probabilidad de obtener al menos un sello?}",
+        question:
+          "\\text{Si se lanzan tres monedas, ¿cuál es la probabilidad de}\\newline \\text{obtener al menos un sello?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/4-FdwiMge7Y?start=355",
         imgDir: "no",
@@ -1148,7 +1150,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Una caja M contiene solo 3 bolitas rojas y 2 verdes, todas del mismo tipo y una caja N contiene solo una bolita roja y 3 bolitas verdes, todas del mismo tipo.}\\newline\\text{ Un experimento aleatorio consiste en lanzar un dado común, si sale un número par se extrae una bolita desde la caja M, en caso contrario se extrae una bolita de la caja N.}\\newline\\text{Si se realiza este experimento, ¿cuál es la probabilidad de extraer una bolita roja?}",
+          "\\text{Una caja M contiene solo 3 bolitas rojas y 2 verdes, todas}\\newline \\text{del mismo tipo y una caja N contiene solo una bolita roja}\\newline \\text{y 3 bolitas verdes, todas del mismo tipo.}\\newline\\text{Un experimento aleatorio consiste en lanzar un dado co-}\\newline \\text{mún, si sale un número par se extrae una bolita desde la}\\newline \\text{caja M, en caso contrario se extrae una bolita de la caja N.}\\newline\\text{Si se realiza este experimento,}\\newline \\text{¿cuál es la probabilidad de extraer una bolita roja?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2875",
         imgDir: "no",
@@ -1249,7 +1251,7 @@ export const ensayos = [
       {
         // 15
         question:
-          "\\text{Sean A y B  dos sucesos tales que }{P(A) = \\frac{1}{2}, P(A \\cap B) = \\frac{1}{6} y 1 - P(B) = \\frac{2}{3}}\\text{. Entonces, }{P(A \\cup B) =}",
+          "\\text{Sean A y B  dos sucesos tales que }\\newline {P(A) = \\frac{1}{2}, P(A \\cap B) = \\frac{1}{6}} \\text{ y } {1 - P(B) = \\frac{2}{3}.}\\newline \\text{Entonces, }{P(A \\cup B) =}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=137",
         imgDir: "no",
@@ -1275,7 +1277,7 @@ export const ensayos = [
       {
         // 16
         question:
-          "\\text{En un curso, todos los alumnos participan de por lo menos una actividad deportiva, que puede ser fútbol, atletismo o ambas. En el grupo de fútbol hay 32 alumnos del curso y en el grupo de atletismo hay 24 alumnos del curso, de los cuales la mitad pertenece además al grupo de fútbol. Al escoger un alumno al azar, ¿cuál es la probabilidad de que petenezca solamente al grupo de fútbol?}",
+          "\\text{En un curso, todos los alumnos participan de por lo me-}\\newline \\text{nos una actividad deportiva, que puede ser fútbol, atle-}\\newline \\text{tismo o ambas. En el grupo de fútbol hay 32 alumnos}\\newline \\text{del curso y en el grupo de atletismo hay 24 alumnos del}\\newline \\text{curso, de los cuales la mitad pertenece además al grupo}\\newline \\text{de fútbol. Al escoger un alumno al azar, ¿cuál es la}\\newline \\text{probabilidad de que petenezca solamente al grupo}\\newline \\text{de fútbol?}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=732",
         imgDir: "no",
@@ -1327,7 +1329,7 @@ export const ensayos = [
       {
         // 18
         question:
-          "\\text{Si se lanza dos veces un dado común y se suman los resultados, la probabilidad de que dicha suma sea multiplo de 5 es:}",
+          "\\text{Si se lanza dos veces un dado común y se suman los resul-}\\newline \\text{tados, la probabilidad de que dicha suma sea multiplo de}\\newline \\text{5 es:}",
         subject: "probabilidades",
         link_resolution: "https://www.youtube.com/embed/jeAxuYbpmZ4?start=2437",
         imgDir: "no",
@@ -1358,32 +1360,32 @@ export const ensayos = [
     questions: [
       {
         question:
-          "\\text{Sean } {A(1,1)}, {B(5,3)} \\text{ y } {C} \\text{ los vértices de un triángulo. Se pueden determinar las coordenadas del vértice } {C} \\text{ del triángulo si se sabe que: }  {(1)} \\text{ Ángulo } {BAC = 90°} {(2)} \\text{El triángulo es isósceles y el vértice } {C} \\text{ esta en el cuarto cuadrante.}",
+          "\\text{Sean } {A(1,1)}, {B(5,3)} \\text{ y } {C} \\text{ los vértices de un triángulo.}\\newline \\text{Se pueden determinar las coordenadas del vértice } {C}\\newline \\text{del triángulo si se sabe que: }\\newline  {(1)} \\text{ Ángulo } {BAC = 90°} \\newline {(2)} \\text{El triángulo es isósceles y el vértice } {C} \\newline \\text{ esta en el cuarto cuadrante.}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=12325",
         imgDir: "no",
         answer: [
           {
-            label: "{Ambas juntas, (1) y (2)}",
+            label: "\\text{Ambas juntas, (1)} y {(2)}",
             right: 1,
           },
           {
-            label: "{(2) por si sola}",
+            label: "\\text{(2) por si sola}",
             right: 0,
           },
           {
-            label: "{(1) por si sola}",
+            label: "\\text{(1) por si sola}",
             right: 0,
           },
           {
-            label: "{Se requier informacion adicional}",
+            label: "\\text{Se requier informacion adicional}",
             right: 0,
           },
         ],
       },
       {
         question:
-          "\\text{Considere los vectores } {\\overrightarrow{u} = (-2,5)}, {\\overrightarrow{v} = (3, -2)}\\text{ y }{\\overrightarrow{c} = (-1,-4)}.\\newline \\text{¿Cual es el vector } {\\overrightarrow{u} + 2\\overrightarrow{v} - \\overrightarrow{c}}?",
+          "\\text{Considere los vectores } {\\overrightarrow{u} = (-2,5)}, {\\overrightarrow{v} = (3, -2)}\\text{ y }\\newline{\\overrightarrow{c} = (-1,-4)}.\\newline \\text{¿Cual es el vector } {\\overrightarrow{u} + 2\\overrightarrow{v} - \\overrightarrow{c}}?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=9560",
         imgDir: "no",
@@ -1408,7 +1410,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Si el punto (a,b) es la imagen que se obtiene al trasladar el punto R según el vector} (m,n), \\text{¿cuáles son las coordenadas de R ?}",
+          "\\text{Si el punto (a,b) es la imagen que se obtiene al trasladar}\\newline \\text{el punto R según el vector} (m,n), \\text{¿cuáles son las }\\newline \\text{coordenadas de R ?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/OxgnJ-IgxA0?start=9691",
         imgDir: "no",
@@ -1432,7 +1434,8 @@ export const ensayos = [
         ],
       },
       {
-        question: "\\text{Con un cordel de largo d se forma un cuadrado. ¿Cuánto mide el area del un cuadrado ?}",
+        question:
+          "\\text{Con un cordel de largo d se forma un cuadrado.}\\newline \\text{¿Cuánto mide el área del cuadrado?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/m4qRM2mtjHA?start=480",
         imgDir: "no",
@@ -1457,7 +1460,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Dos figuras geométricas son homotéticas con razón de homotecia -3.}\\newline\\text{Si la figura original tiene un área de b} {cm^{2} } \\text{, ¿cuál es el área de la imagen homotética?}",
+          "\\text{Dos figuras geométricas son homotéticas con razón de}\\newline \\text{homotecia -3. Si la figura original tiene un área de b} {cm^{2} } \\text{, }\\newline \\text{¿cuál es el área de la imagen homotética?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2263",
         imgDir: "no",
@@ -1481,7 +1484,8 @@ export const ensayos = [
         ],
       },
       {
-        question: "\\text{¿Para qué puntos (x, y) en el plano cartesiano se cumple } {\\frac{3x + y}{3} = x + y}?",
+        question:
+          "\\text{¿Para qué puntos (x, y) en el plano cartesiano se cumple}\\newline {\\frac{3x + y}{3} = x + y}?",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2348",
         imgDir: "no",
@@ -1506,7 +1510,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{¿Cuántos vectores (a, b) con coordenadas enteras y magnitud } {\\sqrt{5}} \\text{ hay en el plano cartesiano ?}",
+          "\\text{¿Cuántos vectores (a, b) con coordenadas enteras}\\newline \\text{y magnitud } {\\sqrt{5}} \\text{ hay en el plano cartesiano ?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2414",
         imgDir: "no",
@@ -1531,7 +1535,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{Al trasladar el punto (x, y) según el vector (p, q), se obtiene un punto en el segundo cuadrante.}\\newline\\text{¿Cuál de las siguientes relaciones es verdadera ?}",
+          "\\text{Al trasladar el punto (x, y) según el vector (p, q),}\\newline \\text{se obtiene un punto en el segundo cuadrante.}\\newline\\text{¿Cuál de las siguientes relaciones es verdadera ?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=2382",
         imgDir: "no",
@@ -1581,7 +1585,7 @@ export const ensayos = [
       // },
       {
         question:
-          "\\text{La razón de semejanza entre las figuras P y Q, en ese orden, es } {\\frac{3}{5}}, \\text{ mientras que la razón de semejanza entre las figuras R y P , en ese orden, es } {\\frac{7}{3}} \\text{.} \\newline \\text{¿Cuál es la razón de semejanza entre las figuras R y Q, en ese orden?}",
+          "\\text{La razón de semejanza entre las figuras P y Q, en ese}\\newline \\text{orden, es } {\\frac{3}{5}}, \\text{ mientras que la razón de semejanza entre}\\newline \\text{las figuras R y P , en ese orden, es } {\\frac{7}{3}} \\text{.} \\newline \\text{¿Cuál es la razón de semejanza entre las figuras R y Q,}\\newline \\text{sen ese orden?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/3-qEJz0wATs?start=1813",
         imgDir: "no",
@@ -1606,7 +1610,7 @@ export const ensayos = [
       },
       {
         question:
-          "\\text{A un punto P del plano cartesiano se le aplica una reflexión respecto al origen de este obteniéndose el punto Q, luego el punto Q se traslada según el vector } {\\overrightarrow{v} = (-2, 3)} \\text{ obteniéndose el punto R.} \\newline \\text{Si R tiene coordenadas} {(5, 4)} , \\text{¿cuáles son las coordenadas del punto P ?}",
+          "\\text{A un punto P del plano cartesiano se le aplica una}\\newline \\text{reflexión respecto al origen de este obteniéndose el }\\newline \\text{punto Q, luego el punto Q se traslada según el vector }\\newline  {\\overrightarrow{v} = (-2, 3)}\\text{ obteniéndose el punto R.} \\newline \\text{Si R tiene coordenadas} {(5, 4)} , \\newline \\text{¿cuáles son las coordenadas del punto P ?}",
         subject: "geometria",
         link_resolution: "https://www.youtube.com/embed/GFcXxDORRvo?start=560",
         imgDir: "no",
